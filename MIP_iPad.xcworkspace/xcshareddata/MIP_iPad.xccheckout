@@ -10,8 +10,6 @@
 	<string>MIP_iPad</string>
 	<key>IDESourceControlProjectOriginsDictionary</key>
 	<dict>
-		<key>583999B04B7B4F760B88EB50CEF5E233CC6304FF</key>
-		<string>https://github.com/leooooooooo/MIP_iPhone_LYG-.git</string>
 		<key>d2d7040d-2662-46df-870a-b0fca5361b39++6217</key>
 		<string>http://run-svn/projects/cn/MIPIM/trunk/MIPIM_SRC/MIPIM_LYG/ios/%252525E8%252525BF%2525259E%252525E4%252525BA%25252591%252525E6%252525B8%252525AF%252525E6%25252589%2525258B%252525E6%2525259C%252525BA%252525E7%25252589%25252588/MIP_iPhone_LYG%25252520</string>
 	</dict>
@@ -19,8 +17,6 @@
 	<string>MIP_iPad.xcworkspace</string>
 	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
 	<dict>
-		<key>583999B04B7B4F760B88EB50CEF5E233CC6304FF</key>
-		<string>..</string>
 		<key>d2d7040d-2662-46df-870a-b0fca5361b39++6217</key>
 		<string>../../MIP_iPhone_LYG%20</string>
 	</dict>
@@ -34,14 +30,14 @@
 	<key>IDESourceControlProjectVersion</key>
 	<integer>111</integer>
 	<key>IDESourceControlProjectWCCIdentifier</key>
-	<string>583999B04B7B4F760B88EB50CEF5E233CC6304FF</string>
+	<string>d2d7040d-2662-46df-870a-b0fca5361b39++6217</string>
 	<key>IDESourceControlProjectWCConfigurations</key>
 	<array>
 		<dict>
 			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
 			<string>public.vcs.git</string>
 			<key>IDESourceControlWCCIdentifierKey</key>
-			<string>583999B04B7B4F760B88EB50CEF5E233CC6304FF</string>
+			<string>d2d7040d-2662-46df-870a-b0fca5361b39++6217</string>
 			<key>IDESourceControlWCCName</key>
 			<string>MIP_iPhone_LYG</string>
 		</dict>

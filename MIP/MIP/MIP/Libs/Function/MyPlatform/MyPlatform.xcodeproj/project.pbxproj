@@ -8,12 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		2A657C0418CF051C0099C683 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2A657C0318CF051C0099C683 /* Foundation.framework */; };
-		2A657C1218CF051C0099C683 /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2A657C1118CF051C0099C683 /* XCTest.framework */; };
-		2A657C1318CF051C0099C683 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2A657C0318CF051C0099C683 /* Foundation.framework */; };
-		2A657C1518CF051C0099C683 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2A657C1418CF051C0099C683 /* UIKit.framework */; };
-		2A657C1818CF051C0099C683 /* libMyPlatform.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2A657C0018CF051C0099C683 /* libMyPlatform.a */; };
-		2A657C1E18CF051C0099C683 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 2A657C1C18CF051C0099C683 /* InfoPlist.strings */; };
-		2A657C2018CF051C0099C683 /* MyPlatformTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A657C1F18CF051C0099C683 /* MyPlatformTests.m */; };
 		2A657C4518CF06C10099C683 /* MyPlatformLevelTwoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A657C4418CF06C10099C683 /* MyPlatformLevelTwoViewController.m */; };
 		2A657C4818CF070C0099C683 /* MyPlatformLevelTwoView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A657C4718CF070C0099C683 /* MyPlatformLevelTwoView.m */; };
 		2A901A7918CF08CA00831991 /* MyPlatformLevelTwoTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A901A7818CF08CA00831991 /* MyPlatformLevelTwoTableViewController.m */; };
@@ -21,16 +15,6 @@
 		2A901A8318CF091400831991 /* MyPlatformLevelOneView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A901A7F18CF091400831991 /* MyPlatformLevelOneView.m */; };
 		2A901A8418CF091400831991 /* MyPlatformLevelOneViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A901A8118CF091400831991 /* MyPlatformLevelOneViewController.m */; };
 /* End PBXBuildFile section */
-
-/* Begin PBXContainerItemProxy section */
-		2A657C1618CF051C0099C683 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 2A657BF818CF051C0099C683 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 2A657BFF18CF051C0099C683;
-			remoteInfo = MyPlatform;
-		};
-/* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
 		2A657BFE18CF051C0099C683 /* CopyFiles */ = {
@@ -48,7 +32,6 @@
 		2A657C0018CF051C0099C683 /* libMyPlatform.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libMyPlatform.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		2A657C0318CF051C0099C683 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		2A657C0718CF051C0099C683 /* MyPlatform-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "MyPlatform-Prefix.pch"; sourceTree = "<group>"; };
-		2A657C1018CF051C0099C683 /* MyPlatformTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MyPlatformTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		2A657C1118CF051C0099C683 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
 		2A657C1418CF051C0099C683 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = Library/Frameworks/UIKit.framework; sourceTree = DEVELOPER_DIR; };
 		2A657C1B18CF051C0099C683 /* MyPlatformTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "MyPlatformTests-Info.plist"; sourceTree = "<group>"; };
@@ -79,17 +62,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		2A657C0D18CF051C0099C683 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				2A657C1818CF051C0099C683 /* libMyPlatform.a in Frameworks */,
-				2A657C1218CF051C0099C683 /* XCTest.framework in Frameworks */,
-				2A657C1518CF051C0099C683 /* UIKit.framework in Frameworks */,
-				2A657C1318CF051C0099C683 /* Foundation.framework in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -107,7 +79,6 @@
 			isa = PBXGroup;
 			children = (
 				2A657C0018CF051C0099C683 /* libMyPlatform.a */,
-				2A657C1018CF051C0099C683 /* MyPlatformTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -278,24 +249,6 @@
 			productReference = 2A657C0018CF051C0099C683 /* libMyPlatform.a */;
 			productType = "com.apple.product-type.library.static";
 		};
-		2A657C0F18CF051C0099C683 /* MyPlatformTests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 2A657C2618CF051C0099C683 /* Build configuration list for PBXNativeTarget "MyPlatformTests" */;
-			buildPhases = (
-				2A657C0C18CF051C0099C683 /* Sources */,
-				2A657C0D18CF051C0099C683 /* Frameworks */,
-				2A657C0E18CF051C0099C683 /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				2A657C1718CF051C0099C683 /* PBXTargetDependency */,
-			);
-			name = MyPlatformTests;
-			productName = MyPlatformTests;
-			productReference = 2A657C1018CF051C0099C683 /* MyPlatformTests.xctest */;
-			productType = "com.apple.product-type.bundle.unit-test";
-		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -318,21 +271,9 @@
 			projectRoot = "";
 			targets = (
 				2A657BFF18CF051C0099C683 /* MyPlatform */,
-				2A657C0F18CF051C0099C683 /* MyPlatformTests */,
 			);
 		};
 /* End PBXProject section */
-
-/* Begin PBXResourcesBuildPhase section */
-		2A657C0E18CF051C0099C683 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				2A657C1E18CF051C0099C683 /* InfoPlist.strings in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-/* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		2A657BFC18CF051C0099C683 /* Sources */ = {
@@ -348,23 +289,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		2A657C0C18CF051C0099C683 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				2A657C2018CF051C0099C683 /* MyPlatformTests.m in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXSourcesBuildPhase section */
-
-/* Begin PBXTargetDependency section */
-		2A657C1718CF051C0099C683 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 2A657BFF18CF051C0099C683 /* MyPlatform */;
-			targetProxy = 2A657C1618CF051C0099C683 /* PBXContainerItemProxy */;
-		};
-/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		2A657C1C18CF051C0099C683 /* InfoPlist.strings */ = {
@@ -480,42 +405,6 @@
 			};
 			name = Release;
 		};
-		2A657C2718CF051C0099C683 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(SDKROOT)/Developer/Library/Frameworks",
-					"$(inherited)",
-					"$(DEVELOPER_FRAMEWORKS_DIR)",
-				);
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "MyPlatform/MyPlatform-Prefix.pch";
-				GCC_PREPROCESSOR_DEFINITIONS = (
-					"DEBUG=1",
-					"$(inherited)",
-				);
-				INFOPLIST_FILE = "MyPlatformTests/MyPlatformTests-Info.plist";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				WRAPPER_EXTENSION = xctest;
-			};
-			name = Debug;
-		};
-		2A657C2818CF051C0099C683 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(SDKROOT)/Developer/Library/Frameworks",
-					"$(inherited)",
-					"$(DEVELOPER_FRAMEWORKS_DIR)",
-				);
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "MyPlatform/MyPlatform-Prefix.pch";
-				INFOPLIST_FILE = "MyPlatformTests/MyPlatformTests-Info.plist";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				WRAPPER_EXTENSION = xctest;
-			};
-			name = Release;
-		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -533,15 +422,6 @@
 			buildConfigurations = (
 				2A657C2418CF051C0099C683 /* Debug */,
 				2A657C2518CF051C0099C683 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		2A657C2618CF051C0099C683 /* Build configuration list for PBXNativeTarget "MyPlatformTests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				2A657C2718CF051C0099C683 /* Debug */,
-				2A657C2818CF051C0099C683 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

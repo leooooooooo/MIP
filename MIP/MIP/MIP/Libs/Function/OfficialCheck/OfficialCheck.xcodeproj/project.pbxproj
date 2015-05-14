@@ -175,7 +175,7 @@
 		2A32818B18E940B1004675BC /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0450;
+				LastUpgradeCheck = 0630;
 				ORGANIZATIONNAME = kangqijun;
 			};
 			buildConfigurationList = 2A32818E18E940B1004675BC /* Build configuration list for PBXProject "OfficialCheck" */;
@@ -229,6 +229,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
 			};
 			name = Debug;
