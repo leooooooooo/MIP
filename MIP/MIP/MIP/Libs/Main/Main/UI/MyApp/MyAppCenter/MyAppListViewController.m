@@ -75,7 +75,7 @@
                 
                 self.m_appList = [context executeFetchRequest:_fetchedResultsController.fetchRequest error:&error];
                 
-                DLog(@"%d",[self.m_appList count]);
+                DLog(@"%lu",(unsigned long)[self.m_appList count]);
                 
                 [m_tableView reloadData];
                 return;
@@ -212,7 +212,7 @@
     
     self.m_appList = [context executeFetchRequest:_fetchedResultsController.fetchRequest error:&error];
     
-    DLog(@"%d",[self.m_appList count]);
+    DLog(@"%lu",(unsigned long)[self.m_appList count]);
     
     [m_tableView reloadData];
 }

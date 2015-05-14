@@ -94,7 +94,7 @@
     NSString *newAppVersion = [userDefaults objectForKey:kLastVersion];
     
     //判断最新版本和当前版本是否相同
-    NSString *currentVersion = [[[NSBundle mainBundle] infoDictionary] objectForKey:(NSString *)kCFBundleVersionKey];
+    NSString *currentVersion = [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleShortVersionString"];
     
     newAppVersion = [newAppVersion stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
     

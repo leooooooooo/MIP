@@ -171,7 +171,7 @@
         [m_listTiles setObject:baseBtn forKey:btnTitle];
     }
     
-    NSString *iconName = [NSString stringWithFormat:@"xx_%d.png",index];
+    NSString *iconName = [NSString stringWithFormat:@"xx_%ld.png",(long)index];
     
     baseBtn.appIcon = [UIImage imageNamed:iconName imageBundle:mainBundle];
     
@@ -218,7 +218,7 @@
         msgButton.newsArr = titleList;
     }else if ([tmpBtn isKindOfClass:[MessageClassButton class]]) {
         if ([((MessageClassButton *)tmpBtn).strBtnTitle isEqualToString:@"未读通告"]) {
-            ((MessageClassButton *)tmpBtn).strBtnTitle = [NSString stringWithFormat:@"%@ %d",((MessageClassButton *)tmpBtn).strBtnTitle,titleList.count];
+            ((MessageClassButton *)tmpBtn).strBtnTitle = [NSString stringWithFormat:@"%@ %lu",((MessageClassButton *)tmpBtn).strBtnTitle,(unsigned long)titleList.count];
         }
     }else {
         WeiboButton *msgButton = [m_listTiles objectForKey:keyName];

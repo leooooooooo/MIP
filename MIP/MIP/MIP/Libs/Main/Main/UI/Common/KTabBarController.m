@@ -103,7 +103,7 @@
 {
     UIButton *btn = (UIButton *)sender;
     
-    [self chooseItemWith:btn.tag];
+    [self chooseItemWith:(int)btn.tag];
 }
 
 - (void)chooseItemWith:(int)_index

@@ -39,7 +39,7 @@
         
         if (isValid(ret)) {
             
-            userinfo.loginCode = [ret integerValue];
+            userinfo.loginCode = (LoginStatues)[ret integerValue];
         }
         
         NSString *retMsg = [bodyDictionary objectForKey:@"retMsg"];
@@ -522,7 +522,7 @@
         
         if (isValid(ret)) {
             
-            userinfo.loginCode = [ret integerValue];
+            userinfo.loginCode = (LoginStatues)[ret integerValue];
         }
         
         NSString *retMsg = [bodyDictionary objectForKey:@"retMsg"];
@@ -672,7 +672,7 @@
                 
                 NSInteger height = SCREEN_HEIGHT * 2;
                 
-                NSString *picName = [NSString stringWithFormat:@"%d*%d.PNG", width, height];
+                NSString *picName = [NSString stringWithFormat:@"%ld*%ld.PNG", (long)width, (long)height];
                 
                 for (NSDictionary *tmpDic in dataArr) {
                     NSString *tmpName = [tmpDic objectForKey:@"name"];

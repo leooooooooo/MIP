@@ -78,7 +78,7 @@
  *********************************************************************/
 - (void)pageControlPageDidChange:(PageControl *)pageControl
 {
-    int page = _displayView.pageControl.currentPage;
+    int page = (int)_displayView.pageControl.currentPage;
     [self loadScrollViewWithPage:page - 1];
     [self loadScrollViewWithPage:page];
     [self loadScrollViewWithPage:page + 1];

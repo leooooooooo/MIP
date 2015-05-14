@@ -72,7 +72,7 @@ static Userinfo *userinfo = nil;
     
     if (!appVersion) {
         
-        appVersion = [[[[NSBundle mainBundle] infoDictionary] objectForKey:(NSString *)kCFBundleVersionKey] retain];
+        appVersion = [[[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleShortVersionString"] retain];
     }
     
     return appVersion;

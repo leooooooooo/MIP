@@ -176,7 +176,7 @@
 
         
         versionLabel = [[UILabel alloc] initWithFrame:CGRectMake(10, frame.size.height-55, 150, 25)];
-        NSString *currentVersion = [[[NSBundle mainBundle] infoDictionary] objectForKey:(NSString *)kCFBundleVersionKey];
+        NSString *currentVersion = [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleShortVersionString"];
         versionLabel.text = [NSString stringWithFormat:@"版本：v%@",currentVersion];
         versionLabel.font = [UIFont systemFontOfSize:14];
         versionLabel.textAlignment = UITextAlignmentLeft;
@@ -484,36 +484,67 @@
     [userDefaults setBool:NO forKey:SHOWUPDATAKEY];
     [userDefaults synchronize];
     
-    NSString *updateURL = [userDefaults objectForKey:kLastVersionURL];
+    //NSString *updateURL = [userDefaults objectForKey:kLastVersionURL];
     
-    if (isValid(updateURL)) {
+    //1确定地址NSURL
+    NSString *urlString = [NSString stringWithFormat:@"http://218.92.115.55/MobilePlatform/Update.aspx"];
+    NSURL *url = [NSURL URLWithString:urlString];
+    
+    //2建立请求NSMutableURLRequest（post需要用这个）
+    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url];
+    //网络访问超时时间
+    [request setTimeoutInterval:20.0f];
+    //1)post请求方式,网络请求默认是get方法，所以如果我们用post请求，必须声明请求方式。
+    [request setHTTPMethod:@"POST"];
+    //2)post请求的数据体,post请求中数据体时，如果有中文，不需要转换。因为ataUsingEncoding方法已经实现了转码。
+    NSString *bodyStr = [NSString stringWithFormat:@"AppName=%@&DeviceType=iOS&Build=%@",@"MYLYGPORT",[[NSBundle mainBundle] objectForInfoDictionaryKey:@"CFBundleVersion"]];
+    //将nstring转换成nsdata
+    NSData *body = [bodyStr dataUsingEncoding:NSUTF8StringEncoding];
+    //NSLog(@"body data %@", body);
+    [request setHTTPBody:body];
+    
+    //这里是非代理的异步请求，异步请求并不会阻止主线程的继续执行，不用等待网络请结束。
+    [NSURLConnection sendAsynchronousRequest:request queue:[NSOperationQueue mainQueue] completionHandler:^(NSURLResponse *response, NSData *data, NSError * error) {
+        //这段块代码只有在网络请求结束以后的后续处理。
         
-        NSURL *url = nil;
-        
-        float verson = [[UIDevice currentDevice].systemVersion floatValue];
-        
-        NSLog(@"----------------%f   %@",verson,updateURL);
-        
-        if (verson > 7.090000)
-        {
-            updateURL = [updateURL stringByReplacingOccurrencesOfString:@"http" withString:@"https"];
+        if (data != nil) {  //接受到数据，表示工作正常
+            //NSString *str = [[NSString alloc]initWithData:data encoding:NSUTF8StringEncoding];
+            NSDictionary *Update = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:&error];
             
-            updateURL = [updateURL stringByReplacingOccurrencesOfString:@"8080" withString:@"8443"];
+            NSLog(@"%@", Update);
             
-            NSLog(@"%@",updateURL);
-            
-            url = [NSURL URLWithString:[NSString stringWithFormat:@"itms-services://?action=download-manifest&url=%@",updateURL]];
-            NSLog(@"----------------%@",url);
+            if([[Update objectForKey:@"Update"]isEqualToString:@"Yes"])
+            {
+                NSString *Url = [Update objectForKey:@"Url"];
+                UIWebView *up = [[UIWebView alloc]init];
+                NSURL *url =[NSURL URLWithString:Url];
+                NSURLRequest *request =[NSURLRequest requestWithURL:url];
+                [up loadRequest:request];
+                [self addSubview:up];
+                NSLog(@"开始更新",nil);
+            }
+            else
+            {
+                //alert = [[UIAlertView alloc]initWithTitle:@"更新" message:@"当前已经是最新版本" delegate:self cancelButtonTitle:@"好" otherButtonTitles:nil, nil];
+            }
         }
         else
         {
-            url = [NSURL URLWithString:[NSString stringWithFormat:@"itms-services://?action=download-manifest&url=%@",updateURL]];
+            if(data == nil && error == nil)    //没有接受到数据，但是error为nil。。表示接受到空数据。
+            {
+                // alert = [[UIAlertView alloc]initWithTitle:@"更新失败" message:@"更新失败，网络超时" delegate:self cancelButtonTitle:@"好" otherButtonTitles:nil, nil];
+            }
+            else
+            {
+                //alert = [[UIAlertView alloc]initWithTitle:@"更新失败" message:error.localizedDescription delegate:self cancelButtonTitle:@"好" otherButtonTitles:nil, nil];
+                NSLog(@"%@", error.localizedDescription);  //请求出错。
+            }
         }
         
-        [[UIApplication sharedApplication] openURL:url];
-    }
+        
+    }];
+    
 }
-
 
 /*********************************************************************
  Function description:暂不升级点击事件

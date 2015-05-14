@@ -96,7 +96,7 @@
         nameLabel = [[UILabel alloc] initWithFrame:CGRectMake(110, 60, 200, 60)];
         nameLabel.font = [UIFont systemFontOfSize:30];
         nameLabel.textColor = [UIColor blackColor];
-        nameLabel.textAlignment = UITextAlignmentLeft;
+        nameLabel.textAlignment = NSTextAlignmentLeft;
         nameLabel.backgroundColor = [UIColor clearColor];
         [contentView addSubview:nameLabel];
         
@@ -111,7 +111,7 @@
         officePhoneLab.text = @"机构:";
         officePhoneLab.font = [UIFont boldSystemFontOfSize:16];
         officePhoneLab.textColor = [UIColor grayColor];
-        officePhoneLab.textAlignment = UITextAlignmentRight;
+        officePhoneLab.textAlignment = NSTextAlignmentRight;
         officePhoneLab.backgroundColor = [UIColor clearColor];
         [scrollView addSubview:officePhoneLab];
         [officePhoneLab release];
@@ -122,7 +122,7 @@
         departLab.text = @"部门:";
         departLab.font = [UIFont boldSystemFontOfSize:16];
         departLab.textColor = [UIColor grayColor];
-        departLab.textAlignment = UITextAlignmentRight;
+        departLab.textAlignment = NSTextAlignmentRight;
         departLab.backgroundColor = [UIColor clearColor];
         [scrollView addSubview:departLab];
         [departLab release];
@@ -133,7 +133,7 @@
         dutyLab.text = @"职务:";
         dutyLab.font = [UIFont boldSystemFontOfSize:16];
         dutyLab.textColor = [UIColor grayColor];
-        dutyLab.textAlignment = UITextAlignmentRight;
+        dutyLab.textAlignment = NSTextAlignmentRight;
         dutyLab.backgroundColor = [UIColor clearColor];
         [scrollView addSubview:dutyLab];
         [dutyLab release];
@@ -144,7 +144,7 @@
         phoneLab.text = @"工作手机:";
         phoneLab.font = [UIFont boldSystemFontOfSize:16];
         phoneLab.textColor = [UIColor grayColor];
-        phoneLab.textAlignment = UITextAlignmentRight;
+        phoneLab.textAlignment = NSTextAlignmentRight;
         phoneLab.backgroundColor = [UIColor clearColor];
         [scrollView addSubview:phoneLab];
         [phoneLab release];
@@ -155,7 +155,7 @@
         bakTelLab.text = @"备用手机:";
         bakTelLab.font = [UIFont boldSystemFontOfSize:16];
         bakTelLab.textColor = [UIColor grayColor];
-        bakTelLab.textAlignment = UITextAlignmentRight;
+        bakTelLab.textAlignment = NSTextAlignmentRight;
         bakTelLab.backgroundColor = [UIColor clearColor];
         [scrollView addSubview:bakTelLab];
         [bakTelLab release];
@@ -166,7 +166,7 @@
         officeTelLab.text = @"办公电话:";
         officeTelLab.font = [UIFont boldSystemFontOfSize:16];
         officeTelLab.textColor = [UIColor grayColor];
-        officeTelLab.textAlignment = UITextAlignmentRight;
+        officeTelLab.textAlignment = NSTextAlignmentRight;
         officeTelLab.backgroundColor = [UIColor clearColor];
         [scrollView addSubview:officeTelLab];
         [officeTelLab release];
@@ -177,7 +177,7 @@
         bakOfficeTel.text = @"备用电话:";
         bakOfficeTel.font = [UIFont boldSystemFontOfSize:16];
         bakOfficeTel.textColor = [UIColor grayColor];
-        bakOfficeTel.textAlignment = UITextAlignmentRight;
+        bakOfficeTel.textAlignment = NSTextAlignmentRight;
         bakOfficeTel.backgroundColor = [UIColor clearColor];
         [scrollView addSubview:bakOfficeTel];
         [bakOfficeTel release];
@@ -188,7 +188,7 @@
         mailLab.text = @"集团邮箱:";
         mailLab.font = [UIFont boldSystemFontOfSize:16];
         mailLab.textColor = [UIColor grayColor];
-        mailLab.textAlignment = UITextAlignmentRight;
+        mailLab.textAlignment = NSTextAlignmentRight;
         mailLab.backgroundColor = [UIColor clearColor];
         [scrollView addSubview:mailLab];
         [mailLab release];
@@ -199,7 +199,7 @@
         perEmailLab.text = @"个人邮箱:";
         perEmailLab.font = [UIFont boldSystemFontOfSize:16];
         perEmailLab.textColor = [UIColor grayColor];
-        perEmailLab.textAlignment = UITextAlignmentRight;
+        perEmailLab.textAlignment = NSTextAlignmentRight;
         perEmailLab.backgroundColor = [UIColor clearColor];
         [scrollView addSubview:perEmailLab];
         [perEmailLab release];
@@ -210,7 +210,7 @@
         weiboLab.text = @"云之家微博:";
         weiboLab.font = [UIFont boldSystemFontOfSize:16];
         weiboLab.textColor = [UIColor grayColor];
-        weiboLab.textAlignment = UITextAlignmentRight;
+        weiboLab.textAlignment = NSTextAlignmentRight;
         weiboLab.backgroundColor = [UIColor clearColor];
         [scrollView addSubview:weiboLab];
         [weiboLab release];
@@ -221,7 +221,7 @@
         officTelField.backgroundColor = [UIColor clearColor];
         officTelField.font = [UIFont systemFontOfSize:16];
         
-        officTelField.textAlignment = UITextAlignmentLeft;
+        officTelField.textAlignment = NSTextAlignmentLeft;
         officTelField.enabled = NO;
         officTelField.textColor = [UIColor blackColor];
         [scrollView addSubview:officTelField];
@@ -232,7 +232,7 @@
         departField.backgroundColor = [UIColor clearColor];
         departField.font = [UIFont systemFontOfSize:16];
         
-        departField.textAlignment = UITextAlignmentLeft;
+        departField.textAlignment = NSTextAlignmentLeft;
         departField.enabled = NO;
         departField.textColor = [UIColor blackColor];
         [scrollView addSubview:departField];
@@ -243,7 +243,7 @@
         dutyField.backgroundColor = [UIColor clearColor];
         dutyField.font = [UIFont systemFontOfSize:16];
         
-        dutyField.textAlignment = UITextAlignmentLeft;
+        dutyField.textAlignment = NSTextAlignmentLeft;
         dutyField.enabled = NO;
         dutyField.textColor = [UIColor blackColor];
         [scrollView addSubview:dutyField];
@@ -254,7 +254,7 @@
         telephoneField.backgroundColor = [UIColor clearColor];
         telephoneField.font = [UIFont systemFontOfSize:16];
         
-        telephoneField.textAlignment = UITextAlignmentLeft;
+        telephoneField.textAlignment = NSTextAlignmentLeft;
         telephoneField.enabled = NO;
         telephoneField.textColor = [UIColor blackColor];
         [scrollView addSubview:telephoneField];
@@ -265,7 +265,7 @@
         bakTelField.backgroundColor = [UIColor clearColor];
         bakTelField.font = [UIFont systemFontOfSize:16];
         
-        bakTelField.textAlignment = UITextAlignmentLeft;
+        bakTelField.textAlignment = NSTextAlignmentLeft;
         bakTelField.enabled = NO;
         bakTelField.textColor = [UIColor blackColor];
         [scrollView addSubview:bakTelField];
@@ -276,7 +276,7 @@
         officeTelField.backgroundColor = [UIColor clearColor];
         officeTelField.font = [UIFont systemFontOfSize:16];
         
-        officeTelField.textAlignment = UITextAlignmentLeft;
+        officeTelField.textAlignment = NSTextAlignmentLeft;
         officeTelField.enabled = NO;
         officeTelField.textColor = [UIColor blackColor];
         [scrollView addSubview:officeTelField];
@@ -287,7 +287,7 @@
         bakOfficeTelField.backgroundColor = [UIColor clearColor];
         bakOfficeTelField.font = [UIFont systemFontOfSize:16];
         
-        bakOfficeTelField.textAlignment = UITextAlignmentLeft;
+        bakOfficeTelField.textAlignment = NSTextAlignmentLeft;
         bakOfficeTelField.enabled = NO;
         bakOfficeTelField.textColor = [UIColor blackColor];
         [scrollView addSubview:bakOfficeTelField];
@@ -298,7 +298,7 @@
         emailField.backgroundColor = [UIColor clearColor];
         emailField.font = [UIFont systemFontOfSize:16];
         
-        emailField.textAlignment = UITextAlignmentLeft;
+        emailField.textAlignment = NSTextAlignmentLeft;
         emailField.enabled = NO;
         emailField.textColor = [UIColor blackColor];
         [scrollView addSubview:emailField];
@@ -309,7 +309,7 @@
         perEmailField.backgroundColor = [UIColor clearColor];
         perEmailField.font = [UIFont systemFontOfSize:16];
         
-        perEmailField.textAlignment = UITextAlignmentLeft;
+        perEmailField.textAlignment = NSTextAlignmentLeft;
         perEmailField.enabled = NO;
         perEmailField.textColor = [UIColor blackColor];
         [scrollView addSubview:perEmailField];
@@ -320,7 +320,7 @@
         weiboField.backgroundColor = [UIColor clearColor];
         weiboField.font = [UIFont systemFontOfSize:16];
         
-        weiboField.textAlignment = UITextAlignmentLeft;
+        weiboField.textAlignment = NSTextAlignmentLeft;
         weiboField.enabled = NO;
         weiboField.textColor = [UIColor blackColor];
         [scrollView addSubview:weiboField];

@@ -897,8 +897,8 @@
 		923D77E017D5733D00C75390 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Lianyungang Port Group Communications and Information Engineering Company";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Lianyungang Port Group Communications and Information Engineering Company";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "MIP/MIP-Prefix.pch";
 				HEADER_SEARCH_PATHS = (
@@ -914,8 +914,8 @@
 				ONLY_ACTIVE_ARCH = NO;
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = MyLygport;
-				PROVISIONING_PROFILE = "";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "BDF309AC-7C23-48DF-AE01-9D487B3770B0";
+				PROVISIONING_PROFILE = "786b16c0-434e-4312-8151-0ff2ecec9ee0";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "786b16c0-434e-4312-8151-0ff2ecec9ee0";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = 1;
 				VALID_ARCHS = armv7;
@@ -926,8 +926,8 @@
 		923D77E117D5733D00C75390 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Lianyungang Port Group Communications and Information Engineering Company";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Lianyungang Port Group Communications and Information Engineering Company";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "MIP/MIP-Prefix.pch";
 				HEADER_SEARCH_PATHS = (
@@ -943,8 +943,8 @@
 				ONLY_ACTIVE_ARCH = NO;
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = MyLygport;
-				PROVISIONING_PROFILE = "";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "BDF309AC-7C23-48DF-AE01-9D487B3770B0";
+				PROVISIONING_PROFILE = "786b16c0-434e-4312-8151-0ff2ecec9ee0";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "786b16c0-434e-4312-8151-0ff2ecec9ee0";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = 1;
 				VALID_ARCHS = armv7;

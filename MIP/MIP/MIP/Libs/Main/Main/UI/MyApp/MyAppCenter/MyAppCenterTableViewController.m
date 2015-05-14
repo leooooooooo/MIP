@@ -139,7 +139,7 @@
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     // Return the number of rows in the section.
-    NSLog(@"_fetchedResultsController.sections is %d", [[_fetchedResultsController.sections objectAtIndex:section] numberOfObjects]);
+    NSLog(@"_fetchedResultsController.sections is %lu", (unsigned long)[[_fetchedResultsController.sections objectAtIndex:section] numberOfObjects]);
     return [[_fetchedResultsController.sections objectAtIndex:section] numberOfObjects];
 }
 
@@ -188,7 +188,7 @@
 
 - (void) tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    self.curRow = [indexPath row];
+    self.curRow = (int)[indexPath row];
     
     AppTypeCell *cell = (AppTypeCell *)[tableView cellForRowAtIndexPath:indexPath];
     

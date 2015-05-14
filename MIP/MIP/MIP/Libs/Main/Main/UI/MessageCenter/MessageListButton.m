@@ -33,7 +33,7 @@
 - (void) setNewsArr:(NSArray *)newsArr
 {
     m_newsArr = newsArr;
-    m_btnTitle.text = [NSString stringWithFormat:@"%@ %d",m_btnTitle.text,m_newsArr.count];
+    m_btnTitle.text = [NSString stringWithFormat:@"%@ %lu",m_btnTitle.text,(unsigned long)m_newsArr.count];
     
     CGFloat originY = newsTitleOriginY;
     

@@ -4525,7 +4525,8 @@ static NSOperationQueue *sharedQueue = nil;
 				return nil;
 			}
 
-			NSString *appVersion = nil;
+			NSString *appVersion = [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleShortVersionString"];
+            /*
 			NSString *marketingVersionNumber = [bundle objectForInfoDictionaryKey:@"CFBundleShortVersionString"];
 			NSString *developmentVersionNumber = [bundle objectForInfoDictionaryKey:@"CFBundleVersion"];
 			if (marketingVersionNumber && developmentVersionNumber) {
@@ -4537,6 +4538,7 @@ static NSOperationQueue *sharedQueue = nil;
 			} else {
 				appVersion = (marketingVersionNumber ? marketingVersionNumber : developmentVersionNumber);
 			}
+             */
 
 			NSString *deviceName;
 			NSString *OSName;

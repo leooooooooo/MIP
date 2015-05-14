@@ -170,7 +170,7 @@
                 
                 [self.m_appList addObject:@"添加应用"];
                 
-                DLog(@"%d",[self.m_appList count]);
+                DLog(@"%lu",(unsigned long)[self.m_appList count]);
                 
                 [self.tableView reloadData];
                 return;
