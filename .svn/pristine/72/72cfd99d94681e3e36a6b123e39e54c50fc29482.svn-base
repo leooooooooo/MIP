@@ -1,0 +1,516 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		2A64FEFB18D7F62700C76D2B /* NewsCenterPDF.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A64FEFA18D7F62700C76D2B /* NewsCenterPDF.m */; };
+		2AF6B34918D8313D0084B680 /* PDFListView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2AF6B34818D8313D0084B680 /* PDFListView.m */; };
+		2AF6B34C18D8315D0084B680 /* PDFListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2AF6B34B18D8315D0084B680 /* PDFListViewController.m */; };
+		2AFC508B18FE2F5700FD7B25 /* PlayMovieViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2AFC508A18FE2F5700FD7B25 /* PlayMovieViewController.m */; };
+		D200C47C18D1BF9C00003BEE /* NewsCenterNetRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = D200C47B18D1BF9C00003BEE /* NewsCenterNetRequest.m */; };
+		D200C48018D1C12000003BEE /* NewsCenterLevelOneCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D200C47F18D1C12000003BEE /* NewsCenterLevelOneCell.m */; };
+		D23B6DB618D852E3001C3D6F /* NewsCenterNewsType.m in Sources */ = {isa = PBXBuildFile; fileRef = D23B6DB518D852E3001C3D6F /* NewsCenterNewsType.m */; };
+		D250B49A18D2D7FA00DAB0E1 /* NewsCenterBLL.m in Sources */ = {isa = PBXBuildFile; fileRef = D250B49918D2D7FA00DAB0E1 /* NewsCenterBLL.m */; };
+		D250B49D18D2D96600DAB0E1 /* NewsCenterParser.m in Sources */ = {isa = PBXBuildFile; fileRef = D250B49C18D2D96600DAB0E1 /* NewsCenterParser.m */; };
+		D29765D718CFF9BE00C79A7E /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D29765D618CFF9BE00C79A7E /* Foundation.framework */; };
+		D297661818CFFCE800C79A7E /* NewsCenterLevelOneView.m in Sources */ = {isa = PBXBuildFile; fileRef = D297661718CFFCE800C79A7E /* NewsCenterLevelOneView.m */; };
+		D297661E18CFFE5800C79A7E /* NewsCenterLevelOneTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D297661D18CFFE5800C79A7E /* NewsCenterLevelOneTableViewController.m */; };
+		D297662118CFFE8D00C79A7E /* NewsCenterLevelOneViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D297662018CFFE8D00C79A7E /* NewsCenterLevelOneViewController.m */; };
+		D297662418CFFED500C79A7E /* NewsCenterLevelTwoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D297662318CFFED500C79A7E /* NewsCenterLevelTwoViewController.m */; };
+		D297662718CFFF0800C79A7E /* NewsCenterLevelTwoTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D297662618CFFF0800C79A7E /* NewsCenterLevelTwoTableViewController.m */; };
+		D297662A18CFFF3C00C79A7E /* NewsCenterLevelTwoView.m in Sources */ = {isa = PBXBuildFile; fileRef = D297662918CFFF3C00C79A7E /* NewsCenterLevelTwoView.m */; };
+		D2D79FB718D9E63F004B0844 /* NewsCenterContent.m in Sources */ = {isa = PBXBuildFile; fileRef = D2D79FB618D9E63F004B0844 /* NewsCenterContent.m */; };
+		D2D79FBB18D9ED97004B0844 /* ContentPDFViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D2D79FBA18D9ED97004B0844 /* ContentPDFViewController.m */; };
+		D2D79FBE18D9F419004B0844 /* ContentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D2D79FBD18D9F419004B0844 /* ContentViewController.m */; };
+		D2F5822D18D543A100014A52 /* NewsCenterLevelTwoCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D2F5822C18D543A100014A52 /* NewsCenterLevelTwoCell.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		D29765D118CFF9BE00C79A7E /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "include/$(PRODUCT_NAME)";
+			dstSubfolderSpec = 16;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		2A64FEF918D7F62700C76D2B /* NewsCenterPDF.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewsCenterPDF.h; sourceTree = "<group>"; };
+		2A64FEFA18D7F62700C76D2B /* NewsCenterPDF.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewsCenterPDF.m; sourceTree = "<group>"; };
+		2AF6B34718D8313D0084B680 /* PDFListView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PDFListView.h; sourceTree = "<group>"; };
+		2AF6B34818D8313D0084B680 /* PDFListView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PDFListView.m; sourceTree = "<group>"; };
+		2AF6B34A18D8315D0084B680 /* PDFListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PDFListViewController.h; sourceTree = "<group>"; };
+		2AF6B34B18D8315D0084B680 /* PDFListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PDFListViewController.m; sourceTree = "<group>"; };
+		2AFC508918FE2F5700FD7B25 /* PlayMovieViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlayMovieViewController.h; sourceTree = "<group>"; };
+		2AFC508A18FE2F5700FD7B25 /* PlayMovieViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlayMovieViewController.m; sourceTree = "<group>"; };
+		D200C47A18D1BF9C00003BEE /* NewsCenterNetRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewsCenterNetRequest.h; sourceTree = "<group>"; };
+		D200C47B18D1BF9C00003BEE /* NewsCenterNetRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewsCenterNetRequest.m; sourceTree = "<group>"; };
+		D200C47E18D1C12000003BEE /* NewsCenterLevelOneCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewsCenterLevelOneCell.h; sourceTree = "<group>"; };
+		D200C47F18D1C12000003BEE /* NewsCenterLevelOneCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewsCenterLevelOneCell.m; sourceTree = "<group>"; };
+		D23B6DB418D852E3001C3D6F /* NewsCenterNewsType.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewsCenterNewsType.h; sourceTree = "<group>"; };
+		D23B6DB518D852E3001C3D6F /* NewsCenterNewsType.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewsCenterNewsType.m; sourceTree = "<group>"; };
+		D250B48818D29E1400DAB0E1 /* NewsCenterDocument.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewsCenterDocument.h; sourceTree = "<group>"; };
+		D250B48918D29E1400DAB0E1 /* NewsCenterDocument.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewsCenterDocument.m; sourceTree = "<group>"; };
+		D250B48A18D29E1400DAB0E1 /* NewsCenterCategory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewsCenterCategory.h; sourceTree = "<group>"; };
+		D250B48B18D29E1400DAB0E1 /* NewsCenterCategory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewsCenterCategory.m; sourceTree = "<group>"; };
+		D250B49818D2D7FA00DAB0E1 /* NewsCenterBLL.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewsCenterBLL.h; sourceTree = "<group>"; };
+		D250B49918D2D7FA00DAB0E1 /* NewsCenterBLL.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewsCenterBLL.m; sourceTree = "<group>"; };
+		D250B49B18D2D96600DAB0E1 /* NewsCenterParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewsCenterParser.h; sourceTree = "<group>"; };
+		D250B49C18D2D96600DAB0E1 /* NewsCenterParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewsCenterParser.m; sourceTree = "<group>"; };
+		D29765D318CFF9BE00C79A7E /* libNewsCenter.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libNewsCenter.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		D29765D618CFF9BE00C79A7E /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		D29765DA18CFF9BE00C79A7E /* NewsCenter-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NewsCenter-Prefix.pch"; sourceTree = "<group>"; };
+		D29765E718CFF9BE00C79A7E /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = Library/Frameworks/UIKit.framework; sourceTree = DEVELOPER_DIR; };
+		D297661218CFFBB600C79A7E /* NewsCenter.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = NewsCenter.bundle; sourceTree = "<group>"; };
+		D297661618CFFCE800C79A7E /* NewsCenterLevelOneView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewsCenterLevelOneView.h; sourceTree = "<group>"; };
+		D297661718CFFCE800C79A7E /* NewsCenterLevelOneView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewsCenterLevelOneView.m; sourceTree = "<group>"; };
+		D297661C18CFFE5800C79A7E /* NewsCenterLevelOneTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewsCenterLevelOneTableViewController.h; sourceTree = "<group>"; };
+		D297661D18CFFE5800C79A7E /* NewsCenterLevelOneTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewsCenterLevelOneTableViewController.m; sourceTree = "<group>"; };
+		D297661F18CFFE8D00C79A7E /* NewsCenterLevelOneViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewsCenterLevelOneViewController.h; sourceTree = "<group>"; };
+		D297662018CFFE8D00C79A7E /* NewsCenterLevelOneViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewsCenterLevelOneViewController.m; sourceTree = "<group>"; };
+		D297662218CFFED500C79A7E /* NewsCenterLevelTwoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewsCenterLevelTwoViewController.h; sourceTree = "<group>"; };
+		D297662318CFFED500C79A7E /* NewsCenterLevelTwoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewsCenterLevelTwoViewController.m; sourceTree = "<group>"; };
+		D297662518CFFF0800C79A7E /* NewsCenterLevelTwoTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewsCenterLevelTwoTableViewController.h; sourceTree = "<group>"; };
+		D297662618CFFF0800C79A7E /* NewsCenterLevelTwoTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewsCenterLevelTwoTableViewController.m; sourceTree = "<group>"; };
+		D297662818CFFF3C00C79A7E /* NewsCenterLevelTwoView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewsCenterLevelTwoView.h; sourceTree = "<group>"; };
+		D297662918CFFF3C00C79A7E /* NewsCenterLevelTwoView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewsCenterLevelTwoView.m; sourceTree = "<group>"; };
+		D2D79FB518D9E63F004B0844 /* NewsCenterContent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewsCenterContent.h; sourceTree = "<group>"; };
+		D2D79FB618D9E63F004B0844 /* NewsCenterContent.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewsCenterContent.m; sourceTree = "<group>"; };
+		D2D79FB918D9ED97004B0844 /* ContentPDFViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContentPDFViewController.h; sourceTree = "<group>"; };
+		D2D79FBA18D9ED97004B0844 /* ContentPDFViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContentPDFViewController.m; sourceTree = "<group>"; };
+		D2D79FBC18D9F419004B0844 /* ContentViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContentViewController.h; sourceTree = "<group>"; };
+		D2D79FBD18D9F419004B0844 /* ContentViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContentViewController.m; sourceTree = "<group>"; };
+		D2F5822B18D543A100014A52 /* NewsCenterLevelTwoCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewsCenterLevelTwoCell.h; sourceTree = "<group>"; };
+		D2F5822C18D543A100014A52 /* NewsCenterLevelTwoCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewsCenterLevelTwoCell.m; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		D29765D018CFF9BE00C79A7E /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D29765D718CFF9BE00C79A7E /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		2AF6B34518D8312B0084B680 /* PDFList */ = {
+			isa = PBXGroup;
+			children = (
+				2AF6B34718D8313D0084B680 /* PDFListView.h */,
+				2AF6B34818D8313D0084B680 /* PDFListView.m */,
+				2AF6B34A18D8315D0084B680 /* PDFListViewController.h */,
+				2AF6B34B18D8315D0084B680 /* PDFListViewController.m */,
+			);
+			path = PDFList;
+			sourceTree = "<group>";
+		};
+		D200C47D18D1C0DB00003BEE /* TableViewCell */ = {
+			isa = PBXGroup;
+			children = (
+				D200C47E18D1C12000003BEE /* NewsCenterLevelOneCell.h */,
+				D200C47F18D1C12000003BEE /* NewsCenterLevelOneCell.m */,
+			);
+			path = TableViewCell;
+			sourceTree = "<group>";
+		};
+		D29765CA18CFF9BE00C79A7E = {
+			isa = PBXGroup;
+			children = (
+				D29765D818CFF9BE00C79A7E /* NewsCenter */,
+				D29765D918CFF9BE00C79A7E /* Supporting Files */,
+				D29765D518CFF9BE00C79A7E /* Frameworks */,
+				D297661118CFFBB600C79A7E /* Resource */,
+				D29765D418CFF9BE00C79A7E /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		D29765D418CFF9BE00C79A7E /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				D29765D318CFF9BE00C79A7E /* libNewsCenter.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		D29765D518CFF9BE00C79A7E /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				D29765D618CFF9BE00C79A7E /* Foundation.framework */,
+				D29765E718CFF9BE00C79A7E /* UIKit.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		D29765D818CFF9BE00C79A7E /* NewsCenter */ = {
+			isa = PBXGroup;
+			children = (
+				D297660B18CFFBB600C79A7E /* BLL */,
+				D297660C18CFFBB600C79A7E /* DAL */,
+				D297660D18CFFBB600C79A7E /* DataHandle */,
+				D297660E18CFFBB600C79A7E /* DataParser */,
+				D297660F18CFFBB600C79A7E /* Entity */,
+				D297661018CFFBB600C79A7E /* NetRequest */,
+				D297661318CFFBB600C79A7E /* UI */,
+			);
+			path = NewsCenter;
+			sourceTree = "<group>";
+		};
+		D29765D918CFF9BE00C79A7E /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				D29765DA18CFF9BE00C79A7E /* NewsCenter-Prefix.pch */,
+			);
+			name = "Supporting Files";
+			path = NewsCenter;
+			sourceTree = "<group>";
+		};
+		D297660B18CFFBB600C79A7E /* BLL */ = {
+			isa = PBXGroup;
+			children = (
+				D250B49818D2D7FA00DAB0E1 /* NewsCenterBLL.h */,
+				D250B49918D2D7FA00DAB0E1 /* NewsCenterBLL.m */,
+			);
+			path = BLL;
+			sourceTree = "<group>";
+		};
+		D297660C18CFFBB600C79A7E /* DAL */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = DAL;
+			sourceTree = "<group>";
+		};
+		D297660D18CFFBB600C79A7E /* DataHandle */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = DataHandle;
+			sourceTree = "<group>";
+		};
+		D297660E18CFFBB600C79A7E /* DataParser */ = {
+			isa = PBXGroup;
+			children = (
+				D250B49B18D2D96600DAB0E1 /* NewsCenterParser.h */,
+				D250B49C18D2D96600DAB0E1 /* NewsCenterParser.m */,
+			);
+			path = DataParser;
+			sourceTree = "<group>";
+		};
+		D297660F18CFFBB600C79A7E /* Entity */ = {
+			isa = PBXGroup;
+			children = (
+				D23B6DB418D852E3001C3D6F /* NewsCenterNewsType.h */,
+				D23B6DB518D852E3001C3D6F /* NewsCenterNewsType.m */,
+				2A64FEF918D7F62700C76D2B /* NewsCenterPDF.h */,
+				2A64FEFA18D7F62700C76D2B /* NewsCenterPDF.m */,
+				D250B48818D29E1400DAB0E1 /* NewsCenterDocument.h */,
+				D250B48918D29E1400DAB0E1 /* NewsCenterDocument.m */,
+				D250B48A18D29E1400DAB0E1 /* NewsCenterCategory.h */,
+				D250B48B18D29E1400DAB0E1 /* NewsCenterCategory.m */,
+				D2D79FB518D9E63F004B0844 /* NewsCenterContent.h */,
+				D2D79FB618D9E63F004B0844 /* NewsCenterContent.m */,
+			);
+			path = Entity;
+			sourceTree = "<group>";
+		};
+		D297661018CFFBB600C79A7E /* NetRequest */ = {
+			isa = PBXGroup;
+			children = (
+				D200C47A18D1BF9C00003BEE /* NewsCenterNetRequest.h */,
+				D200C47B18D1BF9C00003BEE /* NewsCenterNetRequest.m */,
+			);
+			path = NetRequest;
+			sourceTree = "<group>";
+		};
+		D297661118CFFBB600C79A7E /* Resource */ = {
+			isa = PBXGroup;
+			children = (
+				D297661218CFFBB600C79A7E /* NewsCenter.bundle */,
+			);
+			name = Resource;
+			path = NewsCenter/Resource;
+			sourceTree = "<group>";
+		};
+		D297661318CFFBB600C79A7E /* UI */ = {
+			isa = PBXGroup;
+			children = (
+				D297661418CFFBB600C79A7E /* LevelOne */,
+				D297661518CFFBB600C79A7E /* LevelTwo */,
+			);
+			path = UI;
+			sourceTree = "<group>";
+		};
+		D297661418CFFBB600C79A7E /* LevelOne */ = {
+			isa = PBXGroup;
+			children = (
+				D200C47D18D1C0DB00003BEE /* TableViewCell */,
+				D297661618CFFCE800C79A7E /* NewsCenterLevelOneView.h */,
+				D297661718CFFCE800C79A7E /* NewsCenterLevelOneView.m */,
+				D297661C18CFFE5800C79A7E /* NewsCenterLevelOneTableViewController.h */,
+				D297661D18CFFE5800C79A7E /* NewsCenterLevelOneTableViewController.m */,
+				D297661F18CFFE8D00C79A7E /* NewsCenterLevelOneViewController.h */,
+				D297662018CFFE8D00C79A7E /* NewsCenterLevelOneViewController.m */,
+			);
+			path = LevelOne;
+			sourceTree = "<group>";
+		};
+		D297661518CFFBB600C79A7E /* LevelTwo */ = {
+			isa = PBXGroup;
+			children = (
+				D2D79FB818D9ED77004B0844 /* ContentAndContent */,
+				2AF6B34518D8312B0084B680 /* PDFList */,
+				D2F5822A18D5436700014A52 /* TableViewCell */,
+				D297662818CFFF3C00C79A7E /* NewsCenterLevelTwoView.h */,
+				D297662918CFFF3C00C79A7E /* NewsCenterLevelTwoView.m */,
+				D297662518CFFF0800C79A7E /* NewsCenterLevelTwoTableViewController.h */,
+				D297662618CFFF0800C79A7E /* NewsCenterLevelTwoTableViewController.m */,
+				D297662218CFFED500C79A7E /* NewsCenterLevelTwoViewController.h */,
+				D297662318CFFED500C79A7E /* NewsCenterLevelTwoViewController.m */,
+				2AFC508918FE2F5700FD7B25 /* PlayMovieViewController.h */,
+				2AFC508A18FE2F5700FD7B25 /* PlayMovieViewController.m */,
+			);
+			path = LevelTwo;
+			sourceTree = "<group>";
+		};
+		D2D79FB818D9ED77004B0844 /* ContentAndContent */ = {
+			isa = PBXGroup;
+			children = (
+				D2D79FB918D9ED97004B0844 /* ContentPDFViewController.h */,
+				D2D79FBA18D9ED97004B0844 /* ContentPDFViewController.m */,
+				D2D79FBC18D9F419004B0844 /* ContentViewController.h */,
+				D2D79FBD18D9F419004B0844 /* ContentViewController.m */,
+			);
+			path = ContentAndContent;
+			sourceTree = "<group>";
+		};
+		D2F5822A18D5436700014A52 /* TableViewCell */ = {
+			isa = PBXGroup;
+			children = (
+				D2F5822B18D543A100014A52 /* NewsCenterLevelTwoCell.h */,
+				D2F5822C18D543A100014A52 /* NewsCenterLevelTwoCell.m */,
+			);
+			path = TableViewCell;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		D29765D218CFF9BE00C79A7E /* NewsCenter */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = D29765F618CFF9BE00C79A7E /* Build configuration list for PBXNativeTarget "NewsCenter" */;
+			buildPhases = (
+				D29765CF18CFF9BE00C79A7E /* Sources */,
+				D29765D018CFF9BE00C79A7E /* Frameworks */,
+				D29765D118CFF9BE00C79A7E /* CopyFiles */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = NewsCenter;
+			productName = NewsCenter;
+			productReference = D29765D318CFF9BE00C79A7E /* libNewsCenter.a */;
+			productType = "com.apple.product-type.library.static";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		D29765CB18CFF9BE00C79A7E /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0500;
+			};
+			buildConfigurationList = D29765CE18CFF9BE00C79A7E /* Build configuration list for PBXProject "NewsCenter" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = D29765CA18CFF9BE00C79A7E;
+			productRefGroup = D29765D418CFF9BE00C79A7E /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				D29765D218CFF9BE00C79A7E /* NewsCenter */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXSourcesBuildPhase section */
+		D29765CF18CFF9BE00C79A7E /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D23B6DB618D852E3001C3D6F /* NewsCenterNewsType.m in Sources */,
+				2AFC508B18FE2F5700FD7B25 /* PlayMovieViewController.m in Sources */,
+				D200C48018D1C12000003BEE /* NewsCenterLevelOneCell.m in Sources */,
+				D2D79FBE18D9F419004B0844 /* ContentViewController.m in Sources */,
+				D297662A18CFFF3C00C79A7E /* NewsCenterLevelTwoView.m in Sources */,
+				2A64FEFB18D7F62700C76D2B /* NewsCenterPDF.m in Sources */,
+				D250B49A18D2D7FA00DAB0E1 /* NewsCenterBLL.m in Sources */,
+				D297662418CFFED500C79A7E /* NewsCenterLevelTwoViewController.m in Sources */,
+				D297662718CFFF0800C79A7E /* NewsCenterLevelTwoTableViewController.m in Sources */,
+				D2D79FB718D9E63F004B0844 /* NewsCenterContent.m in Sources */,
+				D297662118CFFE8D00C79A7E /* NewsCenterLevelOneViewController.m in Sources */,
+				D297661818CFFCE800C79A7E /* NewsCenterLevelOneView.m in Sources */,
+				D297661E18CFFE5800C79A7E /* NewsCenterLevelOneTableViewController.m in Sources */,
+				D250B49D18D2D96600DAB0E1 /* NewsCenterParser.m in Sources */,
+				D200C47C18D1BF9C00003BEE /* NewsCenterNetRequest.m in Sources */,
+				D2F5822D18D543A100014A52 /* NewsCenterLevelTwoCell.m in Sources */,
+				2AF6B34918D8313D0084B680 /* PDFListView.m in Sources */,
+				D2D79FBB18D9ED97004B0844 /* ContentPDFViewController.m in Sources */,
+				2AF6B34C18D8315D0084B680 /* PDFListViewController.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		D29765F418CFF9BE00C79A7E /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = NO;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				HEADER_SEARCH_PATHS = (
+					"../../../Sandglass/**",
+					"../../../Classes/Public/**",
+				);
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		D29765F518CFF9BE00C79A7E /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = NO;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = YES;
+				ENABLE_NS_ASSERTIONS = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				HEADER_SEARCH_PATHS = (
+					"../../../Sandglass/**",
+					"../../../Classes/Public/**",
+				);
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		D29765F718CFF9BE00C79A7E /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				DSTROOT = /tmp/NewsCenter.dst;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "NewsCenter/NewsCenter-Prefix.pch";
+				HEADER_SEARCH_PATHS = (
+					"../../../Sandglass/**",
+					"../../../Classes/Public/**",
+				);
+				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+			};
+			name = Debug;
+		};
+		D29765F818CFF9BE00C79A7E /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				DSTROOT = /tmp/NewsCenter.dst;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "NewsCenter/NewsCenter-Prefix.pch";
+				HEADER_SEARCH_PATHS = (
+					"../../../Sandglass/**",
+					"../../../Classes/Public/**",
+				);
+				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		D29765CE18CFF9BE00C79A7E /* Build configuration list for PBXProject "NewsCenter" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D29765F418CFF9BE00C79A7E /* Debug */,
+				D29765F518CFF9BE00C79A7E /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		D29765F618CFF9BE00C79A7E /* Build configuration list for PBXNativeTarget "NewsCenter" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D29765F718CFF9BE00C79A7E /* Debug */,
+				D29765F818CFF9BE00C79A7E /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = D29765CB18CFF9BE00C79A7E /* Project object */;
+}

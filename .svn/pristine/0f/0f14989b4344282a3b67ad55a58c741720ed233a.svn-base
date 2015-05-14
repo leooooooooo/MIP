@@ -1,0 +1,389 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		48EB3D82190A6D6B00E6D491 /* OperDeviceMenuInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 48EB3D81190A6D6B00E6D491 /* OperDeviceMenuInfo.m */; };
+		48EB3D85190A6DC200E6D491 /* OperDeviceTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 48EB3D84190A6DC200E6D491 /* OperDeviceTableViewController.m */; };
+		48EB3D88190A6DE600E6D491 /* OperDeviceTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 48EB3D87190A6DE600E6D491 /* OperDeviceTableViewCell.m */; };
+		48EB3D8B190A6F2600E6D491 /* OperDeviceDataParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 48EB3D8A190A6F2600E6D491 /* OperDeviceDataParser.m */; };
+		48EB3D8F190A71B100E6D491 /* OperDeviceContentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 48EB3D8E190A71B100E6D491 /* OperDeviceContentViewController.m */; };
+		D2761B6518E1573100A1C8B1 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D2761B6418E1573100A1C8B1 /* Foundation.framework */; };
+		D2761BA918E160F000A1C8B1 /* OperDeviceView.m in Sources */ = {isa = PBXBuildFile; fileRef = D2761BA818E160F000A1C8B1 /* OperDeviceView.m */; };
+		D2761BAC18E1614900A1C8B1 /* OperDeviceViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D2761BAB18E1614900A1C8B1 /* OperDeviceViewController.m */; };
+		D2761BBE18E17B3900A1C8B1 /* OperDeviceNetRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = D2761BBD18E17B3900A1C8B1 /* OperDeviceNetRequest.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		D2761B5F18E1573100A1C8B1 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "include/$(PRODUCT_NAME)";
+			dstSubfolderSpec = 16;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		48EB3D80190A6D6B00E6D491 /* OperDeviceMenuInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OperDeviceMenuInfo.h; sourceTree = "<group>"; };
+		48EB3D81190A6D6B00E6D491 /* OperDeviceMenuInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OperDeviceMenuInfo.m; sourceTree = "<group>"; };
+		48EB3D83190A6DC200E6D491 /* OperDeviceTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OperDeviceTableViewController.h; sourceTree = "<group>"; };
+		48EB3D84190A6DC200E6D491 /* OperDeviceTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OperDeviceTableViewController.m; sourceTree = "<group>"; };
+		48EB3D86190A6DE600E6D491 /* OperDeviceTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OperDeviceTableViewCell.h; sourceTree = "<group>"; };
+		48EB3D87190A6DE600E6D491 /* OperDeviceTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OperDeviceTableViewCell.m; sourceTree = "<group>"; };
+		48EB3D89190A6F2600E6D491 /* OperDeviceDataParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OperDeviceDataParser.h; sourceTree = "<group>"; };
+		48EB3D8A190A6F2600E6D491 /* OperDeviceDataParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OperDeviceDataParser.m; sourceTree = "<group>"; };
+		48EB3D8D190A71B100E6D491 /* OperDeviceContentViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OperDeviceContentViewController.h; sourceTree = "<group>"; };
+		48EB3D8E190A71B100E6D491 /* OperDeviceContentViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OperDeviceContentViewController.m; sourceTree = "<group>"; };
+		D2761B6118E1573100A1C8B1 /* libOperDevice.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libOperDevice.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		D2761B6418E1573100A1C8B1 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		D2761B6818E1573100A1C8B1 /* OperDevice-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "OperDevice-Prefix.pch"; sourceTree = "<group>"; };
+		D2761B7218E1573200A1C8B1 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
+		D2761B7518E1573200A1C8B1 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = Library/Frameworks/UIKit.framework; sourceTree = DEVELOPER_DIR; };
+		D2761BA618E15FD900A1C8B1 /* OperDevice.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = OperDevice.bundle; sourceTree = "<group>"; };
+		D2761BA718E160F000A1C8B1 /* OperDeviceView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OperDeviceView.h; sourceTree = "<group>"; };
+		D2761BA818E160F000A1C8B1 /* OperDeviceView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OperDeviceView.m; sourceTree = "<group>"; };
+		D2761BAA18E1614900A1C8B1 /* OperDeviceViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OperDeviceViewController.h; sourceTree = "<group>"; };
+		D2761BAB18E1614900A1C8B1 /* OperDeviceViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OperDeviceViewController.m; sourceTree = "<group>"; };
+		D2761BBC18E17B3900A1C8B1 /* OperDeviceNetRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OperDeviceNetRequest.h; sourceTree = "<group>"; };
+		D2761BBD18E17B3900A1C8B1 /* OperDeviceNetRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OperDeviceNetRequest.m; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		D2761B5E18E1573100A1C8B1 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D2761B6518E1573100A1C8B1 /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		48EB3D8C190A718B00E6D491 /* LevelTwo */ = {
+			isa = PBXGroup;
+			children = (
+				48EB3D8D190A71B100E6D491 /* OperDeviceContentViewController.h */,
+				48EB3D8E190A71B100E6D491 /* OperDeviceContentViewController.m */,
+			);
+			path = LevelTwo;
+			sourceTree = "<group>";
+		};
+		D2761B5818E1573100A1C8B1 = {
+			isa = PBXGroup;
+			children = (
+				D2761B6618E1573100A1C8B1 /* OperDevice */,
+				D2761B6318E1573100A1C8B1 /* Frameworks */,
+				D2761B6218E1573100A1C8B1 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		D2761B6218E1573100A1C8B1 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				D2761B6118E1573100A1C8B1 /* libOperDevice.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		D2761B6318E1573100A1C8B1 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				D2761B6418E1573100A1C8B1 /* Foundation.framework */,
+				D2761B7218E1573200A1C8B1 /* XCTest.framework */,
+				D2761B7518E1573200A1C8B1 /* UIKit.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		D2761B6618E1573100A1C8B1 /* OperDevice */ = {
+			isa = PBXGroup;
+			children = (
+				D2761B9F18E1582400A1C8B1 /* BLL */,
+				D2761BA018E1582400A1C8B1 /* DataParser */,
+				D2761BA118E1582400A1C8B1 /* Entity */,
+				D2761BA218E1582400A1C8B1 /* NetRequest */,
+				D2761BA318E1582400A1C8B1 /* Resource */,
+				D2761BA418E1582400A1C8B1 /* UI */,
+				D2761B6718E1573100A1C8B1 /* Supporting Files */,
+			);
+			path = OperDevice;
+			sourceTree = "<group>";
+		};
+		D2761B6718E1573100A1C8B1 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				D2761B6818E1573100A1C8B1 /* OperDevice-Prefix.pch */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		D2761B9F18E1582400A1C8B1 /* BLL */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = BLL;
+			sourceTree = "<group>";
+		};
+		D2761BA018E1582400A1C8B1 /* DataParser */ = {
+			isa = PBXGroup;
+			children = (
+				48EB3D89190A6F2600E6D491 /* OperDeviceDataParser.h */,
+				48EB3D8A190A6F2600E6D491 /* OperDeviceDataParser.m */,
+			);
+			path = DataParser;
+			sourceTree = "<group>";
+		};
+		D2761BA118E1582400A1C8B1 /* Entity */ = {
+			isa = PBXGroup;
+			children = (
+				48EB3D80190A6D6B00E6D491 /* OperDeviceMenuInfo.h */,
+				48EB3D81190A6D6B00E6D491 /* OperDeviceMenuInfo.m */,
+			);
+			path = Entity;
+			sourceTree = "<group>";
+		};
+		D2761BA218E1582400A1C8B1 /* NetRequest */ = {
+			isa = PBXGroup;
+			children = (
+				D2761BBC18E17B3900A1C8B1 /* OperDeviceNetRequest.h */,
+				D2761BBD18E17B3900A1C8B1 /* OperDeviceNetRequest.m */,
+			);
+			path = NetRequest;
+			sourceTree = "<group>";
+		};
+		D2761BA318E1582400A1C8B1 /* Resource */ = {
+			isa = PBXGroup;
+			children = (
+				D2761BA618E15FD900A1C8B1 /* OperDevice.bundle */,
+			);
+			path = Resource;
+			sourceTree = "<group>";
+		};
+		D2761BA418E1582400A1C8B1 /* UI */ = {
+			isa = PBXGroup;
+			children = (
+				D2761BA518E1582400A1C8B1 /* LevelOne */,
+				48EB3D8C190A718B00E6D491 /* LevelTwo */,
+			);
+			path = UI;
+			sourceTree = "<group>";
+		};
+		D2761BA518E1582400A1C8B1 /* LevelOne */ = {
+			isa = PBXGroup;
+			children = (
+				D2761BA718E160F000A1C8B1 /* OperDeviceView.h */,
+				D2761BA818E160F000A1C8B1 /* OperDeviceView.m */,
+				D2761BAA18E1614900A1C8B1 /* OperDeviceViewController.h */,
+				D2761BAB18E1614900A1C8B1 /* OperDeviceViewController.m */,
+				48EB3D83190A6DC200E6D491 /* OperDeviceTableViewController.h */,
+				48EB3D84190A6DC200E6D491 /* OperDeviceTableViewController.m */,
+				48EB3D86190A6DE600E6D491 /* OperDeviceTableViewCell.h */,
+				48EB3D87190A6DE600E6D491 /* OperDeviceTableViewCell.m */,
+			);
+			path = LevelOne;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		D2761B6018E1573100A1C8B1 /* OperDevice */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = D2761B8418E1573200A1C8B1 /* Build configuration list for PBXNativeTarget "OperDevice" */;
+			buildPhases = (
+				D2761B5D18E1573100A1C8B1 /* Sources */,
+				D2761B5E18E1573100A1C8B1 /* Frameworks */,
+				D2761B5F18E1573100A1C8B1 /* CopyFiles */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = OperDevice;
+			productName = OperDevice;
+			productReference = D2761B6118E1573100A1C8B1 /* libOperDevice.a */;
+			productType = "com.apple.product-type.library.static";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		D2761B5918E1573100A1C8B1 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0500;
+				ORGANIZATIONNAME = wanghao;
+			};
+			buildConfigurationList = D2761B5C18E1573100A1C8B1 /* Build configuration list for PBXProject "OperDevice" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = D2761B5818E1573100A1C8B1;
+			productRefGroup = D2761B6218E1573100A1C8B1 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				D2761B6018E1573100A1C8B1 /* OperDevice */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXSourcesBuildPhase section */
+		D2761B5D18E1573100A1C8B1 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D2761BBE18E17B3900A1C8B1 /* OperDeviceNetRequest.m in Sources */,
+				48EB3D85190A6DC200E6D491 /* OperDeviceTableViewController.m in Sources */,
+				D2761BAC18E1614900A1C8B1 /* OperDeviceViewController.m in Sources */,
+				48EB3D82190A6D6B00E6D491 /* OperDeviceMenuInfo.m in Sources */,
+				48EB3D8F190A71B100E6D491 /* OperDeviceContentViewController.m in Sources */,
+				48EB3D8B190A6F2600E6D491 /* OperDeviceDataParser.m in Sources */,
+				D2761BA918E160F000A1C8B1 /* OperDeviceView.m in Sources */,
+				48EB3D88190A6DE600E6D491 /* OperDeviceTableViewCell.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		D2761B8218E1573200A1C8B1 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		D2761B8318E1573200A1C8B1 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = YES;
+				ENABLE_NS_ASSERTIONS = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		D2761B8518E1573200A1C8B1 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD)";
+				CLANG_ENABLE_OBJC_ARC = NO;
+				DSTROOT = /tmp/OperDevice.dst;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "OperDevice/OperDevice-Prefix.pch";
+				HEADER_SEARCH_PATHS = (
+					"../../../Sandglass/**",
+					"../../../Classes/Public/**",
+				);
+				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+			};
+			name = Debug;
+		};
+		D2761B8618E1573200A1C8B1 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD)";
+				CLANG_ENABLE_OBJC_ARC = NO;
+				DSTROOT = /tmp/OperDevice.dst;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "OperDevice/OperDevice-Prefix.pch";
+				HEADER_SEARCH_PATHS = (
+					"../../../Sandglass/**",
+					"../../../Classes/Public/**",
+				);
+				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		D2761B5C18E1573100A1C8B1 /* Build configuration list for PBXProject "OperDevice" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D2761B8218E1573200A1C8B1 /* Debug */,
+				D2761B8318E1573200A1C8B1 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		D2761B8418E1573200A1C8B1 /* Build configuration list for PBXNativeTarget "OperDevice" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D2761B8518E1573200A1C8B1 /* Debug */,
+				D2761B8618E1573200A1C8B1 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = D2761B5918E1573100A1C8B1 /* Project object */;
+}

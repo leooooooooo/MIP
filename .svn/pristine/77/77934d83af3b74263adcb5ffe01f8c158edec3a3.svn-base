@@ -1,0 +1,132 @@
+//
+//  DaoBase.m
+//  MyFirstApp
+//
+//  Created by dextrys on 4/22/11.
+//  Copyright 2011 __MyCompanyName__. All rights reserved.
+//
+
+#import "FMDatabase.h" 
+#import "FMDatabaseAdditions.h"
+#import "DaoBase.h"
+#import "DataBase.h"
+
+@implementation DaoBase
+//@synthesize db;
+
+
+- (id)init{
+	if(self = [super init]){
+		// 由 AppDelegate 取得打开的数据库
+		//YUMMOSAppAppDelegate *appDelegate = (YUMMOSAppAppDelegate *)[[UIApplication sharedApplication] delegate];
+		//db = [[appDelegate db] retain];
+		
+		//db = [DataBase instance];
+	}
+	return self;
+}
+/*
+- (BOOL)executeSQL:(NSString *)sql {
+	FMDatabase *db = [DataBase instance];
+	[db executeUpdate:sql];
+	
+	int result = [db changes];
+	
+	if ([db hadError]) {
+		//NSLog(@"Err %d: %@", [db lastErrorCode], [db lastErrorMessage]);
+		NSException *dbException = [NSException									
+									exceptionWithName:@"DBExecuteException"									
+									reason:[db lastErrorMessage]									
+									userInfo:nil];
+		
+		@throw dbException;
+	}
+	if(result>0)
+		return YES;
+	return NO;
+	
+}
+ */
+
+-(BOOL)executeSQL:(FMDatabase *) fmDB SqlString:(NSString *)sql,...
+{
+	va_list args;
+    va_start(args, sql);    
+	BOOL result = [fmDB executeUpdate:sql error:nil withArgumentsInArray:nil orVAList:args];
+	
+	if ([fmDB hadError])
+	{
+		NSLog(@"Err %d: %@", [fmDB lastErrorCode], [fmDB lastErrorMessage]);
+	}
+	
+	va_end(args);
+	return result;
+}
+
+- (BOOL)executeSQL:(NSString*)sql, ... {
+	
+	va_list args;
+    va_start(args, sql);    
+	FMDatabase *db = [DataBase instance];
+	BOOL result = [db executeUpdate:sql error:nil withArgumentsInArray:nil orVAList:args];
+	
+	if ([db hadError])
+	{
+		NSLog(@"Err %d: %@", [db lastErrorCode], [db lastErrorMessage]);
+	}
+	
+	va_end(args);
+    
+	
+	//int result = [db changes];
+	
+	//if ([db hadError]) {
+		//NSLog(@"Err %d: %@", [db lastErrorCode], [db lastErrorMessage]);
+	/*	NSException *dbException = [NSException									
+									exceptionWithName:@"DBExecuteException"									
+									reason:[db lastErrorMessage]									
+									userInfo:nil];
+	*/	
+	//	@throw dbException;
+	//}
+	//if(result>0)
+	//	return YES;
+	//return NO;
+	
+	return result;
+}
+
+
+- (FMResultSet *)selectResult:(NSString *)sql {
+	FMDatabase *db = [DataBase instance];
+	FMResultSet *rs = [db executeQuery:sql];
+	
+	if ([db hadError]) {
+		//NSLog(@"Err %d: %@", [db lastErrorCode], [db lastErrorMessage]);
+		NSException *dbException = [NSException									
+									exceptionWithName:@"DBExecuteException"									
+									reason:[db lastErrorMessage]									
+									userInfo:nil];
+		
+		@throw dbException; 
+		
+	}
+	
+	return rs;
+	
+}
+
+// 子类中实现
+//-(NSString *)setTable:(NSString *)sql{
+//	return NULL;
+//}
+
+- (void)dealloc {
+	//[db release];
+	[super dealloc];
+}
+
+
+
+
+@end

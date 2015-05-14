@@ -1,0 +1,162 @@
+//
+//  CustomAlertView.m
+//  Sandglass
+//
+//  Created by Sea on 13-9-30.
+//
+//
+
+#import "CustomAlertView.h"
+
+@implementation CustomAlertView
+
+@synthesize backgroundView;
+
+- (id)initWithBackgroundView:(UIView *)nBackgroundView {
+    
+    self = [super init];
+    
+    if (self) {
+        
+        backgroundView = [nBackgroundView retain];
+    }
+    
+    return self;
+}
+
+
+/*!
+ @function
+ @abstract      向alertView添加按钮
+ 
+ @note          按钮的布局相对于contentImageView
+ @note          按钮的事件执行完毕后,alertView才会消失;如果需要异步处理,请将定义的事件使用多线程或者任务队列
+ 
+ @result
+ */
+-(void) addButton:(UIButton *)btn
+{
+    if (!_buttonArrays) {
+        
+        _buttonArrays = [[NSMutableArray alloc] initWithObjects:btn, nil];
+    }
+    else
+        [_buttonArrays addObject:btn];
+    
+    [btn addTarget:self action:@selector(dismissAlertView) forControlEvents:UIControlEventTouchUpInside];
+}
+
+
+
+/*!
+ @function
+ @abstract      覆写系统原生的绘制函数
+ 
+ @note          不再调用系统原生绘制函数,改为绘制自定义的背景图片
+ 
+ @result
+ */
+- (void)drawRect:(CGRect)rect
+{
+    // Drawing code
+    
+    [super drawRect:rect];
+    
+    CGSize imageViewSize = self.backgroundView.frame.size;
+    
+	[backgroundView drawRect:CGRectMake(0, 0, imageViewSize.width, imageViewSize.height)];
+    
+}
+
+
+
+/*!
+ @function
+ @abstract      覆写系统原生的布局函数
+ 
+ @note          隐藏系统原生的背景与按钮,并绘制自定义的内容视图与按钮
+ 
+ @result
+ */
+- (void) layoutSubviews {
+    
+    [super layoutSubviews];
+    
+    self.bounds = CGRectMake(0, 0, backgroundView
+                             .frame.size.width, backgroundView.frame.size.height);
+    
+    NSLog(@"%@",NSStringFromCGRect(self.bounds));
+    
+    UIView *_backgroundImageView = [self valueForKey:@"_backgroundImageView"];
+    [_backgroundImageView setHidden:YES];
+    
+    //屏蔽系统的ImageView 和 UIButton
+    /*for (UIView *v in [self subviews]) {
+        
+        if ([v isKindOfClass:[UIButton class]] ||
+            [v isKindOfClass:NSClassFromString(@"UIThreePartButton")]) {
+            [v setHidden:YES];
+            
+        }
+    }*/
+    
+    for (int i=0;i<[_buttonArrays count]; i++) {
+        
+        UIButton *btn = [_buttonArrays objectAtIndex:i];
+        
+        [self addSubview:btn];
+    }
+}
+
+
+
+/*!
+ @function
+ @abstract      让弹出的提示框消失
+ 
+ @note          该方法在添加按钮的时候,由自定义类自己添加,无需手动调用
+ 
+ @result
+ */
+- (void)dismissAlertView {
+    
+    [self dismissWithClickedButtonIndex:0 animated:YES];
+}
+
+
+
+/*!
+ @function
+ @abstract      覆写系统展示方法,将alertView的尺寸设置为背景图片的尺寸
+ 
+ @result
+ */
+- (void)show {
+    
+    [super show];
+    
+    [self layoutSubviews];
+    
+    [self setNeedsLayout];
+}
+
+
+
+/*!
+ @function
+ @abstract      释放控件占有的资源
+ 
+ @result
+ */
+- (void)dealloc {
+    
+    [_buttonArrays removeAllObjects];
+    
+    [_buttonArrays release];
+    
+    [backgroundView release];
+    
+    [super dealloc];
+}
+
+@end

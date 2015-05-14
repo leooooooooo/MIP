@@ -1,0 +1,29 @@
+//
+//  FoldawayEntity.m
+//  MOA
+//
+//  Created by Sea on 13-5-20.
+//
+//
+
+#import "FoldawayEntity.h"
+
+@implementation FoldawayEntity
+
+@synthesize isFolded;
+@synthesize entryList;
+
+@synthesize headerView;
+
+- (void)dealloc {
+    
+    self.isFolded = NO;
+    
+    self.entryList = nil;
+    
+    self.headerView = nil;
+    
+    [super dealloc];
+}
+
+@end

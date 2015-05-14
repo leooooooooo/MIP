@@ -1,0 +1,76 @@
+//
+//  TempNoteDao.m
+//  MOA
+//
+//  Created by  on 11-12-8.
+//  Copyright (c) 2011年 __MyCompanyName__. All rights reserved.
+//
+
+#import "TempNoteDao.h"
+#import "NotePage.h"
+#import "FMDatabase.h"
+#import "FMDatabaseAdditions.h"
+#import "DataBase.h"
+#import "PaintUtility.h"
+
+@implementation TempNoteDao
+
+//插入页面信息，成功插入返回插入后生成的GUID，返回nil为插入失败
+- (BOOL)insertTempNotePage:(TempNotePage *)tempNotePage {
+    FMDatabase *db = [DataBase instance];
+    [db beginTransaction];
+    BOOL result = YES;
+    @try {
+        NSString *sql = [NSString stringWithFormat:@"INSERT INTO t_PrivNote_tempPageInfo (pageNumber, pageContent) values (?,?)"];
+        
+        NSData *image = UIImagePNGRepresentation(tempNotePage.pageContent);
+        result = [db executeUpdate:sql,
+                  [NSString stringWithFormat:@"%d", tempNotePage.pageNumber],
+                  image];
+    }
+    @catch (NSException *e) 
+    { 
+        NSLog(@"%@", [e reason]);
+    }
+    @finally 
+    {
+        result ? [db commit] : [db rollback];
+    }
+	
+    return result;
+}
+
+//根据记事本ID和页数获取页面对象，如果没有，就返回nil
+-(UIImage *)getNotePage:(NSInteger)pageNumber {
+    UIImage *image = nil;
+    NSString *sql = [NSString stringWithFormat:@"SELECT * FROM t_PrivNote_tempPageInfo where pageNumber = %d",pageNumber];
+//	sql = [sql stringByAppendingString:[NSString stringWithFormat:@"%d",pageNumber]];
+    
+	FMResultSet *rs = nil;
+        FMDatabase *db = [DataBase instance];
+	@try {
+		rs = [db executeQuery:sql];
+		while ([rs next]) {
+            NSData *data = [rs dataForColumn:@"pageContent"];
+            image = [UIImage imageWithData:data];
+		}
+	}
+	@catch (NSException *e) {
+		NSLog(@"%@", [e reason]);
+	}
+	@finally {
+		if (rs) {
+			[rs close];
+		}
+	}
+    return image;
+}
+
+//删除所有的记事本的页面，返回是否成功删除
+-(BOOL)deleteAllTempPage {
+    NSString *sql = [NSString stringWithFormat:@"delete from t_PrivNote_tempPageInfo"];
+	FMDatabase *db = [DataBase instance];
+	return [db executeUpdate:sql];
+}
+
+@end

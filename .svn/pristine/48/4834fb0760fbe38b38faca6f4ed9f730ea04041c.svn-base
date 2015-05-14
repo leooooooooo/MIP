@@ -1,0 +1,117 @@
+//
+//  SGSwitch.m
+//  Sandglass
+//
+//  Created by sea on 13-11-21.
+//
+//
+
+#import "SGSwitch.h"
+
+#import <QuartzCore/QuartzCore.h>
+
+#define kOnImageDictionaryPrefix            @"on"
+#define kOffImageDictionaryPrefix           @"off"
+
+@interface SGSwitch () {
+    
+    NSMutableDictionary            *imageDictionary;
+    
+    SGControlState                  currentState;
+}
+
+@end
+
+@implementation SGSwitch
+
+@synthesize backgroundImage;
+@synthesize on;
+
+- (void)setBackgroundImage:(UIImage *)nBackgroundImage {
+    
+    if (nBackgroundImage != backgroundImage) {
+        
+        [backgroundImage release];
+        backgroundImage = [nBackgroundImage retain];
+        
+        if (!_backgroundView) {
+            
+            _backgroundView = [[UIImageView alloc] initWithFrame:self.bounds];
+            
+            [self addSubview:_backgroundView];
+            
+            [_backgroundView release];
+        }
+        
+        _backgroundView.image = backgroundImage;
+    }
+}
+
+- (id)initWithFrame:(CGRect)frame
+{
+    self = [super initWithFrame:frame];
+    if (self) {
+        // Initialization code
+        
+        on = NO;
+        
+        _slider = [CALayer layer];
+        
+        [self.layer addSublayer:_slider];
+        
+        _slider.frame = CGRectZero;
+        
+        UIPanGestureRecognizer *panGesture = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(handlePan:)];
+        panGesture.delegate = self;
+//        [knobButton addGestureRecognizer:panGesture];
+        [panGesture release];
+        
+        UITapGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(handleTap:)];
+        [self addGestureRecognizer:tapGesture];
+        [tapGesture release];
+    }
+    return self;
+}
+
+
+// Only override drawRect: if you perform custom drawing.
+// An empty implementation adversely affects performance during animation.
+- (void)drawRect:(CGRect)rect
+{
+    // Drawing code
+    [super drawRect:rect];
+    
+}
+
+
+- (void)setOnImage:(UIImage *)image forState:(SGControlState)state {
+    
+    if (!imageDictionary) {
+        
+        imageDictionary = [[NSMutableDictionary alloc] init];
+    }
+    
+    NSString *onKey = [kOnImageDictionaryPrefix stringByAppendingFormat:@"%d",state];
+    
+    [imageDictionary setObject:image forKey:onKey];
+    
+}
+- (void)setOffImage:(UIImage *)image forState:(SGControlState)state {
+    
+    if (!imageDictionary) {
+        
+        imageDictionary = [[NSMutableDictionary alloc] init];
+    }
+    
+    NSString *offKey = [kOffImageDictionaryPrefix stringByAppendingFormat:@"%d",state];
+    
+    [imageDictionary setObject:image forKey:offKey];
+}
+
+
+- (void)setOn:(BOOL)on animated:(BOOL)animated {
+    
+    
+}
+
+@end

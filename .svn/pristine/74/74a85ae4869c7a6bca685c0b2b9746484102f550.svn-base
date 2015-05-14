@@ -1,0 +1,357 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="5064" systemVersion="13A558" minimumToolsVersion="Automatic" macOSVersion="Automatic" iOSVersion="Automatic">
+    <entity name="ApplicationInfor" representedClassName="ApplicationInfor" syncable="YES">
+        <attribute name="appCode" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="appIcon" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="appId" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="appName" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="attachUrl" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="createTime" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="iconUrl" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="isChecked" optional="YES" attributeType="Boolean" syncable="YES"/>
+        <attribute name="sn" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="urlType" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="version" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="applitype" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="ApplicationType" inverseName="appliinfor" inverseEntity="ApplicationType" syncable="YES"/>
+    </entity>
+    <entity name="ApplicationType" representedClassName="ApplicationType" syncable="YES">
+        <attribute name="appNum" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="appType" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="appTypeName" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="appliinfor" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="ApplicationInfor" inverseName="applitype" inverseEntity="ApplicationInfor" syncable="YES"/>
+    </entity>
+    <entity name="BerthList" representedClassName="BerthList" syncable="YES">
+        <attribute name="berthId" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="berthNo" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="department" optional="YES" attributeType="String" syncable="YES"/>
+    </entity>
+    <entity name="BerthPosList" representedClassName="BerthPosList" syncable="YES">
+        <attribute name="position" optional="YES" attributeType="String" syncable="YES"/>
+    </entity>
+    <entity name="BusinessProcessCategory" representedClassName="BusinessProcessCategory" syncable="YES">
+        <attribute name="code" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="filters" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="flowType" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+        <attribute name="searchType" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+        <attribute name="sort" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+        <attribute name="title" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="uid" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="unreadCount" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="userid" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="relationshipToBusinessProcessCategory" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="BusinessProcessItem" inverseName="relationship" inverseEntity="BusinessProcessItem" syncable="YES"/>
+    </entity>
+    <entity name="BusinessProcessItem" representedClassName="BusinessProcessItem" syncable="YES">
+        <attribute name="filePath" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="generateDate" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="initiator" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="modifyDate" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="onlineKeyword" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="title" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="type" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+        <attribute name="uid" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="relationship" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="BusinessProcessCategory" inverseName="relationshipToBusinessProcessCategory" inverseEntity="BusinessProcessCategory" syncable="YES"/>
+    </entity>
+    <entity name="BusinessType" representedClassName="BusinessType" syncable="YES">
+        <attribute name="hasNew" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="title" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="type" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <relationship name="ships" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="ShipInfo" inverseName="processType" inverseEntity="ShipInfo" syncable="YES"/>
+    </entity>
+    <entity name="CityInformation" representedClassName="CityInformation" syncable="YES">
+        <attribute name="citydesc" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="cityId" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="cityname" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="cityState" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="scale" optional="YES" attributeType="String" syncable="YES"/>
+    </entity>
+    <entity name="ComContactsInfo" representedClassName="ComContactsInfo" syncable="YES">
+        <attribute name="company" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="department" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="duties" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="num" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="tel" optional="YES" attributeType="String" syncable="YES"/>
+    </entity>
+    <entity name="FileInfo" representedClassName="FileInfo" syncable="YES">
+        <attribute name="fileName" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="fileType" optional="YES" attributeType="String" syncable="YES"/>
+    </entity>
+    <entity name="JobCompany" representedClassName="JobCompany" syncable="YES">
+        <attribute name="codeDepartment" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="department" optional="YES" attributeType="String" syncable="YES"/>
+    </entity>
+    <entity name="LargeCommission" representedClassName="LargeCommission" syncable="YES">
+        <attribute name="applydate" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="auditmarkid" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="auditmarkname" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="bcno" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="cargoid" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="cargoname" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="createDate" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="jobcompanyid" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="jobcompanyname" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="jobtypeid" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="jobtypename" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="serial" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="shipclientid" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="shipclientname" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="shipid" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="shipname" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="voyage" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="weight" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="withship" optional="YES" attributeType="Boolean" syncable="YES"/>
+    </entity>
+    <entity name="LowCPortMenuInfo" representedClassName="LowCPortMenuInfo" syncable="YES">
+        <attribute name="menuId" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="menuName" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="sort" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="url" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="userId" optional="YES" attributeType="String" syncable="YES"/>
+    </entity>
+    <entity name="MessageClassInfo" syncable="YES">
+        <attribute name="messageId" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="msgClassId" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="msgClassName" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="postTime" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="title" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="userId" optional="YES" attributeType="String" syncable="YES"/>
+    </entity>
+    <entity name="Module" representedClassName="Module" syncable="YES">
+        <attribute name="badge" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+        <attribute name="funcCode" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="moduleType" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+        <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="searchKeywords" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="sort" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+        <attribute name="type" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="unionId" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="userId" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="userInfo" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="Userinfo" inverseName="relationToModule" inverseEntity="Userinfo" syncable="YES"/>
+    </entity>
+    <entity name="NetworkChanne" representedClassName="NetworkChanne" syncable="YES">
+        <attribute name="code" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="filters" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="flowType" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+        <attribute name="searchType" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+        <attribute name="sort" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+        <attribute name="title" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="uid" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="userid" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="relationshipToNetworkRecord" optional="YES" toMany="YES" deletionRule="No Action" destinationEntity="NetworkRecord" inverseName="networkChanne" inverseEntity="NetworkRecord" syncable="YES"/>
+    </entity>
+    <entity name="NetworkRecord" representedClassName="NetworkRecord" syncable="YES">
+        <attribute name="code" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="filters" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="generateDate" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="onlineKeyword" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="title" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="uid" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="url" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="userid" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="networkChanne" optional="YES" minCount="1" maxCount="1" deletionRule="No Action" destinationEntity="NetworkChanne" inverseName="relationshipToNetworkRecord" inverseEntity="NetworkChanne" syncable="YES"/>
+    </entity>
+    <entity name="NewsCenterCategory" representedClassName="NewsCenterCategory" syncable="YES">
+        <attribute name="code" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="filters" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="flowType" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+        <attribute name="searchType" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+        <attribute name="sort" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+        <attribute name="title" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="uid" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="unreadCount" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="userid" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="relationshipToNewsCategory" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="NewsCenterDocument" inverseName="newsCenterCategory" inverseEntity="NewsCenterDocument" syncable="YES"/>
+    </entity>
+    <entity name="NewsCenterContent" representedClassName="NewsCenterContent" syncable="YES">
+        <attribute name="author" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="content" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="source" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="uid" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="userid" optional="YES" attributeType="String" syncable="YES"/>
+    </entity>
+    <entity name="NewsCenterDocument" representedClassName="NewsCenterDocument" syncable="YES">
+        <attribute name="filePath" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="generateDate" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="initiator" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="modifyDate" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="onlineKeyword" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="title" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="type" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+        <attribute name="typeID" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="typeName" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="uid" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="url" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="newsCenterCategory" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="NewsCenterCategory" inverseName="relationshipToNewsCategory" inverseEntity="NewsCenterCategory" syncable="YES"/>
+    </entity>
+    <entity name="NewsCenterNewsType" representedClassName="NewsCenterNewsType" syncable="YES">
+        <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="uid" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="userid" optional="YES" attributeType="String" syncable="YES"/>
+    </entity>
+    <entity name="NewsCenterPDF" representedClassName="NewsCenterPDF" syncable="YES">
+        <attribute name="filePath" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="url" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="userId" optional="YES" attributeType="String" syncable="YES"/>
+    </entity>
+    <entity name="NewsflashEntity" representedClassName="NewsflashEntity" syncable="YES">
+        <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="parentuid" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="readType" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+        <attribute name="sort" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+        <attribute name="uid" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="url" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="userid" optional="YES" attributeType="String" syncable="YES"/>
+    </entity>
+    <entity name="NoteCategory" representedClassName="NoteCategory" syncable="YES">
+        <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="userid" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="relationshipToCategory" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="NoteEntity" inverseName="category" inverseEntity="NoteEntity" syncable="YES"/>
+    </entity>
+    <entity name="NoteEntity" representedClassName="NoteEntity" syncable="YES">
+        <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="url" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="category" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="NoteCategory" inverseName="relationshipToCategory" inverseEntity="NoteCategory" syncable="YES"/>
+    </entity>
+    <entity name="OperDeviceMenuInfo" representedClassName="OperDeviceMenuInfo" syncable="YES">
+        <attribute name="menuId" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="menuName" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="sort" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="url" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="userId" optional="YES" attributeType="String" syncable="YES"/>
+    </entity>
+    <entity name="PerContactsInfo" representedClassName="PerContactsInfo" syncable="YES">
+        <attribute name="companyid" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="companyname" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="department" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="email" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="num" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="phone" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="tel" optional="YES" attributeType="String" syncable="YES"/>
+    </entity>
+    <entity name="ScheduleInfo" representedClassName="ScheduleInfo" syncable="YES">
+        <attribute name="content" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="createDate" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="endTime" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="startTime" optional="YES" attributeType="Date" syncable="YES"/>
+    </entity>
+    <entity name="SecurityDailyInfo" syncable="YES">
+        <attribute name="dailyId" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="dailyName" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="readType" optional="YES" attributeType="Boolean" syncable="YES"/>
+        <attribute name="regDate" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="typeId" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="typeName" optional="YES" attributeType="String" syncable="YES"/>
+    </entity>
+    <entity name="ShipInfo" representedClassName="ShipInfo" syncable="YES">
+        <attribute name="arriveanchortime" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="berthid" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="berthname" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="createDate" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="jobcompanyid" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="jobcompanyname" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="leadmarkid" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="leadmarkname" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="loadcargoid" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="loadcargoname" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="loadweight" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="planinporttime" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="planmarkid" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="planmarkname" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="planmoveberthno" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="planmoveberthtime" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="planoutporttime" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="shipclientid" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="shipclientname" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="shipid" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="shipnamecn" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="unloadcargoid" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="unloadcargoname" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="unloadweight" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="processType" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="BusinessType" inverseName="ships" inverseEntity="BusinessType" syncable="YES"/>
+    </entity>
+    <entity name="SignHistoryInfo" representedClassName="SignHistoryInfo" syncable="YES">
+        <attribute name="location" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="signId" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="signTime" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="userId" optional="YES" attributeType="String" syncable="YES"/>
+    </entity>
+    <entity name="Userinfo" representedClassName="Userinfo" syncable="YES">
+        <attribute name="bakOfficeTel" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="bakTel" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="configVersion" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="deptID" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="deptName" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="duty" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="headPicUrl" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="isRememberPassword" optional="YES" attributeType="Boolean" syncable="YES"/>
+        <attribute name="markWeibo" optional="YES" attributeType="Boolean" syncable="YES"/>
+        <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="name_zhCN" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="officeTel" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="password" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="perEmail" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="uid" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="userId" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="relationToModule" toMany="YES" deletionRule="Cascade" destinationEntity="Module" inverseName="userInfo" inverseEntity="Module" syncable="YES"/>
+    </entity>
+    <entity name="WeatherInformation" representedClassName="WeatherInformation" syncable="YES">
+        <attribute name="city" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="city_en" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="cityid" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="date_y" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="higherTemp" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="img_single" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="img_title_single" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="lowerTemp" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="temp" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="week" optional="YES" attributeType="String" syncable="YES"/>
+    </entity>
+    <entity name="WebSiteCategory" representedClassName="WebSiteCategory" syncable="YES">
+        <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="userid" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="relationshipToCategory" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="WebSiteEntity" inverseName="category" inverseEntity="WebSiteEntity" syncable="YES"/>
+    </entity>
+    <entity name="WebSiteEntity" representedClassName="WebSiteEntity" syncable="YES">
+        <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="url" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="category" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="WebSiteCategory" inverseName="relationshipToCategory" inverseEntity="WebSiteCategory" syncable="YES"/>
+    </entity>
+    <elements>
+        <element name="ApplicationInfor" positionX="0" positionY="0" width="128" height="225"/>
+        <element name="ApplicationType" positionX="0" positionY="0" width="128" height="105"/>
+        <element name="BerthList" positionX="0" positionY="0" width="128" height="90"/>
+        <element name="BerthPosList" positionX="0" positionY="0" width="128" height="60"/>
+        <element name="BusinessProcessCategory" positionX="0" positionY="0" width="128" height="195"/>
+        <element name="BusinessProcessItem" positionX="0" positionY="0" width="128" height="180"/>
+        <element name="BusinessType" positionX="0" positionY="0" width="128" height="105"/>
+        <element name="CityInformation" positionX="0" positionY="0" width="128" height="120"/>
+        <element name="ComContactsInfo" positionX="0" positionY="0" width="128" height="120"/>
+        <element name="FileInfo" positionX="0" positionY="0" width="128" height="75"/>
+        <element name="JobCompany" positionX="0" positionY="0" width="128" height="75"/>
+        <element name="LargeCommission" positionX="0" positionY="0" width="128" height="330"/>
+        <element name="LowCPortMenuInfo" positionX="0" positionY="0" width="128" height="120"/>
+        <element name="Module" positionX="0" positionY="0" width="128" height="195"/>
+        <element name="NetworkChanne" positionX="0" positionY="0" width="128" height="180"/>
+        <element name="NetworkRecord" positionX="0" positionY="0" width="128" height="180"/>
+        <element name="NewsCenterCategory" positionX="0" positionY="0" width="128" height="195"/>
+        <element name="NewsCenterContent" positionX="0" positionY="0" width="128" height="120"/>
+        <element name="NewsCenterDocument" positionX="0" positionY="0" width="128" height="225"/>
+        <element name="NewsCenterNewsType" positionX="0" positionY="0" width="128" height="90"/>
+        <element name="NewsCenterPDF" positionX="0" positionY="0" width="128" height="105"/>
+        <element name="NewsflashEntity" positionX="0" positionY="0" width="128" height="150"/>
+        <element name="NoteCategory" positionX="0" positionY="0" width="128" height="90"/>
+        <element name="NoteEntity" positionX="0" positionY="0" width="128" height="90"/>
+        <element name="OperDeviceMenuInfo" positionX="0" positionY="0" width="128" height="120"/>
+        <element name="PerContactsInfo" positionX="0" positionY="0" width="128" height="165"/>
+        <element name="ScheduleInfo" positionX="0" positionY="0" width="128" height="105"/>
+        <element name="SecurityDailyInfo" positionX="0" positionY="0" width="128" height="135"/>
+        <element name="ShipInfo" positionX="0" positionY="0" width="128" height="420"/>
+        <element name="SignHistoryInfo" positionX="0" positionY="0" width="128" height="105"/>
+        <element name="Userinfo" positionX="0" positionY="0" width="128" height="300"/>
+        <element name="WeatherInformation" positionX="0" positionY="0" width="128" height="195"/>
+        <element name="WebSiteCategory" positionX="0" positionY="0" width="128" height="90"/>
+        <element name="WebSiteEntity" positionX="0" positionY="0" width="128" height="90"/>
+        <element name="MessageClassInfo" positionX="9" positionY="153" width="128" height="133"/>
+    </elements>
+</model>

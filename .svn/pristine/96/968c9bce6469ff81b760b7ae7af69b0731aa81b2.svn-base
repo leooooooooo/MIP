@@ -1,0 +1,20 @@
+//
+// Prefix header for all source files of the 'Login' target in the 'Login' project
+//
+
+#ifdef __OBJC__
+    #import <Foundation/Foundation.h>
+
+#import "PublicDefine.h"
+
+//记住用户名/密码 自动登陆 选项key
+#define LASTLOGINUSERNAMEKEY       @"lastLoginUserName"
+#define LASTLOGINUSERPASSWORDKEY   @"lastLoginUserPassWord"
+#define AUTOLOGINKEY               @"autoLogin"
+#define IMAGEVERCODE               @"imageVerCode"
+
+
+//升级提示是否已经提示的标示
+#define SHOWUPDATAKEY              @"afterShowUpdata"
+
+#endif

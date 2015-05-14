@@ -1,0 +1,456 @@
+//
+//  PDFSignToolbar.m
+//  MOA_PDF
+//
+//  Created by Sea on 13-11-5.
+//  Copyright (c) 2013年 Sea. All rights reserved.
+//
+
+#import "PDFSignToolbar.h"
+
+#import "PaintUtility.h"
+#import "UIColor+CustomExtensions.h"
+
+#define kRedColorButtonTag                  0
+#define kGreenColorButtonTag                1
+#define kBlueColorButtonTag                 2
+#define kBlackColorButtonTag                3
+
+
+#define kWeeSizeButtonTag                   10
+#define kNormalSizeButtonTag                11
+#define kBoldSizeButtonTag                  12
+
+@implementation PDFSignToolbar
+
+@synthesize delegate;
+@synthesize size;
+
+- (void)setSize:(NSInteger)nSize {
+    
+    UIButton *button = nil;
+    
+    switch (nSize) {
+        case 1:
+            button = weeSizeButton;
+            break;
+        case 2:
+            button = normalSizeButton;
+            break;
+        case 3:
+            button = boldSizeButton;
+            break;
+            
+        default:
+            button = normalSizeButton;
+            break;
+    }
+    
+    currentSizeButton.selected = NO;
+    currentSizeButton.userInteractionEnabled = YES;
+    
+    currentSizeButton = button;
+    
+    currentSizeButton.selected = YES;
+    currentSizeButton.userInteractionEnabled = NO;
+    
+    size = nSize;
+}
+
+// add by lixiangai
+-(void)setcurrentColorButton:(int)value
+{
+    currentColorButton.selected = NO;
+    currentColorButton.userInteractionEnabled = YES;
+  
+    
+    switch (value) {
+        case kRedColorButtonTag:
+            
+            currentColorButton = redColorButton;
+            break;
+        case kGreenColorButtonTag:
+            
+            currentColorButton = greenColorButton;
+            break;
+        case kBlueColorButtonTag:
+            
+            currentColorButton = blueColorButton;
+            break;
+        case kBlackColorButtonTag:
+            
+            currentColorButton = blackColorButton;
+            break;
+            
+        default:
+            break;
+    }
+
+    currentColorButton.selected = YES;
+    currentColorButton.userInteractionEnabled = NO;
+    
+}
+//end
+
+- (id)initWithFrame:(CGRect)frame
+{
+    self = [super initWithFrame:frame];
+    if (self) {
+        // Initialization code
+        
+        penBackground = [[UIImageView alloc] initWithImage:[UIImage imageNamed:[kPDFReaderStyle1Bundle stringByAppendingPathComponent:@"bg_penBoome.png"]]];
+        
+        penBackground.frame = CGRectMake(50, 0, 60, 710);
+        
+        [self addSubview:penBackground];
+        
+        endSignButton = [UIButton buttonWithType:UIButtonTypeCustom];
+        [endSignButton addTarget:self action:@selector(endSignButtonTapped:) forControlEvents:UIControlEventTouchUpInside];
+        
+        [endSignButton setBackgroundImage:[UIImage imageNamed:[kPDFReaderStyle1Bundle stringByAppendingPathComponent:@"button_penOver_1.png"]] forState:UIControlStateNormal];
+        [endSignButton setBackgroundImage:[UIImage imageNamed:[kPDFReaderStyle1Bundle stringByAppendingPathComponent:@"button_penOver_2.png"]] forState:UIControlStateHighlighted];
+        
+        endSignButton.titleEdgeInsets = UIEdgeInsetsMake(30, 0, 0, 0);
+        [endSignButton.titleLabel setNumberOfLines:4];
+        endSignButton.titleLabel.font = [UIFont boldSystemFontOfSize:18];
+        
+        [endSignButton setTitle:@"结\n束\n签\n批" forState:UIControlStateNormal];
+        [endSignButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+        
+        endSignButton.frame = CGRectMake(0, 0, 50, 140);
+        
+        [self addSubview:endSignButton];
+        
+        
+        
+        
+        redColorButton = [UIButton buttonWithType:UIButtonTypeCustom];
+        redColorButton.tag = kRedColorButtonTag;
+        [redColorButton addTarget:self action:@selector(colorButtonTapped:) forControlEvents:UIControlEventTouchUpInside];
+        
+        [redColorButton setBackgroundImage:[UIImage imageNamed:[kPDFReaderStyle1Bundle stringByAppendingPathComponent:@"button_penRed_1.png"]] forState:UIControlStateNormal];
+        [redColorButton setBackgroundImage:[UIImage imageNamed:[kPDFReaderStyle1Bundle stringByAppendingPathComponent:@"button_penRed_2.png"]] forState:UIControlStateHighlighted];
+        [redColorButton setBackgroundImage:[UIImage imageNamed:[kPDFReaderStyle1Bundle stringByAppendingPathComponent:@"button_penRed_2.png"]] forState:UIControlStateSelected];
+        
+        redColorButton.frame = CGRectMake(50, 50, 60, 40);
+        
+        [self addSubview:redColorButton];
+        
+        greenColorButton = [UIButton buttonWithType:UIButtonTypeCustom];
+        greenColorButton.tag = kGreenColorButtonTag;
+        [greenColorButton addTarget:self action:@selector(colorButtonTapped:) forControlEvents:UIControlEventTouchUpInside];
+        
+        [greenColorButton setBackgroundImage:[UIImage imageNamed:[kPDFReaderStyle1Bundle stringByAppendingPathComponent:@"button_penGreen_1.png"]] forState:UIControlStateNormal];
+        [greenColorButton setBackgroundImage:[UIImage imageNamed:[kPDFReaderStyle1Bundle stringByAppendingPathComponent:@"button_penGreen_2.png"]] forState:UIControlStateHighlighted];
+        [greenColorButton setBackgroundImage:[UIImage imageNamed:[kPDFReaderStyle1Bundle stringByAppendingPathComponent:@"button_penGreen_2.png"]] forState:UIControlStateSelected];
+        
+        greenColorButton.frame = CGRectMake(50, 90, 60, 40);
+        
+        [self addSubview:greenColorButton];
+        
+        blueColorButton = [UIButton buttonWithType:UIButtonTypeCustom];
+        blueColorButton.tag = kBlueColorButtonTag;
+        [blueColorButton addTarget:self action:@selector(colorButtonTapped:) forControlEvents:UIControlEventTouchUpInside];
+        
+        [blueColorButton setBackgroundImage:[UIImage imageNamed:[kPDFReaderStyle1Bundle stringByAppendingPathComponent:@"button_penBlue_1.png"]] forState:UIControlStateNormal];
+        [blueColorButton setBackgroundImage:[UIImage imageNamed:[kPDFReaderStyle1Bundle stringByAppendingPathComponent:@"button_penBlue_2.png"]] forState:UIControlStateHighlighted];
+        [blueColorButton setBackgroundImage:[UIImage imageNamed:[kPDFReaderStyle1Bundle stringByAppendingPathComponent:@"button_penBlue_2.png"]] forState:UIControlStateSelected];
+        
+        blueColorButton.frame = CGRectMake(50, 130, 60, 40);
+        
+        [self addSubview:blueColorButton];
+        
+        blackColorButton = [UIButton buttonWithType:UIButtonTypeCustom];
+        blackColorButton.tag = kBlackColorButtonTag;
+        [blackColorButton addTarget:self action:@selector(colorButtonTapped:) forControlEvents:UIControlEventTouchUpInside];
+        
+        [blackColorButton setBackgroundImage:[UIImage imageNamed:[kPDFReaderStyle1Bundle stringByAppendingPathComponent:@"button_penBlack_1.png"]] forState:UIControlStateNormal];
+        [blackColorButton setBackgroundImage:[UIImage imageNamed:[kPDFReaderStyle1Bundle stringByAppendingPathComponent:@"button_penBlack_2.png"]] forState:UIControlStateHighlighted];
+        [blackColorButton setBackgroundImage:[UIImage imageNamed:[kPDFReaderStyle1Bundle stringByAppendingPathComponent:@"button_penBlack_2.png"]] forState:UIControlStateSelected];
+        
+        blackColorButton.frame = CGRectMake(50, 170, 60, 40);
+        
+        [self addSubview:blackColorButton];
+        
+        currentColorButton = blackColorButton;
+        currentColorButton.selected = YES;
+        currentColorButton.userInteractionEnabled = NO;
+        
+        
+        
+        
+        
+        
+        weeSizeButton = [UIButton buttonWithType:UIButtonTypeCustom];
+        weeSizeButton.tag = kWeeSizeButtonTag;
+        [weeSizeButton addTarget:self action:@selector(sizeButtonTapped:) forControlEvents:UIControlEventTouchUpInside];
+        
+        [weeSizeButton setBackgroundImage:[UIImage imageNamed:[kPDFReaderStyle1Bundle stringByAppendingPathComponent:@"button_penWeeSize_1.png"]] forState:UIControlStateNormal];
+        [weeSizeButton setBackgroundImage:[UIImage imageNamed:[kPDFReaderStyle1Bundle stringByAppendingPathComponent:@"button_penWeeSize_2.png"]] forState:UIControlStateHighlighted];
+        [weeSizeButton setBackgroundImage:[UIImage imageNamed:[kPDFReaderStyle1Bundle stringByAppendingPathComponent:@"button_penWeeSize_2.png"]] forState:UIControlStateSelected];
+        
+        weeSizeButton.frame = CGRectMake(50, 270, 60, 40);
+        
+        [self addSubview:weeSizeButton];
+        
+        normalSizeButton = [UIButton buttonWithType:UIButtonTypeCustom];
+        normalSizeButton.tag = kNormalSizeButtonTag;
+        [normalSizeButton addTarget:self action:@selector(sizeButtonTapped:) forControlEvents:UIControlEventTouchUpInside];
+        
+        [normalSizeButton setBackgroundImage:[UIImage imageNamed:[kPDFReaderStyle1Bundle stringByAppendingPathComponent:@"button_penNormalSize_1.png"]] forState:UIControlStateNormal];
+        [normalSizeButton setBackgroundImage:[UIImage imageNamed:[kPDFReaderStyle1Bundle stringByAppendingPathComponent:@"button_penNormalSize_2.png"]] forState:UIControlStateHighlighted];
+        [normalSizeButton setBackgroundImage:[UIImage imageNamed:[kPDFReaderStyle1Bundle stringByAppendingPathComponent:@"button_penNormalSize_2.png"]] forState:UIControlStateSelected];
+        
+        normalSizeButton.frame = CGRectMake(50, 310, 60, 40);
+        
+        [self addSubview:normalSizeButton];
+        
+        boldSizeButton = [UIButton buttonWithType:UIButtonTypeCustom];
+        boldSizeButton.tag = kBoldSizeButtonTag;
+        [boldSizeButton addTarget:self action:@selector(sizeButtonTapped:) forControlEvents:UIControlEventTouchUpInside];
+        
+        [boldSizeButton setBackgroundImage:[UIImage imageNamed:[kPDFReaderStyle1Bundle stringByAppendingPathComponent:@"button_penBoldSize_1.png"]] forState:UIControlStateNormal];
+        [boldSizeButton setBackgroundImage:[UIImage imageNamed:[kPDFReaderStyle1Bundle stringByAppendingPathComponent:@"button_penBoldSize_2.png"]] forState:UIControlStateHighlighted];
+        [boldSizeButton setBackgroundImage:[UIImage imageNamed:[kPDFReaderStyle1Bundle stringByAppendingPathComponent:@"button_penBoldSize_2.png"]] forState:UIControlStateSelected];
+        
+        boldSizeButton.frame = CGRectMake(50, 350, 60, 40);
+        
+        [self addSubview:boldSizeButton];
+        
+        currentSizeButton = normalSizeButton;
+        currentSizeButton.selected = YES;
+        
+        
+        
+        
+        eraseButton = [UIButton buttonWithType:UIButtonTypeCustom];
+        [eraseButton addTarget:self action:@selector(eraseButtonTapped:) forControlEvents:UIControlEventTouchUpInside];
+        
+        [eraseButton setBackgroundImage:[UIImage imageNamed:[kPDFReaderStyle1Bundle stringByAppendingPathComponent:@"button_penEraser_1.png"]] forState:UIControlStateNormal];
+        [eraseButton setBackgroundImage:[UIImage imageNamed:[kPDFReaderStyle1Bundle stringByAppendingPathComponent:@"button_penEraser_2.png"]] forState:UIControlStateHighlighted];
+        [eraseButton setBackgroundImage:[UIImage imageNamed:[kPDFReaderStyle1Bundle stringByAppendingPathComponent:@"button_penEraser_2.png"]] forState:UIControlStateSelected];
+        
+        eraseButton.frame = CGRectMake(50, 430, 60, 40);
+        
+        [self addSubview:eraseButton];
+        
+        clearButton = [UIButton buttonWithType:UIButtonTypeCustom];
+        [clearButton addTarget:self action:@selector(clearButtonTapped:) forControlEvents:UIControlEventTouchUpInside];
+        
+        [clearButton setBackgroundImage:[UIImage imageNamed:[kPDFReaderStyle1Bundle stringByAppendingPathComponent:@"button_penClear_1.png"]] forState:UIControlStateNormal];
+        [clearButton setBackgroundImage:[UIImage imageNamed:[kPDFReaderStyle1Bundle stringByAppendingPathComponent:@"button_penClear_2.png"]] forState:UIControlStateHighlighted];
+        [clearButton setBackgroundImage:[UIImage imageNamed:[kPDFReaderStyle1Bundle stringByAppendingPathComponent:@"button_penClear_2.png"]] forState:UIControlStateSelected];
+        
+        clearButton.frame = CGRectMake(50, 500, 60, 40);
+        
+        [self addSubview:clearButton];
+        
+        //lixiangai 遮挡还原 重做功能
+        UIView *view = [[UIView alloc] initWithFrame:CGRectMake(50, 550, self.frame.size.width, 200)];
+        [view setBackgroundColor:[UIColor colorWithHex:@"5ca9f2"]];
+        [self addSubview:view];
+        [view release];
+        
+        
+        
+        undoButton = [UIButton buttonWithType:UIButtonTypeCustom];
+        [undoButton addTarget:self action:@selector(undoButtonTapped:) forControlEvents:UIControlEventTouchUpInside];
+        
+        [undoButton setBackgroundImage:[UIImage imageNamed:[kPDFReaderStyle1Bundle stringByAppendingPathComponent:@"button_penUndo_1.png"]] forState:UIControlStateNormal];
+        [undoButton setBackgroundImage:[UIImage imageNamed:[kPDFReaderStyle1Bundle stringByAppendingPathComponent:@"button_penUndo_2.png"]] forState:UIControlStateHighlighted];
+        [undoButton setBackgroundImage:[UIImage imageNamed:[kPDFReaderStyle1Bundle stringByAppendingPathComponent:@"button_penUndo_2.png"]] forState:UIControlStateSelected];
+        
+        undoButton.frame = CGRectMake(50, 590, 60, 40);
+        
+        //lixiangai 还原 重做 隐藏
+//        [self addSubview:undoButton];
+        
+        redoButton = [UIButton buttonWithType:UIButtonTypeCustom];
+        [redoButton addTarget:self action:@selector(redoButtonTapped:) forControlEvents:UIControlEventTouchUpInside];
+        
+        [redoButton setBackgroundImage:[UIImage imageNamed:[kPDFReaderStyle1Bundle stringByAppendingPathComponent:@"button_penRedo_1.png"]] forState:UIControlStateNormal];
+        [redoButton setBackgroundImage:[UIImage imageNamed:[kPDFReaderStyle1Bundle stringByAppendingPathComponent:@"button_penRedo_2.png"]] forState:UIControlStateHighlighted];
+        [redoButton setBackgroundImage:[UIImage imageNamed:[kPDFReaderStyle1Bundle stringByAppendingPathComponent:@"button_penRedo_2.png"]] forState:UIControlStateSelected];
+        
+        redoButton.frame = CGRectMake(50, 660, 60, 40);
+        
+//        [self addSubview:redoButton];
+        
+        undoButton.enabled = NO;
+        redoButton.enabled = NO;
+    }
+    return self;
+}
+
+- (void)dealloc {
+    
+    delegate = nil;
+    
+    [penBackground release];
+    
+    [super dealloc];
+}
+
+/*
+// Only override drawRect: if you perform custom drawing.
+// An empty implementation adversely affects performance during animation.
+- (void)drawRect:(CGRect)rect
+{
+    // Drawing code
+}
+*/
+
+- (BOOL)pointInside:(CGPoint)point withEvent:(UIEvent *)event {
+    
+    if (CGRectContainsPoint(endSignButton.frame, point) || CGRectContainsPoint(penBackground.frame, point)) {
+        
+        return [super pointInside:point withEvent:event];
+    }
+    else {
+        
+        return NO;
+    }
+}
+
+
+
+- (void)endSignButtonTapped:(UIButton *)button {
+    
+    if ([delegate respondsToSelector:@selector(tappedInSignToolbar:endSignButton:)]) {
+        
+        [delegate tappedInSignToolbar:self endSignButton:button];
+    }
+}
+
+- (void)colorButtonTapped:(UIButton *)button {
+    
+    UIColor *color = nil;
+    
+    switch (button.tag) {
+        case kRedColorButtonTag:
+            
+            color = [UIColor redColor];
+            
+            break;
+        case kGreenColorButtonTag:
+            
+            color = [UIColor greenColor];
+            
+            break;
+        case kBlueColorButtonTag:
+            
+            color = [UIColor blueColor];
+            
+            break;
+        case kBlackColorButtonTag:
+            
+            color = [UIColor blackColor];
+            
+            break;
+            
+        default:
+            color = [UIColor blackColor];
+            break;
+    }
+    
+    eraseButton.selected = NO;
+    eraseButton.userInteractionEnabled = YES;
+    
+    currentColorButton.selected = NO;
+    currentColorButton.userInteractionEnabled = YES;
+    
+    currentColorButton = button;
+    
+    currentColorButton.selected = YES;
+    currentColorButton.userInteractionEnabled = NO;
+    
+    if ([delegate respondsToSelector:@selector(tappedInSignToolbar:colorButton:color:)]) {
+        
+        [delegate tappedInSignToolbar:self colorButton:button color:color];
+    }
+}
+
+- (void)sizeButtonTapped:(UIButton *)button {
+    
+    NSInteger level = 2;
+    
+    switch (button.tag) {
+            
+        case kWeeSizeButtonTag:
+            
+            level = 1;
+            
+            break;
+            
+        case kNormalSizeButtonTag:
+            
+            level = 2;
+            
+            break;
+            
+        case kBoldSizeButtonTag:
+            
+            level = 3;
+            
+            break;
+            
+        default:
+            
+            level = 2;
+            
+            break;
+    }
+    
+    currentSizeButton.selected = NO;
+    currentSizeButton.userInteractionEnabled = YES;
+    
+    currentSizeButton = button;
+    
+    currentSizeButton.selected = YES;
+    currentSizeButton.userInteractionEnabled = NO;
+    
+    if ([delegate respondsToSelector:@selector(tappedInSignToolbar:sizeButton:level:)]) {
+        
+        [delegate tappedInSignToolbar:self sizeButton:button level:level];
+    }
+}
+
+- (void)clearButtonTapped:(UIButton *)button {
+    
+    if ([delegate respondsToSelector:@selector(tappedInSignToolbar:clearButton:)]) {
+        
+        [delegate tappedInSignToolbar:self clearButton:button];
+    }
+}
+
+- (void)eraseButtonTapped:(UIButton *)button {
+    
+    currentColorButton.selected = NO;
+    currentColorButton.userInteractionEnabled = YES;
+    
+    eraseButton.selected = YES;
+    eraseButton.userInteractionEnabled = NO;
+    
+    if ([delegate respondsToSelector:@selector(tappedInSignToolbar:eraseButton:)]) {
+        
+        [delegate tappedInSignToolbar:self eraseButton:button];
+    }
+}
+
+- (void)undoButtonTapped:(UIButton *)button {
+    
+    if ([delegate respondsToSelector:@selector(tappedInSignToolbar:undoButton:)]) {
+        
+        [delegate tappedInSignToolbar:self undoButton:button];
+    }
+}
+
+- (void)redoButtonTapped:(UIButton *)button {
+    
+    if ([delegate respondsToSelector:@selector(tappedInSignToolbar:redoButton:)]) {
+        
+        [delegate tappedInSignToolbar:self redoButton:button];
+    }
+}
+
+@end

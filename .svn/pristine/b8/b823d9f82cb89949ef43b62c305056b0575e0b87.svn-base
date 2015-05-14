@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
+	<false/>
+	<key>IDESourceControlProjectIdentifier</key>
+	<string>31499D72-6257-44BA-9547-66DF72A32C79</string>
+	<key>IDESourceControlProjectName</key>
+	<string>Contacts</string>
+	<key>IDESourceControlProjectOriginsDictionary</key>
+	<dict>
+		<key>729D8A20-BF1E-43E0-BEC3-3000E7AA3FC1</key>
+		<string>http://run-svn/projects/cn/MIPIM/trunk/MIPIM_SRC/MIPIM_LYG/ios/MIP_iPad_LYG</string>
+	</dict>
+	<key>IDESourceControlProjectPath</key>
+	<string>MIP/MIP/MIP/Libs/Function/Contacts/Contacts.xcodeproj/project.xcworkspace</string>
+	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
+	<dict>
+		<key>729D8A20-BF1E-43E0-BEC3-3000E7AA3FC1</key>
+		<string>../../../../../../../..</string>
+	</dict>
+	<key>IDESourceControlProjectRepositoryRootDictionary</key>
+	<dict>
+		<key>729D8A20-BF1E-43E0-BEC3-3000E7AA3FC1</key>
+		<string>http://run-svn/projects/cn/MIPIM</string>
+	</dict>
+	<key>IDESourceControlProjectURL</key>
+	<string>http://run-svn/projects/cn/MIPIM/trunk/MIPIM_SRC/MIPIM_LYG/ios/MIP_iPad_LYG/MIP/MIP/MIP/Libs/Function/Contacts/Contacts.xcodeproj</string>
+	<key>IDESourceControlProjectVersion</key>
+	<integer>110</integer>
+	<key>IDESourceControlProjectWCCIdentifier</key>
+	<string>729D8A20-BF1E-43E0-BEC3-3000E7AA3FC1</string>
+	<key>IDESourceControlProjectWCConfigurations</key>
+	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.subversion</string>
+			<key>IDESourceControlRepositoryTrunkRelativeLocationKey</key>
+			<string>trunk</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>729D8A20-BF1E-43E0-BEC3-3000E7AA3FC1</string>
+			<key>IDESourceControlWCCName</key>
+			<string>MIP_iPad_LYG</string>
+		</dict>
+	</array>
+</dict>
+</plist>

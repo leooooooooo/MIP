@@ -1,0 +1,12 @@
+//
+// Prefix header for all source files of the 'Newsflash' target in the 'Newsflash' project
+//
+
+#ifdef __OBJC__
+    #import <Foundation/Foundation.h>
+
+#import "PublicDefine.h"
+
+#define     kNewsflashModuleIdentifier                   @"newsflashModuleIdentifier"
+
+#endif

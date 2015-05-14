@@ -1,0 +1,506 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		482E22FA18E18224003672F6 /* ComContactsInfoCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 482E22F918E18224003672F6 /* ComContactsInfoCell.m */; };
+		4858849818E2683600E36DFA /* ComLevelOneTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4858849418E2683600E36DFA /* ComLevelOneTableViewController.m */; };
+		4858849918E2683600E36DFA /* PersonalTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4858849718E2683600E36DFA /* PersonalTableViewController.m */; };
+		4858849C18E269C500E36DFA /* ComLevelTwoTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4858849B18E269C500E36DFA /* ComLevelTwoTableViewController.m */; };
+		4858849F18E2B7E000E36DFA /* ComContactsDetailInfoCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4858849E18E2B7E000E36DFA /* ComContactsDetailInfoCell.m */; };
+		48725ACF18CEE06700506116 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 48725ACE18CEE06700506116 /* Foundation.framework */; };
+		48BC508918E01EE10005D692 /* ContactsDataParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 48BC508818E01EE10005D692 /* ContactsDataParser.m */; };
+		48BC509A18E038E10005D692 /* PersonalInfoCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 48BC509918E038E10005D692 /* PersonalInfoCell.m */; };
+		48BC50A318E03CA60005D692 /* PerContactsInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 48BC50A218E03CA60005D692 /* PerContactsInfo.m */; };
+		48DF2C3018FE5E0700CA8E34 /* ComContactsDepartCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 48DF2C2F18FE5E0700CA8E34 /* ComContactsDepartCell.m */; };
+		48DF2C3318FE7F6600CA8E34 /* ComLevelTwoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 48DF2C3218FE7F6600CA8E34 /* ComLevelTwoViewController.m */; };
+		48DF2C3618FE7FA900CA8E34 /* ContactsBaseView.m in Sources */ = {isa = PBXBuildFile; fileRef = 48DF2C3518FE7FA900CA8E34 /* ContactsBaseView.m */; };
+		48DF2C3918FE883000CA8E34 /* ComLevelTwoView.m in Sources */ = {isa = PBXBuildFile; fileRef = 48DF2C3818FE883000CA8E34 /* ComLevelTwoView.m */; };
+		48E3D3C418D5667200E2E69C /* ContactsView.m in Sources */ = {isa = PBXBuildFile; fileRef = 48E3D3C318D5667200E2E69C /* ContactsView.m */; };
+		48F01F1818FC03DE00C7C7BB /* ContactsTabButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 48F01F1718FC03DE00C7C7BB /* ContactsTabButton.m */; };
+		48F1B1D518D1402500F1FD69 /* ContactsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 48F1B1CD18D1402500F1FD69 /* ContactsViewController.m */; };
+		48F1B1DB18D1403100F1FD69 /* ContactsNetRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 48F1B1DA18D1403100F1FD69 /* ContactsNetRequest.m */; };
+		48FE2AD118DFCADA00B86F2F /* ComContactsInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 48FE2AD018DFCADA00B86F2F /* ComContactsInfo.m */; };
+		C223D267192316CC00B4F561 /* FilterCompanyTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C223D266192316CC00B4F561 /* FilterCompanyTableViewController.m */; };
+		C223D26A1923175300B4F561 /* FilterCompanyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C223D2691923175300B4F561 /* FilterCompanyViewController.m */; };
+		C223D26D19231A7500B4F561 /* FilterCompanyView.m in Sources */ = {isa = PBXBuildFile; fileRef = C223D26C19231A7500B4F561 /* FilterCompanyView.m */; };
+		C223D27F1923468B00B4F561 /* FullCompanyInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = C223D27E1923468B00B4F561 /* FullCompanyInfo.m */; };
+		C223D28219235F8400B4F561 /* FullCompanyCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C223D28119235F8400B4F561 /* FullCompanyCell.m */; };
+		C2B9213C1921B45B00896AC7 /* PersonalInfoCardView.m in Sources */ = {isa = PBXBuildFile; fileRef = C2B9213B1921B45B00896AC7 /* PersonalInfoCardView.m */; };
+		C2B9213F1921B48900896AC7 /* PersonalInfoCardViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C2B9213E1921B48900896AC7 /* PersonalInfoCardViewController.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		48725AC918CEE06700506116 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 12;
+			dstPath = "include/$(PRODUCT_NAME)";
+			dstSubfolderSpec = 16;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		482E22F818E18224003672F6 /* ComContactsInfoCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ComContactsInfoCell.h; sourceTree = "<group>"; };
+		482E22F918E18224003672F6 /* ComContactsInfoCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ComContactsInfoCell.m; sourceTree = "<group>"; };
+		4858849318E2683600E36DFA /* ComLevelOneTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ComLevelOneTableViewController.h; sourceTree = "<group>"; };
+		4858849418E2683600E36DFA /* ComLevelOneTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ComLevelOneTableViewController.m; sourceTree = "<group>"; };
+		4858849618E2683600E36DFA /* PersonalTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PersonalTableViewController.h; sourceTree = "<group>"; };
+		4858849718E2683600E36DFA /* PersonalTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PersonalTableViewController.m; sourceTree = "<group>"; };
+		4858849A18E269C500E36DFA /* ComLevelTwoTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ComLevelTwoTableViewController.h; sourceTree = "<group>"; };
+		4858849B18E269C500E36DFA /* ComLevelTwoTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ComLevelTwoTableViewController.m; sourceTree = "<group>"; };
+		4858849D18E2B7E000E36DFA /* ComContactsDetailInfoCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ComContactsDetailInfoCell.h; sourceTree = "<group>"; };
+		4858849E18E2B7E000E36DFA /* ComContactsDetailInfoCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ComContactsDetailInfoCell.m; sourceTree = "<group>"; };
+		48725ACB18CEE06700506116 /* libContacts.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libContacts.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		48725ACE18CEE06700506116 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		48725AD218CEE06700506116 /* Contacts-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Contacts-Prefix.pch"; sourceTree = "<group>"; };
+		48BC508718E01EE10005D692 /* ContactsDataParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ContactsDataParser.h; path = DataParser/ContactsDataParser.h; sourceTree = "<group>"; };
+		48BC508818E01EE10005D692 /* ContactsDataParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ContactsDataParser.m; path = DataParser/ContactsDataParser.m; sourceTree = "<group>"; };
+		48BC509818E038E10005D692 /* PersonalInfoCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PersonalInfoCell.h; sourceTree = "<group>"; };
+		48BC509918E038E10005D692 /* PersonalInfoCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PersonalInfoCell.m; sourceTree = "<group>"; };
+		48BC50A118E03CA60005D692 /* PerContactsInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PerContactsInfo.h; path = Entity/PerContactsInfo.h; sourceTree = "<group>"; };
+		48BC50A218E03CA60005D692 /* PerContactsInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PerContactsInfo.m; path = Entity/PerContactsInfo.m; sourceTree = "<group>"; };
+		48DE72E918DFD51A004AAE52 /* Contacts.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Contacts.bundle; sourceTree = "<group>"; };
+		48DF2C2E18FE5E0700CA8E34 /* ComContactsDepartCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ComContactsDepartCell.h; sourceTree = "<group>"; };
+		48DF2C2F18FE5E0700CA8E34 /* ComContactsDepartCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ComContactsDepartCell.m; sourceTree = "<group>"; };
+		48DF2C3118FE7F6600CA8E34 /* ComLevelTwoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ComLevelTwoViewController.h; sourceTree = "<group>"; };
+		48DF2C3218FE7F6600CA8E34 /* ComLevelTwoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ComLevelTwoViewController.m; sourceTree = "<group>"; };
+		48DF2C3418FE7FA900CA8E34 /* ContactsBaseView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContactsBaseView.h; sourceTree = "<group>"; };
+		48DF2C3518FE7FA900CA8E34 /* ContactsBaseView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContactsBaseView.m; sourceTree = "<group>"; };
+		48DF2C3718FE883000CA8E34 /* ComLevelTwoView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ComLevelTwoView.h; sourceTree = "<group>"; };
+		48DF2C3818FE883000CA8E34 /* ComLevelTwoView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ComLevelTwoView.m; sourceTree = "<group>"; };
+		48E3D3C218D5667200E2E69C /* ContactsView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ContactsView.h; path = UI/ContactsView.h; sourceTree = "<group>"; };
+		48E3D3C318D5667200E2E69C /* ContactsView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ContactsView.m; path = UI/ContactsView.m; sourceTree = "<group>"; };
+		48F01F1618FC03DE00C7C7BB /* ContactsTabButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContactsTabButton.h; sourceTree = "<group>"; };
+		48F01F1718FC03DE00C7C7BB /* ContactsTabButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContactsTabButton.m; sourceTree = "<group>"; };
+		48F1B1CC18D1402500F1FD69 /* ContactsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ContactsViewController.h; path = UI/ContactsViewController.h; sourceTree = "<group>"; };
+		48F1B1CD18D1402500F1FD69 /* ContactsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ContactsViewController.m; path = UI/ContactsViewController.m; sourceTree = "<group>"; };
+		48F1B1D918D1403100F1FD69 /* ContactsNetRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ContactsNetRequest.h; path = NetRequest/ContactsNetRequest.h; sourceTree = "<group>"; };
+		48F1B1DA18D1403100F1FD69 /* ContactsNetRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ContactsNetRequest.m; path = NetRequest/ContactsNetRequest.m; sourceTree = "<group>"; };
+		48FE2ACF18DFCADA00B86F2F /* ComContactsInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ComContactsInfo.h; path = Entity/ComContactsInfo.h; sourceTree = "<group>"; };
+		48FE2AD018DFCADA00B86F2F /* ComContactsInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ComContactsInfo.m; path = Entity/ComContactsInfo.m; sourceTree = "<group>"; };
+		C223D265192316CC00B4F561 /* FilterCompanyTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FilterCompanyTableViewController.h; sourceTree = "<group>"; };
+		C223D266192316CC00B4F561 /* FilterCompanyTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FilterCompanyTableViewController.m; sourceTree = "<group>"; };
+		C223D2681923175300B4F561 /* FilterCompanyViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FilterCompanyViewController.h; sourceTree = "<group>"; };
+		C223D2691923175300B4F561 /* FilterCompanyViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FilterCompanyViewController.m; sourceTree = "<group>"; };
+		C223D26B19231A7500B4F561 /* FilterCompanyView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FilterCompanyView.h; sourceTree = "<group>"; };
+		C223D26C19231A7500B4F561 /* FilterCompanyView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FilterCompanyView.m; sourceTree = "<group>"; };
+		C223D27D1923468B00B4F561 /* FullCompanyInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FullCompanyInfo.h; path = Entity/FullCompanyInfo.h; sourceTree = "<group>"; };
+		C223D27E1923468B00B4F561 /* FullCompanyInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FullCompanyInfo.m; path = Entity/FullCompanyInfo.m; sourceTree = "<group>"; };
+		C223D28019235F8400B4F561 /* FullCompanyCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FullCompanyCell.h; sourceTree = "<group>"; };
+		C223D28119235F8400B4F561 /* FullCompanyCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FullCompanyCell.m; sourceTree = "<group>"; };
+		C2B9213A1921B45B00896AC7 /* PersonalInfoCardView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PersonalInfoCardView.h; sourceTree = "<group>"; };
+		C2B9213B1921B45B00896AC7 /* PersonalInfoCardView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PersonalInfoCardView.m; sourceTree = "<group>"; };
+		C2B9213D1921B48900896AC7 /* PersonalInfoCardViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PersonalInfoCardViewController.h; sourceTree = "<group>"; };
+		C2B9213E1921B48900896AC7 /* PersonalInfoCardViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PersonalInfoCardViewController.m; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		48725AC818CEE06700506116 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				48725ACF18CEE06700506116 /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		4858849218E2683600E36DFA /* Company */ = {
+			isa = PBXGroup;
+			children = (
+				4858849318E2683600E36DFA /* ComLevelOneTableViewController.h */,
+				4858849418E2683600E36DFA /* ComLevelOneTableViewController.m */,
+				4858849A18E269C500E36DFA /* ComLevelTwoTableViewController.h */,
+				4858849B18E269C500E36DFA /* ComLevelTwoTableViewController.m */,
+				48DF2C3118FE7F6600CA8E34 /* ComLevelTwoViewController.h */,
+				48DF2C3218FE7F6600CA8E34 /* ComLevelTwoViewController.m */,
+				48DF2C3718FE883000CA8E34 /* ComLevelTwoView.h */,
+				48DF2C3818FE883000CA8E34 /* ComLevelTwoView.m */,
+			);
+			name = Company;
+			path = UI/Company;
+			sourceTree = "<group>";
+		};
+		4858849518E2683600E36DFA /* Personal */ = {
+			isa = PBXGroup;
+			children = (
+				4858849618E2683600E36DFA /* PersonalTableViewController.h */,
+				4858849718E2683600E36DFA /* PersonalTableViewController.m */,
+				C2B9213D1921B48900896AC7 /* PersonalInfoCardViewController.h */,
+				C2B9213E1921B48900896AC7 /* PersonalInfoCardViewController.m */,
+				C2B9213A1921B45B00896AC7 /* PersonalInfoCardView.h */,
+				C2B9213B1921B45B00896AC7 /* PersonalInfoCardView.m */,
+			);
+			name = Personal;
+			path = UI/Personal;
+			sourceTree = "<group>";
+		};
+		48725AC218CEE06700506116 = {
+			isa = PBXGroup;
+			children = (
+				48725AD018CEE06700506116 /* Contacts */,
+				48725ACD18CEE06700506116 /* Frameworks */,
+				48DE72E818DFD51A004AAE52 /* Resource */,
+				48725ACC18CEE06700506116 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		48725ACC18CEE06700506116 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				48725ACB18CEE06700506116 /* libContacts.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		48725ACD18CEE06700506116 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				48725ACE18CEE06700506116 /* Foundation.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		48725AD018CEE06700506116 /* Contacts */ = {
+			isa = PBXGroup;
+			children = (
+				48DE72EA18DFD72D004AAE52 /* Contacts */,
+				48725AD118CEE06700506116 /* Supporting Files */,
+			);
+			path = Contacts;
+			sourceTree = "<group>";
+		};
+		48725AD118CEE06700506116 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				48725AD218CEE06700506116 /* Contacts-Prefix.pch */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		487F301518CF0496009C0025 /* UI */ = {
+			isa = PBXGroup;
+			children = (
+				48E3D3C518D5740500E2E69C /* CustomUI */,
+				48E3D3C218D5667200E2E69C /* ContactsView.h */,
+				48E3D3C318D5667200E2E69C /* ContactsView.m */,
+				48F1B1CC18D1402500F1FD69 /* ContactsViewController.h */,
+				48F1B1CD18D1402500F1FD69 /* ContactsViewController.m */,
+				4858849218E2683600E36DFA /* Company */,
+				4858849518E2683600E36DFA /* Personal */,
+				C223D2611923048E00B4F561 /* FilterCompany */,
+			);
+			name = UI;
+			sourceTree = "<group>";
+		};
+		487F301718CF04C2009C0025 /* Entity */ = {
+			isa = PBXGroup;
+			children = (
+				48FE2ACF18DFCADA00B86F2F /* ComContactsInfo.h */,
+				48FE2AD018DFCADA00B86F2F /* ComContactsInfo.m */,
+				48BC50A118E03CA60005D692 /* PerContactsInfo.h */,
+				48BC50A218E03CA60005D692 /* PerContactsInfo.m */,
+				C223D27D1923468B00B4F561 /* FullCompanyInfo.h */,
+				C223D27E1923468B00B4F561 /* FullCompanyInfo.m */,
+			);
+			name = Entity;
+			sourceTree = "<group>";
+		};
+		487F301818CF04CB009C0025 /* NetRequest */ = {
+			isa = PBXGroup;
+			children = (
+				48F1B1D918D1403100F1FD69 /* ContactsNetRequest.h */,
+				48F1B1DA18D1403100F1FD69 /* ContactsNetRequest.m */,
+			);
+			name = NetRequest;
+			sourceTree = "<group>";
+		};
+		48BC508618E01E650005D692 /* DataParser */ = {
+			isa = PBXGroup;
+			children = (
+				48BC508718E01EE10005D692 /* ContactsDataParser.h */,
+				48BC508818E01EE10005D692 /* ContactsDataParser.m */,
+			);
+			name = DataParser;
+			sourceTree = "<group>";
+		};
+		48DE72E818DFD51A004AAE52 /* Resource */ = {
+			isa = PBXGroup;
+			children = (
+				48DE72E918DFD51A004AAE52 /* Contacts.bundle */,
+			);
+			name = Resource;
+			path = Contacts/Resource;
+			sourceTree = "<group>";
+		};
+		48DE72EA18DFD72D004AAE52 /* Contacts */ = {
+			isa = PBXGroup;
+			children = (
+				48BC508618E01E650005D692 /* DataParser */,
+				487F301818CF04CB009C0025 /* NetRequest */,
+				487F301718CF04C2009C0025 /* Entity */,
+				487F301518CF0496009C0025 /* UI */,
+			);
+			name = Contacts;
+			sourceTree = "<group>";
+		};
+		48E3D3C518D5740500E2E69C /* CustomUI */ = {
+			isa = PBXGroup;
+			children = (
+				48F01F1618FC03DE00C7C7BB /* ContactsTabButton.h */,
+				48F01F1718FC03DE00C7C7BB /* ContactsTabButton.m */,
+				48BC509818E038E10005D692 /* PersonalInfoCell.h */,
+				48BC509918E038E10005D692 /* PersonalInfoCell.m */,
+				482E22F818E18224003672F6 /* ComContactsInfoCell.h */,
+				482E22F918E18224003672F6 /* ComContactsInfoCell.m */,
+				4858849D18E2B7E000E36DFA /* ComContactsDetailInfoCell.h */,
+				4858849E18E2B7E000E36DFA /* ComContactsDetailInfoCell.m */,
+				48DF2C2E18FE5E0700CA8E34 /* ComContactsDepartCell.h */,
+				48DF2C2F18FE5E0700CA8E34 /* ComContactsDepartCell.m */,
+				48DF2C3418FE7FA900CA8E34 /* ContactsBaseView.h */,
+				48DF2C3518FE7FA900CA8E34 /* ContactsBaseView.m */,
+				C223D28019235F8400B4F561 /* FullCompanyCell.h */,
+				C223D28119235F8400B4F561 /* FullCompanyCell.m */,
+			);
+			name = CustomUI;
+			path = UI/CustomUI;
+			sourceTree = "<group>";
+		};
+		C223D2611923048E00B4F561 /* FilterCompany */ = {
+			isa = PBXGroup;
+			children = (
+				C223D2681923175300B4F561 /* FilterCompanyViewController.h */,
+				C223D2691923175300B4F561 /* FilterCompanyViewController.m */,
+				C223D265192316CC00B4F561 /* FilterCompanyTableViewController.h */,
+				C223D266192316CC00B4F561 /* FilterCompanyTableViewController.m */,
+				C223D26B19231A7500B4F561 /* FilterCompanyView.h */,
+				C223D26C19231A7500B4F561 /* FilterCompanyView.m */,
+			);
+			name = FilterCompany;
+			path = UI/FilterCompany;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		48725ACA18CEE06700506116 /* Contacts */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 48725AEE18CEE06700506116 /* Build configuration list for PBXNativeTarget "Contacts" */;
+			buildPhases = (
+				48725AC718CEE06700506116 /* Sources */,
+				48725AC818CEE06700506116 /* Frameworks */,
+				48725AC918CEE06700506116 /* CopyFiles */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = Contacts;
+			productName = Contacts;
+			productReference = 48725ACB18CEE06700506116 /* libContacts.a */;
+			productType = "com.apple.product-type.library.static";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		48725AC318CEE06700506116 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0500;
+				ORGANIZATIONNAME = lu_sicong;
+			};
+			buildConfigurationList = 48725AC618CEE06700506116 /* Build configuration list for PBXProject "Contacts" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = 48725AC218CEE06700506116;
+			productRefGroup = 48725ACC18CEE06700506116 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				48725ACA18CEE06700506116 /* Contacts */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXSourcesBuildPhase section */
+		48725AC718CEE06700506116 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				482E22FA18E18224003672F6 /* ComContactsInfoCell.m in Sources */,
+				48DF2C3318FE7F6600CA8E34 /* ComLevelTwoViewController.m in Sources */,
+				C2B9213C1921B45B00896AC7 /* PersonalInfoCardView.m in Sources */,
+				48DF2C3618FE7FA900CA8E34 /* ContactsBaseView.m in Sources */,
+				4858849818E2683600E36DFA /* ComLevelOneTableViewController.m in Sources */,
+				48DF2C3018FE5E0700CA8E34 /* ComContactsDepartCell.m in Sources */,
+				4858849918E2683600E36DFA /* PersonalTableViewController.m in Sources */,
+				48F01F1818FC03DE00C7C7BB /* ContactsTabButton.m in Sources */,
+				48DF2C3918FE883000CA8E34 /* ComLevelTwoView.m in Sources */,
+				48E3D3C418D5667200E2E69C /* ContactsView.m in Sources */,
+				48F1B1DB18D1403100F1FD69 /* ContactsNetRequest.m in Sources */,
+				4858849C18E269C500E36DFA /* ComLevelTwoTableViewController.m in Sources */,
+				C223D26D19231A7500B4F561 /* FilterCompanyView.m in Sources */,
+				4858849F18E2B7E000E36DFA /* ComContactsDetailInfoCell.m in Sources */,
+				C223D26A1923175300B4F561 /* FilterCompanyViewController.m in Sources */,
+				C2B9213F1921B48900896AC7 /* PersonalInfoCardViewController.m in Sources */,
+				48BC508918E01EE10005D692 /* ContactsDataParser.m in Sources */,
+				48BC509A18E038E10005D692 /* PersonalInfoCell.m in Sources */,
+				48FE2AD118DFCADA00B86F2F /* ComContactsInfo.m in Sources */,
+				C223D267192316CC00B4F561 /* FilterCompanyTableViewController.m in Sources */,
+				48BC50A318E03CA60005D692 /* PerContactsInfo.m in Sources */,
+				48F1B1D518D1402500F1FD69 /* ContactsViewController.m in Sources */,
+				C223D28219235F8400B4F561 /* FullCompanyCell.m in Sources */,
+				C223D27F1923468B00B4F561 /* FullCompanyInfo.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		48725AEC18CEE06700506116 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD)";
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				ONLY_ACTIVE_ARCH = NO;
+				SDKROOT = iphoneos;
+				VALID_ARCHS = armv7;
+			};
+			name = Debug;
+		};
+		48725AED18CEE06700506116 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD)";
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = YES;
+				ENABLE_NS_ASSERTIONS = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+				VALID_ARCHS = armv7;
+			};
+			name = Release;
+		};
+		48725AEF18CEE06700506116 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD)";
+				CLANG_ENABLE_OBJC_ARC = NO;
+				DSTROOT = /tmp/Contacts.dst;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Contacts/Contacts-Prefix.pch";
+				HEADER_SEARCH_PATHS = (
+					"../../../Sandglass/**",
+					"../../../Classes/Public/**",
+				);
+				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				VALID_ARCHS = armv7;
+			};
+			name = Debug;
+		};
+		48725AF018CEE06700506116 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD)";
+				CLANG_ENABLE_OBJC_ARC = NO;
+				DSTROOT = /tmp/Contacts.dst;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Contacts/Contacts-Prefix.pch";
+				HEADER_SEARCH_PATHS = (
+					"../../../Sandglass/**",
+					"../../../Classes/Public/**",
+				);
+				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				VALID_ARCHS = armv7;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		48725AC618CEE06700506116 /* Build configuration list for PBXProject "Contacts" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				48725AEC18CEE06700506116 /* Debug */,
+				48725AED18CEE06700506116 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		48725AEE18CEE06700506116 /* Build configuration list for PBXNativeTarget "Contacts" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				48725AEF18CEE06700506116 /* Debug */,
+				48725AF018CEE06700506116 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 48725AC318CEE06700506116 /* Project object */;
+}

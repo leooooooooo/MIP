@@ -1,0 +1,12 @@
+//
+// Prefix header for all source files of the 'Sandglass' target in the 'Sandglass' project
+//
+
+#ifdef __OBJC__
+    #import <Foundation/Foundation.h>
+
+
+#define kKalCalendarBundle          @"KalCalendar"
+#define kSandglassBundle            @"Sandglass"
+
+#endif

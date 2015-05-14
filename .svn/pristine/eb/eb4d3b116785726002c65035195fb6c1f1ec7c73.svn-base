@@ -1,0 +1,248 @@
+//
+//  PDFFuncToolbar.m
+//  MOA_PDF
+//
+//  Created by Sea on 13-11-5.
+//  Copyright (c) 2013年 Sea. All rights reserved.
+//
+
+#import "PDFFuncToolbar.h"
+
+#import "PaintUtility.h"
+
+@implementation PDFFuncToolbar
+
+@synthesize delegate;
+
+@synthesize backButton;
+@synthesize infoButton;
+@synthesize sendButton;
+@synthesize helpButton;
+@synthesize rotateButton;
+@synthesize accessoryButton;
+@synthesize checkButton;
+
+- (id)initWithFrame:(CGRect)frame
+{
+    self = [super initWithFrame:frame];
+    if (self) {
+        // Initialization code
+        
+        UIImage *backImage = [UIImage imageNamed:[kPDFReaderStyle1Bundle stringByAppendingPathComponent:@"bg_pdf_toolBar_style1.png"]];
+        
+        self.image = [backImage resizableImageWithCapInsets:UIEdgeInsetsMake(20, 20, 20, 20)];
+        
+        self.userInteractionEnabled = YES;
+        
+        
+        //返回按钮
+        backButton = [UIButton buttonWithType:UIButtonTypeCustom];
+        [backButton addTarget:self action:@selector(backButtonTapped:) forControlEvents:UIControlEventTouchUpInside];
+
+        [self addSubview:backButton];
+        
+        //帮助按钮
+        helpButton = [UIButton buttonWithType:UIButtonTypeCustom];
+        [helpButton addTarget:self action:@selector(helpButtonTapped:) forControlEvents:UIControlEventTouchUpInside];
+
+        [self addSubview:helpButton];
+        
+        //附件按钮
+        accessoryButton = [UIButton buttonWithType:UIButtonTypeCustom];
+        [accessoryButton addTarget:self action:@selector(accessoryButtonTapped:) forControlEvents:UIControlEventTouchUpInside];
+        
+        [self addSubview:accessoryButton];
+        
+        //翻转按钮
+        rotateButton = [UIButton buttonWithType:UIButtonTypeCustom];
+        [rotateButton addTarget:self action:@selector(rotateButtonTapped:) forControlEvents:UIControlEventTouchUpInside];
+
+        [self addSubview:rotateButton];
+        //信息按钮
+        infoButton = [UIButton buttonWithType:UIButtonTypeCustom];
+        [infoButton addTarget:self action:@selector(infoButtonTapped:) forControlEvents:UIControlEventTouchUpInside];
+
+        [self addSubview:infoButton];
+        //发送按钮
+        sendButton = [UIButton buttonWithType:UIButtonTypeCustom];
+        [sendButton addTarget:self action:@selector(sendButtonTapped:) forControlEvents:UIControlEventTouchUpInside];
+
+        [self addSubview:sendButton];
+        
+        //查看按钮
+        checkButton = [UIButton buttonWithType:UIButtonTypeCustom];
+        [checkButton addTarget:self action:@selector(checkButtonTapped:) forControlEvents:UIControlEventTouchUpInside];
+        
+        [self addSubview:checkButton];
+        
+        UIEdgeInsets titleEdgeInsets = UIEdgeInsetsMake(30, 0, 0, 0);
+        
+        //返回按钮
+        [backButton setFrame:CGRectMake(0, 5, 60, 60)];
+        [backButton setBackgroundImage:[UIImage imageNamed:[kPDFReaderStyle1Bundle stringByAppendingPathComponent:@"button_back_style1_1.png"]] forState:UIControlStateNormal];
+        [backButton setBackgroundImage:[UIImage imageNamed:[kPDFReaderStyle1Bundle stringByAppendingPathComponent:@"button_back_style1_2.png"]] forState:UIControlStateHighlighted];
+        
+        [backButton setTitle:@"返回" forState:UIControlStateNormal];
+        [backButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+        backButton.titleLabel.font = [UIFont boldSystemFontOfSize:16];
+        backButton.titleEdgeInsets = titleEdgeInsets;
+        
+        //信息按钮
+        [infoButton setFrame:CGRectMake(0, 200, 60, 60)];
+        [infoButton setBackgroundImage:[UIImage imageNamed:[kPDFReaderStyle1Bundle stringByAppendingPathComponent:@"button_info_style1_1.png"]] forState:UIControlStateNormal];
+        [infoButton setBackgroundImage:[UIImage imageNamed:[kPDFReaderStyle1Bundle stringByAppendingPathComponent:@"button_info_style1_2.png"]] forState:UIControlStateHighlighted];
+        
+        [infoButton setTitle:@"信息" forState:UIControlStateNormal];
+        [infoButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+        infoButton.titleLabel.font = [UIFont boldSystemFontOfSize:16];
+        infoButton.titleEdgeInsets = titleEdgeInsets;
+        
+        //翻转按钮
+        [rotateButton setFrame:CGRectMake(0, 280, 60, 60)];
+        [rotateButton setBackgroundImage:[UIImage imageNamed:[kPDFReaderStyle1Bundle stringByAppendingPathComponent:@"button_rotate_style1_1.png"]] forState:UIControlStateNormal];
+        [rotateButton setBackgroundImage:[UIImage imageNamed:[kPDFReaderStyle1Bundle stringByAppendingPathComponent:@"button_rotate_style1_2.png"]] forState:UIControlStateHighlighted];
+        
+        [rotateButton setTitle:@"翻转" forState:UIControlStateNormal];
+        [rotateButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+        rotateButton.titleLabel.font = [UIFont boldSystemFontOfSize:16];
+        rotateButton.titleEdgeInsets = titleEdgeInsets;
+        
+        //发送按钮
+        [sendButton setFrame:CGRectMake(0, 360, 60, 60)];
+        [sendButton setBackgroundImage:[UIImage imageNamed:[kPDFReaderStyle1Bundle stringByAppendingPathComponent:@"button_send_style1_1.png"]] forState:UIControlStateNormal];
+        [sendButton setBackgroundImage:[UIImage imageNamed:[kPDFReaderStyle1Bundle stringByAppendingPathComponent:@"button_send_style1_2.png"]] forState:UIControlStateHighlighted];
+        
+        [sendButton setTitle:@"提交" forState:UIControlStateNormal];
+        [sendButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+        sendButton.titleLabel.font = [UIFont boldSystemFontOfSize:16];
+        sendButton.titleEdgeInsets = titleEdgeInsets;
+        
+        //帮助按钮
+        [helpButton setFrame:CGRectMake(0, 440, 60, 60)];
+        [helpButton setBackgroundImage:[UIImage imageNamed:[kPDFReaderStyle1Bundle stringByAppendingPathComponent:@"button_help_style1_1.png"]] forState:UIControlStateNormal];
+        [helpButton setBackgroundImage:[UIImage imageNamed:[kPDFReaderStyle1Bundle stringByAppendingPathComponent:@"button_help_style1_2.png"]] forState:UIControlStateHighlighted];
+        
+        [helpButton setTitle:@"帮助" forState:UIControlStateNormal];
+        [helpButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+        helpButton.titleLabel.font = [UIFont boldSystemFontOfSize:16];
+        helpButton.titleEdgeInsets = titleEdgeInsets;
+        
+        //附件
+        [accessoryButton setFrame:CGRectMake(0, 520, 60, 60)];
+        [accessoryButton setBackgroundImage:[UIImage imageNamed:[kPDFReaderStyle1Bundle stringByAppendingPathComponent:@"button_attach_style1_1.png"]] forState:UIControlStateNormal];
+        [accessoryButton setBackgroundImage:[UIImage imageNamed:[kPDFReaderStyle1Bundle stringByAppendingPathComponent:@"button_attach_style1_2.png"]] forState:UIControlStateHighlighted];
+        
+        [accessoryButton setTitle:@"附件" forState:UIControlStateNormal];
+        [accessoryButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+        accessoryButton.titleLabel.font = [UIFont boldSystemFontOfSize:16];
+        accessoryButton.titleEdgeInsets = titleEdgeInsets;
+        
+        //查看
+        [checkButton setFrame:CGRectMake(0, 360, 60, 60)];
+        [checkButton setBackgroundImage:[UIImage imageNamed:[kPDFReaderStyle1Bundle stringByAppendingPathComponent:@"button_look_style1_1.png"]] forState:UIControlStateNormal];
+        [checkButton setBackgroundImage:[UIImage imageNamed:[kPDFReaderStyle1Bundle stringByAppendingPathComponent:@"button_look_style1_2.png"]] forState:UIControlStateHighlighted];
+        
+        [checkButton setTitle:@"查看" forState:UIControlStateNormal];
+        [checkButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+        checkButton.titleLabel.font = [UIFont boldSystemFontOfSize:16];
+        checkButton.titleEdgeInsets = titleEdgeInsets;
+        
+    }
+    return self;
+}
+
+- (void)dealloc {
+    
+    delegate = nil;
+    
+    [super dealloc];
+}
+
+/*
+// Only override drawRect: if you perform custom drawing.
+// An empty implementation adversely affects performance during animation.
+- (void)drawRect:(CGRect)rect
+{
+    // Drawing code
+}
+*/
+
+- (void)backButtonTapped:(UIButton *)button {
+    
+    if ([delegate respondsToSelector:@selector(tappedInFuncToolbar:backButton:)]) {
+        
+        [delegate tappedInFuncToolbar:self backButton:button];
+    }
+}
+
+- (void)infoButtonTapped:(UIButton *)button {
+    
+    if ([delegate respondsToSelector:@selector(tappedInFuncToolbar:infoButton:)]) {
+        
+        [delegate tappedInFuncToolbar:self infoButton:button];
+    }
+}
+
+- (void)sendButtonTapped:(UIButton *)button {
+    
+    if ([delegate respondsToSelector:@selector(tappedInFuncToolbar:sendButton:)]) {
+        
+        [delegate tappedInFuncToolbar:self sendButton:button];
+    }
+}
+
+- (void)helpButtonTapped:(UIButton *)button {
+    
+    if ([delegate respondsToSelector:@selector(tappedInFuncToolbar:helpButton:)]) {
+        
+        [delegate tappedInFuncToolbar:self helpButton:button];
+    }
+}
+
+- (void)rotateButtonTapped:(UIButton *)button {
+    
+    if ([delegate respondsToSelector:@selector(tappedInFuncToolbar:rotateButton:)]) {
+        
+        [delegate tappedInFuncToolbar:self rotateButton:button];
+    }
+}
+
+- (void)accessoryButtonTapped:(UIButton *)button {
+    
+    if ([delegate respondsToSelector:@selector(tappedInFuncToolbar:accessoryButton:)]) {
+        
+        [delegate tappedInFuncToolbar:self accessoryButton:button];
+    }
+}
+
+- (void)checkButtonTapped:(UIButton *)button {
+    
+    if ([delegate respondsToSelector:@selector(tappedInFuncToolbar:accessoryButton:)]) {
+        
+        [delegate tappedInFuncToolbar:self checkButton:button];
+    }
+}
+
+
+- (void)setFuncButtonEnable:(BOOL)enable {
+    
+    infoButton.enabled = enable;
+    sendButton.enabled = enable;
+    helpButton.enabled = enable;
+    rotateButton.enabled = enable;
+    accessoryButton.enabled = enable;
+        
+    infoButton.titleLabel.enabled = enable;
+    sendButton.titleLabel.enabled = enable;
+    helpButton.titleLabel.enabled = enable;
+    rotateButton.titleLabel.enabled = enable;
+    accessoryButton.titleLabel.enabled = enable;
+}
+
+- (void)setButton:(UIButton *)button enable:(BOOL)enable {
+    
+    button.enabled = enable;
+    button.titleLabel.enabled = enable;
+}
+
+@end

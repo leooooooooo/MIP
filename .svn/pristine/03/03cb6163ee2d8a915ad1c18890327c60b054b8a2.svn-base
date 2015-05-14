@@ -1,0 +1,1472 @@
+//
+//  CommonPDFScrollView.m
+//  MOA
+//
+//  Created by  on 11-10-13.
+//  Copyright 2011年 __MyCompanyName__. All rights reserved.
+//
+
+#import "CommonPDFScrollView.h"
+#import "TiledPDFView.h"
+
+#import "PaintingView.h"
+
+#import <QuartzCore/QuartzCore.h>
+
+#import "PaintUtility.h"
+#import "TempNotePageManagement.h"
+#import "TempNotePage.h"
+
+#import "PDFExtend.h"
+
+@implementation CommonPDFScrollView
+
+@synthesize pdf;
+@synthesize currentIdx, pages;
+@synthesize paintingPages;
+@synthesize paintingImages;
+//@synthesize drawingView;
+@synthesize scrollViewDelegate;
+@synthesize isFlipPages;
+//add by gyf end
+
+//add by gao_yufeng begin 2012-6-7
+@synthesize canOpen;
+@synthesize initPdfScaleWidth;
+@synthesize currentPdfScaleWidth;
+@synthesize isFirstSign;
+//add by gao_yufeng end
+
+- (id)initWithFrame:(CGRect)frame tiledFrame:(CGRect)tiledFrame pdfURL:(NSURL*)pdfURL needDrawingView:(BOOL)needDrawView delegate:(id <PDFScrollViewDelegate>)delegate
+{
+    if ((self = [super initWithFrame:frame])) {
+		// Set up the UIScrollView
+        self.showsVerticalScrollIndicator = NO;
+        self.showsHorizontalScrollIndicator = NO;
+        self.bouncesZoom = YES;
+        self.decelerationRate = UIScrollViewDecelerationRateFast;
+        self.delegate = self;
+		[self setBackgroundColor:[UIColor clearColor]];
+        
+        NSString *systemVersion  = [[UIDevice currentDevice]systemVersion];
+        
+        if([systemVersion doubleValue] >= 6.0) {
+            
+            self.maximumZoomScale = 5.0;
+            
+        }
+        else {
+            
+            self.maximumZoomScale = 2.0;
+        }
+
+		self.minimumZoomScale = 1;
+        
+        //add by gao_yufeng begin 2012-6-7
+        canOpen = YES;
+        //add by gao_yufeng end
+        
+        isLandScape = NO;//默认进来是竖屏
+		
+        tiledFrameRect = tiledFrame;
+        isNeedDrawingView = needDrawView;
+        
+		// Open the PDF document
+        
+		[self reloadPDFView:pdfURL];
+		
+		//init painting pages
+		paintingPages = [[NSMutableDictionary alloc] init];
+		//init painting images
+		paintingImages = [[NSMutableDictionary alloc] init];
+        
+        isFlipPages = [[NSMutableDictionary alloc] init];
+		//add by gyf end
+        
+        /*
+        backgroundImageView = [[UIImageView alloc] initWithFrame:tiledFrameRect];
+		backgroundImageView.contentMode = UIViewContentModeScaleAspectFit;
+        backgroundImageView.tag = 100;
+		[self addSubview:backgroundImageView];
+		[self sendSubviewToBack:backgroundImageView];
+        */
+        
+        [self resetCurrentViewsForAllOrientation:YES];
+        
+        if (moveMargin<=0) {
+            moveMargin = 44;
+        }
+    }
+    return self;
+}
+
+- (void)reloadPDFView:(NSURL *)pdfURL {
+    
+    CGPDFDocumentRelease(pdf);
+    
+    pdf = CGPDFDocumentCreateWithURL((CFURLRef)pdfURL);    
+    
+    //zhou_min add 2012-5-10 {
+    if (pdf == NULL) {
+        NSLog(@"can't open '%@'", pdfURL);
+        //add by gao_yufeng begin 2012-6-7
+        canOpen = NO;
+        //add by gao_yufeng end
+    }
+    
+    if (CGPDFDocumentIsEncrypted (pdf)) {//判断pdf是否加密
+        if (!CGPDFDocumentUnlockWithPassword (pdf, "")) {//判断密码是否为""
+            NSString *password = kPublicPassword;
+            if (password != NULL) {
+                if (!CGPDFDocumentUnlockWithPassword (pdf, [password UTF8String]))
+                    //使用password对pdf进行解密，密码有效返回yes
+                    NSLog(@"invalid password.");
+                //add by gao_yufeng begin 2012-6-7
+                //canOpen = NO;
+                //add by gao_yufeng end
+            }
+        }
+    }
+    
+    if (!CGPDFDocumentIsUnlocked (pdf)) {//判断pdf是否打开状态
+        NSLog(@"CGPDFDocumentIsUnlocked");
+        //add by gao_yufeng begin 2012-6-7
+        canOpen = NO;
+        //add by gao_yufeng end
+    }
+    
+    if (CGPDFDocumentGetNumberOfPages(pdf) == 0) {
+        NSLog(@"CGPDFDocumentGetNumberOfPages == 0");
+        //add by gao_yufeng begin 2012-6-7
+        canOpen = NO;
+        //add by gao_yufeng end
+    }
+    
+    CGPDFPageRef tmpPage = CGPDFDocumentGetPage(pdf, 1);
+    
+    CGRect mediaRect = CGPDFPageGetBoxRect(tmpPage, kCGPDFCropBox);
+    
+    if (mediaRect.origin.x > 0 || mediaRect.origin.y > 0) {
+        
+        NSString *newPath = [PDFExtend PDFConvertToStandard:[pdfURL path] password:kPublicPassword];
+        
+        NSFileManager *manager = [NSFileManager defaultManager];
+        
+        [manager removeItemAtPath:[pdfURL path] error:NULL];
+        [manager moveItemAtPath:newPath toPath:[pdfURL path] error:NULL];
+        
+        
+        CGPDFDocumentRelease(pdf);
+        
+        pdf = CGPDFDocumentCreateWithURL((CFURLRef)pdfURL);
+        
+        //zhou_min add 2012-5-10 {
+        if (pdf == NULL) {
+            NSLog(@"can't open '%@'", pdfURL);
+            //add by gao_yufeng begin 2012-6-7
+            canOpen = NO;
+            //add by gao_yufeng end
+        }
+        
+        if (CGPDFDocumentIsEncrypted (pdf)) {//判断pdf是否加密
+            if (!CGPDFDocumentUnlockWithPassword (pdf, "")) {//判断密码是否为""
+                NSString *password = kPublicPassword;
+                if (password != NULL) {
+                    if (!CGPDFDocumentUnlockWithPassword (pdf, [password UTF8String]))
+                        //使用password对pdf进行解密，密码有效返回yes
+                        NSLog(@"invalid password.");
+                    //add by gao_yufeng begin 2012-6-7
+                    //canOpen = NO;
+                    //add by gao_yufeng end
+                }
+            }
+        }
+        
+        if (!CGPDFDocumentIsUnlocked (pdf)) {//判断pdf是否打开状态
+            NSLog(@"CGPDFDocumentIsUnlocked");
+            //add by gao_yufeng begin 2012-6-7
+            canOpen = NO;
+            //add by gao_yufeng end
+        }
+        
+        if (CGPDFDocumentGetNumberOfPages(pdf) == 0) {
+            NSLog(@"CGPDFDocumentGetNumberOfPages == 0");
+            //add by gao_yufeng begin 2012-6-7
+            canOpen = NO;
+            //add by gao_yufeng end
+        }
+    }
+    
+    //{
+    
+    //add by gyf begin
+    self.pages = CGPDFDocumentGetNumberOfPages(pdf);
+    //add by gyf end
+    
+    // Get the PDF Page that we will be drawing
+    //modified by gyf begin
+    
+    if (self.currentIdx == 0) {
+        
+        self.currentIdx = 1;
+        
+        CGPDFPageRelease(page);
+        
+        page = CGPDFDocumentGetPage(pdf, self.currentIdx);
+        //modified by gyf end
+        CGPDFPageRetain(page);
+    }
+    else {
+        
+        CGPDFPageRelease(page);
+        
+        page = CGPDFDocumentGetPage(pdf, self.currentIdx);
+        //modified by gyf end
+        CGPDFPageRetain(page);
+        
+        if (isLandScape) {//翻页的时候如果是横屏要做这个处理，将frame先变为竖屏的，页面初始化完毕以后再变为横屏
+            tiledFrameRect = CGRectMake(0, 0, kDrawingScrollViewWidthPortait, kDrawingScrollViewHeightPortait);//724=768-44
+            self.frame = CGRectMake(kDrawingScrollViewMargin, kDrawingScrollViewTopMargin, kDrawingScrollViewWidthPortait, kDrawingScrollViewHeightPortait);
+        }
+        [[self viewWithTag:kTiledPDFViewTag] setTag:kTiledPDFViewRemoveTag];
+        [self resetCurrentViewsForAllOrientation:YES];
+        [self removeOldTiledPDFView];
+    }
+    
+    
+    
+    //*/
+}
+
+- (void)dealloc
+{
+	// Clean up
+	//add by gyf begin
+    if(paintingPages!=nil) {
+        [paintingPages release];
+    }
+    if(paintingImages!=nil) {
+        [paintingImages release];
+    }
+    if (isFlipPages) {
+        [isFlipPages release];
+    }
+    if (scrollViewDelegate) {
+        scrollViewDelegate = nil;
+    }
+	//[backgroundImageView release];
+	CGPDFPageRelease(page);
+	CGPDFDocumentRelease(pdf);
+    [super dealloc];
+}
+
+#pragma mark -
+#pragma mark Override layoutSubviews to center content
+
+// We use layoutSubviews to center the PDF page in the view
+- (void)layoutSubviews 
+{
+    [super layoutSubviews];
+    
+    /*
+    CGSize boundsSize = self.bounds.size;//1024,724
+    
+    CGRect frameToCenter = [self viewWithTag:kTiledPDFViewTag].frame;//768,980
+    
+    // center horizontally
+    if (frameToCenter.size.width < boundsSize.width)
+        frameToCenter.origin.x = (boundsSize.width - frameToCenter.size.width) / 2;
+    else
+        frameToCenter.origin.x = 0;
+    
+    // center vertically
+    if (frameToCenter.size.height < boundsSize.height)
+        frameToCenter.origin.y = (boundsSize.height - frameToCenter.size.height) / 2;
+    else
+        frameToCenter.origin.y = 0;
+
+	if (frameToCenter.size.width > 5) {
+        [self viewWithTag:kTiledPDFViewTag].frame = frameToCenter;
+        PaintingView *drawingView = [paintingPages objectForKey:[NSNumber numberWithInt:currentIdx]];
+        if(!isAutoScale && drawingView!=nil) {
+            drawingView.frame = frameToCenter;
+        }
+	}
+	
+	[self viewWithTag:kTiledPDFViewTag].contentScaleFactor = 1.0;
+     */
+}
+
+#pragma mark -
+#pragma mark UIScrollView delegate methods
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView
+{
+    if (scrollView.contentOffset.y >= 644)
+    {
+        [self nextPage];
+        
+        [self.scrollViewDelegate scrollTurnPageRefresh];
+    }
+}
+// A UIScrollView delegate callback, called when the user starts zooming.
+// We return our current TiledPDFView.
+- (UIView *)viewForZoomingInScrollView:(UIScrollView *)scrollView
+{
+	if(firstScale)
+	{
+		firstScale = FALSE;
+	}
+    return [self viewWithTag:kTiledPDFViewTag];
+    /*
+    if (isNeedDrawingView) {
+        PaintingView *drawingView = [paintingPages objectForKey:[NSNumber numberWithInt:currentIdx]];
+        if (drawingView.isRealZooming) {
+            return backgroundImageView;
+        }
+        else {
+            return nil;
+        }
+    }
+    else {
+        return backgroundImageView;
+    }
+	*/
+}
+
+// A UIScrollView delegate callback, called when the user begins zooming.  When the user begins zooming
+// we remove the old TiledPDFView and set the current TiledPDFView to be the old view so we can create a
+// a new TiledPDFView when the zooming ends.
+- (void)scrollViewWillBeginZooming:(UIScrollView *)scrollView withView:(UIView *)view
+{
+    if (isNeedDrawingView) {
+        PaintingView *drawingView = [paintingPages objectForKey:[NSNumber numberWithInt:currentIdx]];
+        if (drawingView) {
+            [drawingView setUserInteractionEnabled:NO];
+        }
+    }
+}
+
+
+// A UIScrollView delegate callback, called when the user stops zooming.  When the user stops zooming
+// we create a new TiledPDFView based on the new zoom level and draw it on top of the old TiledPDFView.
+- (void)scrollViewDidEndZooming:(UIScrollView *)scrollView withView:(UIView *)view atScale:(float)scale
+{
+    //开始判断是否需要清除上一步画笔，这里要判断 isEndTouch 是否在结束缩放后被置位
+    PaintingView *drawingView = [paintingPages objectForKey:[NSNumber numberWithInt:currentIdx]];
+	if (isNeedDrawingView && !drawingView.isEndTouch && !isAutoScale) {
+		[drawingView undoLastStoke];
+	}
+	pdfScale = scale;
+	pdfScaleWidth = initPdfScaleWidth * scale;
+	pdfScaleHeight = initPdfScaleHeight * scale;
+	
+	if (scale <= 1) {
+		pdfScaleWidth = initPdfScaleWidth;
+	}
+	if (scale <= 1) {
+		pdfScaleHeight = initPdfScaleHeight;
+	}
+    
+	CGRect pageRect = CGPDFPageGetBoxRect(page, kCGPDFMediaBox);
+    if (isLandScape) {//横屏
+        pageRect.size = CGSizeMake(pageRect.size.width*pdfScaleWidth, pageRect.size.height*pdfScaleWidth);
+    }
+    else {//竖屏
+        pageRect.size = CGSizeMake(pageRect.size.width*pdfScaleWidth, pageRect.size.height*pdfScaleHeight);
+    }
+    if (drawingView) {
+        drawingView.transform = CGAffineTransformScale(CGAffineTransformMake(1, 0, 0, 1, 0, 0), scale, scale);
+    }
+	if (pdfScaleWidth <= initPdfScaleWidth)
+	{
+        if (drawingView) {
+            [drawingView refreshParticle];//刷新画笔采样频率，先画一笔透明的，使采样频率正常（非正常手段）
+        }
+	}
+	currentPdfScaleWidth = pdfScaleWidth;
+	currentPdfScaleHeight = pdfScaleHeight;
+    //如果恢复到正常，就不允许单手移动了，单手就要触发手势事件了
+    if (currentPdfScaleWidth <= initPdfScaleWidth) {
+        if (isLandScape) {//横屏
+            if (isNeedDrawingView) {//如果不需要画板才允许单点移动，否则单点是写字
+                if (flipAngle == kDrawingScrollViewFlip0 || flipAngle == kDrawingScrollViewFlip180) {
+                    [self setScrollEnabled:NO];
+                }
+            }
+            else {
+                [self setScrollEnabled:YES];
+            }
+        }
+        else {//竖屏
+            if (flipAngle == kDrawingScrollViewFlip0 || flipAngle == kDrawingScrollViewFlip180) {
+                [self setScrollEnabled:NO];
+            }
+        }
+    }
+    else {
+        if (isNeedDrawingView) {//如果不需要画板才允许单点移动，否则单点是写字
+            if (flipAngle == kDrawingScrollViewFlip0 || flipAngle == kDrawingScrollViewFlip180) {
+                [self setScrollEnabled:NO];
+            }
+        }
+        else {
+            [self setScrollEnabled:YES];
+        }
+    }
+    isAutoScale = NO;
+    if (drawingView) {
+        drawingView.isEndTouch = YES;
+        drawingView.currentBorderX = isLandScape?(kDrawingScrollViewWidthLandscape/pdfScale + self.contentOffset.x/pdfScale - moveMargin):(kDrawingScrollViewWidthPortait/pdfScale + self.contentOffset.x/pdfScale - moveMargin);
+    }
+    if (isNeedDrawingView) {
+        if (drawingView) {
+            [drawingView setUserInteractionEnabled:YES];
+        }
+    }
+}
+
+- (void)nextPage {
+    
+    BOOL isTurnOver = YES;
+    
+	[self changePage:isTurnOver];
+}
+- (void)previousPage {
+    
+    BOOL isTurnOver = NO;
+    
+	[self changePage:isTurnOver];
+}
+
+-(IBAction)turnPage:(id)sender
+{
+	BOOL isTurnOver = TRUE;
+    if([sender tag] == 2) {
+		isTurnOver = FALSE;
+	}
+	[self changePage:isTurnOver];
+}
+//翻页
+- (void)changePage:(BOOL)isNext
+{
+    PaintingView *drawingView = [paintingPages objectForKey:[NSNumber numberWithInt:currentIdx]];
+    if (drawingView && [drawingView getIsEdit]) {
+        UIImage *tempPageImage = [drawingView glToUIImage];
+        TempNotePage *tempNotePage = [[TempNotePage alloc] init];
+        [tempNotePage setPageNumber:currentIdx];
+        [tempNotePage setPageContent:tempPageImage];
+        [TempNotePageManagement insertTempNotePage:tempNotePage];
+        [tempNotePage release];
+        [drawingView freeBuffer2];
+        [drawingView setIsEdit:NO];
+    }
+    else if (!hasCurrent) {//什么都没写，并且之前也没写过
+        [drawingView removeFromSuperview];
+        [paintingPages removeObjectForKey:[NSNumber numberWithInt:currentIdx]]; 
+    }
+	
+	BOOL isTurnOver = TRUE;
+    if (isNext) {//下一页
+		if (self.currentIdx < self.pages) {
+			self.currentIdx ++;
+		}
+		else {
+            return;
+        }
+	} 
+    else {//前一页
+		isTurnOver = FALSE;
+		if (self.currentIdx > 1) {
+			self.currentIdx --;
+		}
+        else {
+            return;
+        }
+	}
+	
+	page = CGPDFDocumentGetPage(pdf, self.currentIdx);
+	CGPDFPageRetain(page);	
+	
+    if (isLandScape) {//翻页的时候如果是横屏要做这个处理，将frame先变为竖屏的，页面初始化完毕以后再变为横屏
+        tiledFrameRect = CGRectMake(0, 0, kDrawingScrollViewWidthPortait, kDrawingScrollViewHeightPortait);//724=768-44
+        self.frame = CGRectMake(kDrawingScrollViewMargin, kDrawingScrollViewTopMargin, kDrawingScrollViewWidthPortait, kDrawingScrollViewHeightPortait);
+    }
+    
+    [[self viewWithTag:kTiledPDFViewTag] setTag:kTiledPDFViewRemoveTag];
+    [self resetCurrentViewsForAllOrientation:YES];
+    //[self sendSubviewToBack:[self viewWithTag:kTiledPDFViewRemoveTag]];
+    if (isLandScape) {//翻页的时候如果是横屏要做这个处理
+        if ([self viewWithTag:kTiledPDFViewTag].frame.size.width < kDrawingScrollViewWidthLandscape) {
+            float scale = kDrawingScrollViewWidthLandscape/[self viewWithTag:kTiledPDFViewTag].frame.size.width;
+            isAutoScale = YES;
+            [self setZoomScale:scale animated:YES];
+            [self setContentOffset:CGPointMake(0, 0)];
+        }
+        tiledFrameRect = CGRectMake(0, 0, kDrawingScrollViewWidthLandscape, kDrawingScrollViewHeightLandscape);//724=768-44
+        self.frame = CGRectMake(kDrawingScrollViewMargin, kDrawingScrollViewTopMargin, kDrawingScrollViewWidthLandscape, kDrawingScrollViewHeightLandscape);
+    }
+    
+    [UIView beginAnimations:@"animationID" context:nil]; 
+	[UIView setAnimationDuration:0.5f]; //lixiangai
+	[UIView setAnimationCurve:UIViewAnimationCurveEaseInOut]; 
+	[UIView setAnimationRepeatAutoreverses:NO]; 
+	[UIView setAnimationTransition:(isTurnOver ? UIViewAnimationTransitionCurlUp : UIViewAnimationTransitionCurlDown) forView:self cache:YES]; 
+    //[UIView setAnimationTransition:UIViewAnimationTransitionCurlDown forView:self cache:YES];
+	[UIView commitAnimations];
+    //[[self viewWithTag:kTiledPDFViewRemoveTag] removeFromSuperview];
+    timer=[NSTimer scheduledTimerWithTimeInterval: (NSTimeInterval)kDelayTimer target:self selector: @selector(removeOldTiledPDFView) userInfo:nil repeats:NO];
+}
+- (void)removeOldTiledPDFView
+{
+    if ([self viewWithTag:kTiledPDFViewRemoveTag]) {
+        [[self viewWithTag:kTiledPDFViewRemoveTag] removeFromSuperview];
+    }
+    [self setContentOffset:CGPointMake(0, 0)];
+}
+//翻页
+- (void)turnToPage:(NSInteger)toPage
+{
+    BOOL isTurnOver = TRUE;
+    if (toPage<=0 || toPage>pages || toPage==currentIdx) {
+        return;
+    }
+    if (toPage > currentIdx) {
+        isTurnOver = YES;
+    }
+    else {
+        isTurnOver = NO;
+    }
+    //Generate the image, put it into the imageList
+    PaintingView *drawingView = [paintingPages objectForKey:[NSNumber numberWithInt:currentIdx]];
+    if (drawingView && [drawingView getIsEdit]) {
+        UIImage *tempPageImage = [drawingView glToUIImage];
+        TempNotePage *tempNotePage = [[TempNotePage alloc] init];
+        [tempNotePage setPageNumber:currentIdx];
+        [tempNotePage setPageContent:tempPageImage];
+        [TempNotePageManagement insertTempNotePage:tempNotePage];
+        [tempNotePage release];
+        [drawingView freeBuffer2];
+        [drawingView setIsEdit:NO];
+    }
+    else if (!hasCurrent) {//什么都没写，并且之前也没写过
+        [drawingView removeFromSuperview];
+        [paintingPages removeObjectForKey:[NSNumber numberWithInt:currentIdx]]; 
+    }
+	
+    [self setCurrentIdx:toPage];
+	
+	page = CGPDFDocumentGetPage(pdf, self.currentIdx);
+	CGPDFPageRetain(page);
+	
+    if (isLandScape) {//翻页的时候如果是横屏要做这个处理，将frame先变为竖屏的，页面初始化完毕以后再变为横屏
+        tiledFrameRect = CGRectMake(0, 0, kDrawingScrollViewWidthPortait, kDrawingScrollViewHeightPortait);//724=768-44
+        self.frame = CGRectMake(kDrawingScrollViewMargin, kDrawingScrollViewTopMargin, kDrawingScrollViewWidthPortait, kDrawingScrollViewHeightPortait);
+    }
+    [[self viewWithTag:kTiledPDFViewTag] setTag:kTiledPDFViewRemoveTag];
+    [self resetCurrentViewsForAllOrientation:YES];
+    //[self sendSubviewToBack:[self viewWithTag:kTiledPDFViewRemoveTag]];
+    if (isLandScape) {//翻页的时候如果是横屏要做这个处理
+        if ([self viewWithTag:kTiledPDFViewTag].frame.size.width < kDrawingScrollViewWidthLandscape) {
+            float scale = kDrawingScrollViewWidthLandscape/[self viewWithTag:kTiledPDFViewTag].frame.size.width;
+            isAutoScale = YES;
+            [self setZoomScale:scale animated:YES];
+            [self setContentOffset:CGPointMake(0, 0)];
+        }
+        tiledFrameRect = CGRectMake(0, 0, kDrawingScrollViewWidthLandscape, kDrawingScrollViewHeightLandscape);//724=768-44
+        self.frame = CGRectMake(kDrawingScrollViewMargin, kDrawingScrollViewTopMargin, kDrawingScrollViewWidthLandscape, kDrawingScrollViewHeightLandscape);
+    }
+    
+    [UIView beginAnimations:@"animationID" context:nil]; 
+	[UIView setAnimationDuration:1.0f];
+	[UIView setAnimationCurve:UIViewAnimationCurveEaseInOut]; 
+	[UIView setAnimationRepeatAutoreverses:NO]; 
+	[UIView setAnimationTransition:(isTurnOver ? UIViewAnimationTransitionCurlUp : UIViewAnimationTransitionCurlDown) forView:self cache:YES]; 
+    //[UIView setAnimationTransition:UIViewAnimationTransitionCurlDown forView:self cache:YES];
+	[UIView commitAnimations];
+    //[[self viewWithTag:kTiledPDFViewRemoveTag] removeFromSuperview];
+    timer=[NSTimer scheduledTimerWithTimeInterval: (NSTimeInterval)kDelayTimer target:self selector: @selector(removeOldTiledPDFView) userInfo:nil repeats:NO];
+}
+
+//
+- (void)resetCurrentViews:(BOOL)isZooming
+{
+
+}
+//横竖屏都支持的初始化函数
+- (void)resetCurrentViewsForAllOrientation:(BOOL)isNewPage
+{
+    if (isNewPage) {
+        isFirstSign = YES;
+    }
+    isNeedDrawingView = NO;
+    flipAngle = kDrawingScrollViewFlip0;
+	//remove all subviews
+    //[[self viewWithTag:kTiledPDFViewTag] removeFromSuperview];
+    [[self viewWithTag:kPaintingViewTag] removeFromSuperview];
+	///*
+	if(page) {
+		// determine the size of the PDF page
+		//modified by gyf begin
+		CGRect pageRect = CGPDFPageGetBoxRect(page, kCGPDFMediaBox);
+        if (pageRect.size.width > pageRect.size.height) {
+            isLandscapePage = YES;
+        }
+        else {
+            isLandscapePage = NO;
+        }
+        
+        if (isLandscapePage) {//横向书页
+            pdfScaleWidth = kDrawingScrollViewWidthPortait/pageRect.size.width;
+            pdfScaleHeight = kDrawingScrollViewPDFHeightLandscape/pageRect.size.height;
+            initPdfScaleWidth = pdfScaleWidth;
+            initPdfScaleHeight = pdfScaleHeight;
+            currentPdfScaleWidth = initPdfScaleWidth;
+            currentPdfScaleHeight = initPdfScaleHeight;
+            //CGContextRef context = nil;
+            //是否反过来
+            if ([isFlipPages objectForKey:[NSNumber numberWithInt:currentIdx]]) {
+                flipAngle = [[isFlipPages objectForKey:[NSNumber numberWithInt:currentIdx]] intValue];
+            }
+            switch (flipAngle) {
+                case kDrawingScrollViewFlip0://正常角度
+                    [self setFrame:CGRectMake(self.frame.origin.x, self.frame.origin.y,kDrawingScrollViewWidthPortait , kDrawingScrollViewHeightPortait)];
+                    pageRect.size = CGSizeMake(pageRect.size.width*pdfScaleWidth, pageRect.size.height*pdfScaleHeight);
+                    
+                    /*
+                    UIGraphicsBeginImageContextWithOptions(pageRect.size,YES,1.0);
+                    context = UIGraphicsGetCurrentContext();
+                    
+                    CGContextSetRGBFillColor(context, 1.0,1.0,1.0,1.0);
+                    CGContextFillRect(context,pageRect);
+                    
+                    CGContextSaveGState(context);
+                    CGContextTranslateCTM(context, 0.0, pageRect.size.height);
+                    CGContextScaleCTM(context, 1.0, -1.0);
+                    CGContextScaleCTM(context, pdfScaleWidth, pdfScaleHeight);
+                    */
+                    
+                    tiledFrameRect = CGRectMake(0, (kDrawingScrollViewHeightPortait-60-15-kDrawingScrollViewPDFHeightLandscape)/2,kDrawingScrollViewWidthPortait, kDrawingScrollViewPDFHeightLandscape);
+                    break;
+                case kDrawingScrollViewFlip90://翻转90度
+                    [self setFrame:CGRectMake(self.frame.origin.x, self.frame.origin.y,kDrawingScrollViewHeightPortait , kDrawingScrollViewWidthPortait)];//959,758
+                    pageRect.size = CGSizeMake(pageRect.size.height*pdfScaleHeight, pageRect.size.width*pdfScaleWidth);
+                    /*
+                    UIGraphicsBeginImageContextWithOptions(pageRect.size,YES,1.0);
+                    context = UIGraphicsGetCurrentContext();
+                    
+                    CGContextSetRGBFillColor(context, 1.0,1.0,1.0,1.0);
+                    CGContextFillRect(context,pageRect);
+                    
+                    CGContextSaveGState(context);
+                    CGContextTranslateCTM(context, 0.0, pageRect.size.height);
+                    CGContextScaleCTM(context, 1.0, -1.0);
+                    
+                    CGContextTranslateCTM(context, 0.0, pageRect.size.height);
+                    CGContextRotateCTM(context, (-1)*M_PI/2.0);
+                    
+                    CGContextScaleCTM(context, pdfScaleWidth, pdfScaleHeight);
+                     */
+                    tiledFrameRect = CGRectMake((kDrawingScrollViewWidthPortait-kDrawingScrollViewPDFHeightLandscape)/2, (kDrawingScrollViewHeightPortait-60-15-kDrawingScrollViewWidthPortait)/2, kDrawingScrollViewPDFHeightLandscape, kDrawingScrollViewWidthPortait);
+                    break;
+                case kDrawingScrollViewFlip180://翻转180度
+                    [self setFrame:CGRectMake(self.frame.origin.x, self.frame.origin.y,kDrawingScrollViewWidthPortait , kDrawingScrollViewHeightPortait)];
+                    pageRect.size = CGSizeMake(pageRect.size.width*pdfScaleWidth, pageRect.size.height*pdfScaleHeight);
+                    /*
+                    UIGraphicsBeginImageContextWithOptions(pageRect.size,YES,1.0);
+                    context = UIGraphicsGetCurrentContext();
+                    
+                    CGContextSetRGBFillColor(context, 1.0,1.0,1.0,1.0);
+                    CGContextFillRect(context,pageRect);
+                    
+                    CGContextSaveGState(context);
+                    CGContextTranslateCTM(context, 0.0, pageRect.size.height);
+                    CGContextScaleCTM(context, 1.0, -1.0);
+                    
+                    CGContextTranslateCTM (context, pageRect.size.width,pageRect.size.height);
+                    CGContextRotateCTM(context, M_PI);
+                    
+                    CGContextScaleCTM(context, pdfScaleWidth, pdfScaleHeight);
+                    */
+                    tiledFrameRect = CGRectMake(0, (kDrawingScrollViewHeightPortait-60-15-kDrawingScrollViewPDFHeightLandscape)/2, kDrawingScrollViewWidthPortait, kDrawingScrollViewPDFHeightLandscape);
+                    break;
+                case kDrawingScrollViewFlip270://翻转270度
+                    [self setFrame:CGRectMake(self.frame.origin.x, self.frame.origin.y,kDrawingScrollViewHeightPortait , kDrawingScrollViewWidthPortait)];
+                    pageRect.size = CGSizeMake(pageRect.size.height*pdfScaleHeight, pageRect.size.width*pdfScaleWidth);
+                    /*
+                    UIGraphicsBeginImageContextWithOptions(pageRect.size,YES,1.0);
+                    context = UIGraphicsGetCurrentContext();
+                    
+                    CGContextSetRGBFillColor(context, 1.0,1.0,1.0,1.0);
+                    CGContextFillRect(context,pageRect);
+                    
+                    CGContextSaveGState(context);
+                    CGContextTranslateCTM(context, 0.0, pageRect.size.height);
+                    CGContextScaleCTM(context, 1.0, -1.0);
+                    
+                    CGContextTranslateCTM (context, pageRect.size.width,0);
+                    CGContextRotateCTM(context, M_PI/2.0);
+                    
+                    CGContextScaleCTM(context, pdfScaleWidth, pdfScaleHeight);
+                     */
+                    
+                    tiledFrameRect = CGRectMake((kDrawingScrollViewWidthPortait-kDrawingScrollViewPDFHeightLandscape)/2, (kDrawingScrollViewHeightPortait-60-15-kDrawingScrollViewPDFHeightLandscape)/2 - 50, kDrawingScrollViewPDFHeightLandscape, kDrawingScrollViewWidthPortait);
+                    break;
+                default:
+                    break;
+            }
+            
+            if (isLandScape) {
+                [self setFrame:CGRectMake(self.frame.origin.x, self.frame.origin.y,kDrawingScrollViewWidthLandscape , kDrawingScrollViewHeightLandscape)];
+            }
+            else {
+                [self setFrame:CGRectMake(self.frame.origin.x, self.frame.origin.y,kDrawingScrollViewWidthPortait , kDrawingScrollViewHeightPortait-60-15)];
+            }
+            
+            NSLog(@"%@",NSStringFromCGRect(self.frame));
+            /*
+            CGContextDrawPDFPage(context, page);
+            CGContextRestoreGState(context);
+            UIImage *backgroundImage = UIGraphicsGetImageFromCurrentImageContext();
+            UIGraphicsEndImageContext();
+            backgroundImageView.transform = CGAffineTransformMake(1.0, 0, 0, 1.0, 0, 0);
+            [backgroundImageView setFrame:tiledFrameRect];
+            [backgroundImageView setImage:backgroundImage];
+            */
+            //TiledPDFView *pdfView = [[TiledPDFView alloc] initWithFrame:pageRect andScaleWidth:pdfScaleWidth scaleHeight:pdfScaleHeight];
+            TiledPDFView *pdfView = nil;
+            
+            NSString *systemVersion  = [[UIDevice currentDevice]systemVersion];
+            
+            if([systemVersion doubleValue] >= 6.0) {
+                
+                pdfView = [[TiledPDFView alloc] initWithFrame:pageRect andScaleWidth:pdfScaleWidth andScaleHeight:pdfScaleHeight andPageOrentation:flipAngle];
+                
+                [pdfView setFrame:tiledFrameRect];
+                
+                NSLog(@"%@",NSStringFromCGRect(tiledFrameRect));
+                
+            }
+            else {
+                
+                pdfView = [[TiledPDFView alloc] initWithFrame:CGRectMake(tiledFrameRect.origin.x, tiledFrameRect.origin.x, tiledFrameRect.size.width*kCustomScale, tiledFrameRect.size.height*kCustomScale) andScaleWidth:pdfScaleWidth andScaleHeight:pdfScaleHeight andPageOrentation:flipAngle];
+                
+                [pdfView setFrame:CGRectMake(tiledFrameRect.origin.x, tiledFrameRect.origin.x, tiledFrameRect.size.width*kCustomScale, tiledFrameRect.size.height*kCustomScale)];
+            }
+            
+            pdfView.tag = kTiledPDFViewTag;
+            pdfView.tiledPDFViewDelegate = self;
+            pdfView.userInteractionEnabled = NO;
+            [pdfView setPage:page];
+            [self addSubview:pdfView];
+            [self sendSubviewToBack:pdfView];
+//            self.contentSize = pdfView.frame.size;
+            self.contentSize = self.frame.size;
+            [pdfView release];
+                                     
+            firstScale = TRUE;
+            if(paintingPages!=nil) {
+                if([paintingPages objectForKey:[NSNumber numberWithInt:currentIdx]]){
+                    if (isNewPage) {
+                        hasCurrent = YES;
+                        PaintingView *drawingView = [paintingPages objectForKey:[NSNumber numberWithInt:currentIdx]];
+                        if (isNeedDrawingView) {
+                            drawingView.userInteractionEnabled = YES;
+                        }
+                        else {
+                            drawingView.userInteractionEnabled = NO;
+                        }
+                        [drawingView setFrame:[self viewWithTag:kTiledPDFViewTag].frame];
+                        drawingView.transform = CGAffineTransformMake(1, 0, 0, 1, 0, 0);//682,965
+                        [self addSubview: drawingView];
+                    }
+                    else {
+                        isFirstSign = YES;
+                        [paintingPages removeObjectForKey:[NSNumber numberWithInt:currentIdx]];
+                        hasCurrent = NO;
+                        if (isNeedDrawingView) {
+                            PaintingView *drawingView = [[PaintingView alloc] initWithFrame:tiledFrameRect];
+                            [drawingView setPaintViewDelegate:self];
+                            [drawingView setBrushColorWithRed:(CGFloat)kRed/255 green:(CGFloat)kGreeen/255 blue:(CGFloat)kBlue/255];
+                            drawingView.currentBorderX = isLandScape ? (kDrawingScrollViewWidthLandscape - moveMargin):(kDrawingScrollViewWidthPortait - moveMargin);
+                            drawingView.backgroundColor=[UIColor clearColor];
+                            drawingView.exclusiveTouch = YES;
+                            drawingView.userInteractionEnabled = YES;
+                            drawingView.tag = kPaintingViewTag;
+                            [paintingPages setObject:drawingView forKey:[NSNumber numberWithInt:currentIdx]];
+                            [self addSubview:[paintingPages objectForKey:[NSNumber numberWithInt:currentIdx]]];
+                            [drawingView release];
+                        }
+                        else {
+                            PaintingView *drawingView = [[PaintingView alloc] initWithFrame:tiledFrameRect];
+                            [drawingView setPaintViewDelegate:self];
+                            [drawingView setBrushColorWithRed:(CGFloat)kRed/255 green:(CGFloat)kGreeen/255 blue:(CGFloat)kBlue/255];
+                            drawingView.currentBorderX = isLandScape ? (kDrawingScrollViewWidthLandscape - moveMargin):(kDrawingScrollViewWidthPortait - moveMargin);
+                            drawingView.backgroundColor=[UIColor clearColor];
+                            drawingView.exclusiveTouch = NO;
+                            drawingView.userInteractionEnabled = NO;
+                            drawingView.tag = kPaintingViewTag;
+                            [paintingPages setObject:drawingView forKey:[NSNumber numberWithInt:currentIdx]];
+                            [self addSubview:[paintingPages objectForKey:[NSNumber numberWithInt:currentIdx]]];
+                            [drawingView release];
+                        }
+                    }
+                }
+                else {
+                    hasCurrent = NO;
+                    if (isNeedDrawingView) {
+                        PaintingView *drawingView = [[PaintingView alloc] initWithFrame:tiledFrameRect];
+                        [drawingView setPaintViewDelegate:self];
+                        [drawingView setBrushColorWithRed:(CGFloat)kRed/255 green:(CGFloat)kGreeen/255 blue:(CGFloat)kBlue/255];
+                        drawingView.currentBorderX = isLandScape ? (kDrawingScrollViewWidthLandscape - moveMargin):(kDrawingScrollViewWidthPortait - moveMargin);
+                        drawingView.backgroundColor=[UIColor clearColor];
+                        drawingView.exclusiveTouch = YES;
+                        drawingView.userInteractionEnabled = YES;
+                        drawingView.tag = kPaintingViewTag;
+                        [paintingPages setObject:drawingView forKey:[NSNumber numberWithInt:currentIdx]];
+                        [self addSubview:[paintingPages objectForKey:[NSNumber numberWithInt:currentIdx]]];
+                        [drawingView release];
+                    }
+                    else {
+                        
+                        PaintingView *drawingView = nil;
+                        
+                        NSString *systemVersion  = [[UIDevice currentDevice]systemVersion];
+                        
+                        if([systemVersion doubleValue] >= 6.0) {
+                            
+                            drawingView = [[PaintingView alloc] initWithFrame:tiledFrameRect];
+                        }
+                        else {
+                            
+                            drawingView = [[PaintingView alloc] initWithFrame:CGRectMake(tiledFrameRect.origin.x, tiledFrameRect.origin.x, tiledFrameRect.size.width*kCustomScale, tiledFrameRect.size.height*kCustomScale)];
+                        }
+                        
+                        [drawingView setPaintViewDelegate:self];
+                        [drawingView setBrushColorWithRed:(CGFloat)kRed/255 green:(CGFloat)kGreeen/255 blue:(CGFloat)kBlue/255];
+                        drawingView.currentBorderX = isLandScape ? (kDrawingScrollViewWidthLandscape - moveMargin):(kDrawingScrollViewWidthPortait - moveMargin);
+                        drawingView.backgroundColor=[UIColor clearColor];
+                        drawingView.exclusiveTouch = NO;
+                        drawingView.userInteractionEnabled = NO;
+                        drawingView.tag = kPaintingViewTag;
+                        [paintingPages setObject:drawingView forKey:[NSNumber numberWithInt:currentIdx]];
+                        [self addSubview:[paintingPages objectForKey:[NSNumber numberWithInt:currentIdx]]];
+                        [drawingView release];
+                    }
+                }
+            }
+        }
+        else {//竖向书页
+            pdfScaleWidth = kDrawingScrollViewWidthPortait/pageRect.size.width;
+            pdfScaleHeight = kDrawingScrollViewHeightPortait/pageRect.size.height;
+            initPdfScaleWidth = pdfScaleWidth;
+            initPdfScaleHeight = pdfScaleHeight;
+            currentPdfScaleWidth = initPdfScaleWidth;
+            currentPdfScaleHeight = initPdfScaleHeight;
+            //CGContextRef context = nil;
+            //是否反过来
+            if ([isFlipPages objectForKey:[NSNumber numberWithInt:currentIdx]]) {
+                flipAngle = [[isFlipPages objectForKey:[NSNumber numberWithInt:currentIdx]] intValue];
+            }
+            switch (flipAngle) {
+                case kDrawingScrollViewFlip0://正常角度
+                    [self setFrame:CGRectMake(self.frame.origin.x, self.frame.origin.y,kDrawingScrollViewWidthPortait , kDrawingScrollViewHeightPortait)];
+                    pageRect.size = CGSizeMake(pageRect.size.width*pdfScaleWidth, pageRect.size.height*pdfScaleHeight);
+                    /*
+                    UIGraphicsBeginImageContextWithOptions(pageRect.size,YES,1.0);
+                    context = UIGraphicsGetCurrentContext();
+                    
+                    CGContextSetRGBFillColor(context, 1.0,1.0,1.0,1.0);
+                    CGContextFillRect(context,pageRect);
+                    
+                    CGContextSaveGState(context);
+                    CGContextTranslateCTM(context, 0.0, pageRect.size.height);
+                    CGContextScaleCTM(context, 1.0, -1.0);
+                    CGContextScaleCTM(context, pdfScaleWidth, pdfScaleHeight);
+                    */
+                    tiledFrameRect = CGRectMake(tiledFrameRect.origin.x, 0, kDrawingScrollViewWidthPortait, kDrawingScrollViewHeightPortait);
+                    
+                    break;
+                case kDrawingScrollViewFlip90://翻转90度
+                    [self setFrame:CGRectMake(self.frame.origin.x, self.frame.origin.y,kDrawingScrollViewHeightPortait , kDrawingScrollViewWidthPortait)];//959,758
+                    
+                    pageRect.size = CGSizeMake(pageRect.size.height*pdfScaleHeight, pageRect.size.width*pdfScaleWidth);
+                    /*
+                    UIGraphicsBeginImageContextWithOptions(pageRect.size,YES,1.0);
+                    context = UIGraphicsGetCurrentContext();
+                    
+                    CGContextSetRGBFillColor(context, 1.0,1.0,1.0,1.0);
+                    CGContextFillRect(context,pageRect);
+                    
+                    CGContextSaveGState(context);
+                    CGContextTranslateCTM(context, 0.0, pageRect.size.height);
+                    CGContextScaleCTM(context, 1.0, -1.0);
+                    
+                    CGContextTranslateCTM(context, 0.0, pageRect.size.height);
+                    CGContextRotateCTM(context, (-1)*M_PI/2.0);
+                    
+                    CGContextScaleCTM(context, pdfScaleWidth, pdfScaleHeight);
+                     */
+                    
+                    tiledFrameRect = CGRectMake(tiledFrameRect.origin.x, (kDrawingScrollViewHeightPortait-60-15-kDrawingScrollViewWidthPortait)/2, kDrawingScrollViewHeightPortait, kDrawingScrollViewWidthPortait);
+                    break;
+                case kDrawingScrollViewFlip180://翻转180度
+                    [self setFrame:CGRectMake(self.frame.origin.x, self.frame.origin.y,kDrawingScrollViewWidthPortait , kDrawingScrollViewHeightPortait)];
+                    pageRect.size = CGSizeMake(pageRect.size.width*pdfScaleWidth, pageRect.size.height*pdfScaleHeight);
+                    /*
+                    UIGraphicsBeginImageContextWithOptions(pageRect.size,YES,1.0);
+                    context = UIGraphicsGetCurrentContext();
+                    
+                    CGContextSetRGBFillColor(context, 1.0,1.0,1.0,1.0);
+                    CGContextFillRect(context,pageRect);
+                    
+                    CGContextSaveGState(context);
+                    CGContextTranslateCTM(context, 0.0, pageRect.size.height);
+                    CGContextScaleCTM(context, 1.0, -1.0);
+                    
+                    CGContextTranslateCTM (context, pageRect.size.width,pageRect.size.height);
+                    CGContextRotateCTM(context, M_PI);
+                    
+                    CGContextScaleCTM(context, pdfScaleWidth, pdfScaleHeight);
+                    */
+                    tiledFrameRect = CGRectMake(tiledFrameRect.origin.x, tiledFrameRect.origin.y, kDrawingScrollViewWidthPortait, kDrawingScrollViewHeightPortait);
+                    
+                    break;
+                case kDrawingScrollViewFlip270://翻转270度
+                    [self setFrame:CGRectMake(self.frame.origin.x, self.frame.origin.y,kDrawingScrollViewHeightPortait , kDrawingScrollViewWidthPortait)];
+                    pageRect.size = CGSizeMake(pageRect.size.height*pdfScaleHeight, pageRect.size.width*pdfScaleWidth);
+                    /*
+                    UIGraphicsBeginImageContextWithOptions(pageRect.size,YES,1.0);
+                    context = UIGraphicsGetCurrentContext();
+                    
+                    CGContextSetRGBFillColor(context, 1.0,1.0,1.0,1.0);
+                    CGContextFillRect(context,pageRect);
+                    
+                    CGContextSaveGState(context);
+                    CGContextTranslateCTM(context, 0.0, pageRect.size.height);
+                    CGContextScaleCTM(context, 1.0, -1.0);
+                    
+                    CGContextTranslateCTM (context, pageRect.size.width,0);
+                    CGContextRotateCTM(context, M_PI/2.0);
+                    
+                    CGContextScaleCTM(context, pdfScaleWidth, pdfScaleHeight);
+                    */
+                    tiledFrameRect = CGRectMake(tiledFrameRect.origin.x, (kDrawingScrollViewHeightPortait-60-15-kDrawingScrollViewWidthPortait)/2, kDrawingScrollViewHeightPortait, kDrawingScrollViewWidthPortait);
+                    break;
+                default:
+                    break;
+            }
+            /*
+            if (isLandScape) {
+                [self setFrame:CGRectMake(self.frame.origin.x, self.frame.origin.y,kDrawingScrollViewWidthLandscape , kDrawingScrollViewHeightLandscape)];
+            }
+            else {
+                [self setFrame:CGRectMake(self.frame.origin.x, self.frame.origin.y,kDrawingScrollViewWidthPortait+80, kDrawingScrollViewHeightPortait)];
+            }
+            */
+            if (isLandScape) {
+                [self setFrame:CGRectMake(self.frame.origin.x, self.frame.origin.y,320 , [UIScreen mainScreen].bounds.size.height-54)];
+            }
+            else {
+                [self setFrame:CGRectMake(self.frame.origin.x, self.frame.origin.y,320, kDrawingScrollViewHeightPortait-60-15)];
+            }
+            
+            
+            
+            NSLog(@"%@",NSStringFromCGRect(self.frame));
+            /*
+            CGContextDrawPDFPage(context, page);
+            CGContextRestoreGState(context);
+            UIImage *backgroundImage = UIGraphicsGetImageFromCurrentImageContext();
+            UIGraphicsEndImageContext();
+            backgroundImageView.transform = CGAffineTransformMake(1.0, 0, 0, 1.0, 0, 0);
+            [backgroundImageView setFrame:tiledFrameRect];
+            [backgroundImageView setImage:backgroundImage];
+             */
+            
+            TiledPDFView *pdfView = nil;
+            
+            NSString *systemVersion  = [[UIDevice currentDevice]systemVersion];
+            
+            if([systemVersion doubleValue] >= 6.0) {
+                
+                pdfView = [[TiledPDFView alloc] initWithFrame:pageRect andScaleWidth:pdfScaleWidth andScaleHeight:pdfScaleHeight andPageOrentation:flipAngle];
+                
+                [pdfView setFrame:tiledFrameRect];
+                NSLog(@"%@",NSStringFromCGRect(tiledFrameRect));
+            }
+            else {
+                
+                pdfView = [[TiledPDFView alloc] initWithFrame:CGRectMake(tiledFrameRect.origin.x, tiledFrameRect.origin.x, tiledFrameRect.size.width*kCustomScale, tiledFrameRect.size.height*kCustomScale) andScaleWidth:pdfScaleWidth andScaleHeight:pdfScaleHeight andPageOrentation:flipAngle];
+                [pdfView setFrame:CGRectMake(tiledFrameRect.origin.x, tiledFrameRect.origin.x, tiledFrameRect.size.width*kCustomScale, tiledFrameRect.size.height*kCustomScale)];
+                
+            }
+  
+            pdfView.tag = kTiledPDFViewTag;
+            pdfView.tiledPDFViewDelegate = self;
+            [pdfView setPage:page];
+            pdfView.userInteractionEnabled = NO;
+            [self addSubview:pdfView];
+            [self sendSubviewToBack:pdfView];
+//            self.contentSize = pdfView.frame.size;
+            self.contentSize = CGSizeMake(pdfView.frame.size.width, tiledFrameRect.size.height + 10);
+            [pdfView release];
+            firstScale = TRUE;
+            if(paintingPages!=nil) {
+                if([paintingPages objectForKey:[NSNumber numberWithInt:currentIdx]]){
+                    if (isNewPage) {
+                        hasCurrent = YES;
+                        PaintingView *drawingView = [paintingPages objectForKey:[NSNumber numberWithInt:currentIdx]];
+                        if (isNeedDrawingView) {
+                            drawingView.userInteractionEnabled = YES;
+                        }
+                        else {
+                            drawingView.userInteractionEnabled = NO;
+                        }
+                        [drawingView setFrame:[self viewWithTag:kTiledPDFViewTag].frame];
+                        drawingView.transform = CGAffineTransformMake(1, 0, 0, 1, 0, 0);//682,965
+                        [self addSubview: drawingView];
+                    }
+                    else {
+                        isFirstSign = YES;
+                        [paintingPages removeObjectForKey:[NSNumber numberWithInt:currentIdx]];
+                        hasCurrent = NO;
+                        if (isNeedDrawingView) {
+                            PaintingView *drawingView = [[PaintingView alloc] initWithFrame:tiledFrameRect];
+                            [drawingView setPaintViewDelegate:self];
+                            [drawingView setBrushColorWithRed:(CGFloat)kRed/255 green:(CGFloat)kGreeen/255 blue:(CGFloat)kBlue/255];
+                            drawingView.currentBorderX = isLandScape ? (kDrawingScrollViewWidthLandscape - moveMargin):(kDrawingScrollViewWidthPortait - moveMargin);
+                            drawingView.backgroundColor=[UIColor clearColor];
+                            drawingView.exclusiveTouch = YES;
+                            drawingView.userInteractionEnabled = YES;
+                            drawingView.tag = kPaintingViewTag;
+                            
+                            [paintingPages setObject:drawingView forKey:[NSNumber numberWithInt:currentIdx]];
+                            [self addSubview:[paintingPages objectForKey:[NSNumber numberWithInt:currentIdx]]];
+                            [drawingView release];
+                        }
+                        else {
+                            
+                            PaintingView *drawingView = nil;
+                            
+                            NSString *systemVersion  = [[UIDevice currentDevice]systemVersion];
+                            
+                            if([systemVersion doubleValue] >= 6.0) {
+                                
+                                drawingView = [[PaintingView alloc] initWithFrame:tiledFrameRect];
+                            }
+                            else {
+                                
+                                drawingView = [[PaintingView alloc] initWithFrame:CGRectMake(tiledFrameRect.origin.x, tiledFrameRect.origin.x, tiledFrameRect.size.width*kCustomScale, tiledFrameRect.size.height*kCustomScale)];
+                            }
+                            
+                            [drawingView setPaintViewDelegate:self];
+                            [drawingView setBrushColorWithRed:(CGFloat)kRed/255 green:(CGFloat)kGreeen/255 blue:(CGFloat)kBlue/255];
+                            drawingView.currentBorderX = isLandScape ? (kDrawingScrollViewWidthLandscape - moveMargin):(kDrawingScrollViewWidthPortait - moveMargin);
+                            drawingView.backgroundColor=[UIColor clearColor];
+                            drawingView.exclusiveTouch = NO;
+                            drawingView.userInteractionEnabled = NO;
+                            drawingView.tag = kPaintingViewTag;
+                            [paintingPages setObject:drawingView forKey:[NSNumber numberWithInt:currentIdx]];
+                            [self addSubview:[paintingPages objectForKey:[NSNumber numberWithInt:currentIdx]]];
+                            [drawingView release];
+                        }
+                    }
+                }
+                else {
+                    hasCurrent = NO;
+                    if (isNeedDrawingView) {
+                        PaintingView *drawingView = [[PaintingView alloc] initWithFrame:tiledFrameRect];
+                        [drawingView setPaintViewDelegate:self];
+                        [drawingView setBrushColorWithRed:(CGFloat)kRed/255 green:(CGFloat)kGreeen/255 blue:(CGFloat)kBlue/255];
+                        drawingView.currentBorderX = isLandScape ? (kDrawingScrollViewWidthLandscape - moveMargin):(kDrawingScrollViewWidthPortait - moveMargin);
+                        drawingView.backgroundColor=[UIColor clearColor];
+                        drawingView.exclusiveTouch = YES;
+                        drawingView.userInteractionEnabled = YES;
+                        drawingView.tag = kPaintingViewTag;
+                        [paintingPages setObject:drawingView forKey:[NSNumber numberWithInt:currentIdx]];
+                        [self addSubview:[paintingPages objectForKey:[NSNumber numberWithInt:currentIdx]]];
+                        [drawingView release];
+                    }
+                    else {
+                        PaintingView *drawingView = nil;
+                        
+                        NSString *systemVersion  = [[UIDevice currentDevice]systemVersion];
+                        
+                        if([systemVersion doubleValue] >= 6.0) {
+                            
+                            drawingView = [[PaintingView alloc] initWithFrame:tiledFrameRect];
+                        }
+                        else {
+                            
+                            drawingView = [[PaintingView alloc] initWithFrame:CGRectMake(tiledFrameRect.origin.x, tiledFrameRect.origin.x, tiledFrameRect.size.width*kCustomScale, tiledFrameRect.size.height*kCustomScale)];
+                        }
+
+                        [drawingView setPaintViewDelegate:self];
+                        [drawingView setBrushColorWithRed:(CGFloat)kRed/255 green:(CGFloat)kGreeen/255 blue:(CGFloat)kBlue/255];
+                        drawingView.currentBorderX = isLandScape ? (kDrawingScrollViewWidthLandscape - moveMargin):(kDrawingScrollViewWidthPortait - moveMargin);
+                        drawingView.backgroundColor=[UIColor clearColor];
+                        drawingView.exclusiveTouch = NO;
+                        drawingView.userInteractionEnabled = NO;
+                        drawingView.tag = kPaintingViewTag;
+                        [paintingPages setObject:drawingView forKey:[NSNumber numberWithInt:currentIdx]];
+                        [self addSubview:[paintingPages objectForKey:[NSNumber numberWithInt:currentIdx]]];
+                        [drawingView release];
+                    }
+                }
+            }
+        }
+        
+        [self.scrollViewDelegate newPage];
+        
+	}
+}
+
+- (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
+{
+    if ([[touches anyObject] tapCount]>=2) {
+        isAutoScale = YES;
+        if (currentPdfScaleWidth <= initPdfScaleWidth) {
+            [self setZoomScale:kInitSignScale animated:YES];
+        }
+        else {
+            [self setZoomScale:1.0 animated:YES];
+        }
+        
+        return;
+    }
+    isInCenterMargin = YES;
+	UITouch* touch = [[event touchesForView:self] anyObject];
+    CGPoint location = [touch locationInView:self];
+    startPoint = location;
+    previousPoint = location;
+    
+}
+
+// Handles the continuation of a touch.
+- (void)touchesMoved:(NSSet *)touches withEvent:(UIEvent *)event
+{
+    UITouch *touch = [[event touchesForView:self] anyObject];
+    CGPoint location = [touch locationInView:self];
+	previousPoint = location;
+}
+
+- (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event
+{
+    UITouch *touch = [[event touchesForView:self] anyObject];
+    CGPoint location = [touch locationInView:self];
+    if (ABS(location.x-startPoint.x)<=10 && ABS(location.y-startPoint.y)<=20) {//我们认为这时候是一个单独的点击
+        if (isLandScape) {
+            if ([touches count] <= 1 && currentPdfScaleWidth<=initPdfScaleWidth*1.35) {
+                if (location.x <= kTurnPageMargin) {//左半边
+                    //向前翻页
+//                    [self changePage:NO];
+                    isInCenterMargin = NO;
+                }
+                else if (location.x >= (self.frame.size.width - kTurnPageMargin)) {//右半边
+                    //向后翻页
+//                    [self changePage:YES];
+                    isInCenterMargin = NO;
+                }
+                else if ([[touches anyObject] tapCount]<=1){//中间
+                    [self.scrollViewDelegate touchInTheMiddle];
+                }
+            }
+            else if ([touches count] <=1 && [[touches anyObject] tapCount]<=1) {
+                [self.scrollViewDelegate touchInTheMiddle];
+            }
+        }
+        else {
+            if ([touches count] <= 1 && currentPdfScaleWidth<=initPdfScaleWidth) {
+                if (location.x <= kTurnPageMargin) {//左半边
+                    //向前翻页
+//                    [self changePage:NO];
+                    isInCenterMargin = NO;
+                }
+                else if (location.x >= (self.frame.size.width - kTurnPageMargin)) {//右半边
+                    //向后翻页
+//                    [self changePage:YES];
+                    isInCenterMargin = NO;
+                }
+                else if ([[touches anyObject] tapCount]<=1){//中间
+                    [self.scrollViewDelegate touchInTheMiddle];
+                }
+            }
+            else if ([touches count] <=1 && [[touches anyObject] tapCount]<=1) {
+                [self.scrollViewDelegate touchInTheMiddle];
+            }
+        }
+        return;
+    }
+    else if (([touches count] <= 1 && currentPdfScaleWidth<=initPdfScaleWidth)) {
+        if (startPoint.x <= kTurnPageMargin) {//左半边
+            //向前翻页
+//            [self changePage:NO];
+            isInCenterMargin = NO;
+        }
+        else if (startPoint.x >= (self.frame.size.width - kTurnPageMargin)) {//右半边
+            //向后翻页
+//            [self changePage:YES];
+            isInCenterMargin = NO;
+        }
+    }
+}
+
+// Handles the end of a touch event.
+- (void)touchesCancelled:(NSSet *)touches withEvent:(UIEvent *)event
+{
+
+}
+
+- (void)setNeedDrawingView:(BOOL)needDrawingView //设置是否需要画板
+{
+    isNeedDrawingView = needDrawingView;
+}
+
+- (void)removeDrawingView//移除画板
+{
+    self.delaysContentTouches = YES;
+    self.scrollEnabled = YES;
+    [self setMultipleTouchEnabled:YES];
+    [self setNeedDrawingView:NO];
+    for(UIView *subview in self.subviews)
+	{
+        if ([subview isKindOfClass:[PaintingView class]]) {
+            //设置画板放大比例等
+            [self setInitSignScale:NO];
+            [subview setUserInteractionEnabled:NO];
+        }
+	}
+}
+//获取是否处于签批状态
+- (BOOL)getIsNeedDrawingView
+{
+    return isNeedDrawingView;
+}
+- (void)restoreDrawingView//恢复画板
+{
+    self.delaysContentTouches = NO;
+    self.scrollEnabled = NO;
+    [self setMultipleTouchEnabled:YES];
+    
+    [self setNeedDrawingView:YES];
+    if(isNeedDrawingView && paintingPages!=nil) {//已经有了画板，只需要从画板数组中取出来就行了
+        if([paintingPages objectForKey:[NSNumber numberWithInt:currentIdx]]){
+            PaintingView *drawingView = [paintingPages objectForKey:[NSNumber numberWithInt:currentIdx]];
+            [drawingView setUserInteractionEnabled:YES];
+            [self setInitSignScale:YES];
+        }
+    }
+}
+//当签批和浏览状态切换时，放大并且定位在左上角，反之缩小到正常比例
+- (void)setInitSignScale:(BOOL)isSign
+{
+    if (isSign) {//转入签批状态
+        //画板放大
+        if (isFirstSign) {//第一次签批需要放大并定位，后面就不用了
+            isFirstSign = NO;
+            NSString *paramInitSignScale =@"1.5";
+            initScale = [paramInitSignScale floatValue];
+            if (initScale <= 0) {
+                initScale = kInitSignScale;
+            }
+            isAutoScale = YES;
+            [self setZoomScale:initScale animated:YES];
+            //获取位置
+            initStartPoint = CGPointMake(0, 0);
+            NSString *paramStartPosition = @"左上角";
+            if ([paramStartPosition isEqualToString:@"左上角"]) {
+                initStartPoint.x = 0;
+                initStartPoint.y = 0;
+            }
+            else if ([paramStartPosition isEqualToString:@"中间上部"]) {
+                if (isLandScape) {//横屏
+                    initStartPoint.x = ([self viewWithTag:kTiledPDFViewTag].frame.size.width - kDrawingScrollViewWidthLandscape)/2;
+                    initStartPoint.y = 0;
+                }
+                else {//竖屏
+                    initStartPoint.x = ([self viewWithTag:kTiledPDFViewTag].frame.size.width - kDrawingScrollViewWidthPortait)/2;
+                    initStartPoint.y = 0;
+                }
+                
+            }
+            else if ([paramStartPosition isEqualToString:@"右上角"]) {
+                if (isLandScape) {//横屏
+                    initStartPoint.x = [self viewWithTag:kTiledPDFViewTag].frame.size.width - kDrawingScrollViewWidthLandscape;//(1024*(1 - (1024/768)/initScale))/2/initScale;
+                    initStartPoint.y = 0;
+                }
+                else {//竖屏
+                    initStartPoint.x = [self viewWithTag:kTiledPDFViewTag].frame.size.width - kDrawingScrollViewWidthPortait;//(self.frame.size.width/2);
+                    initStartPoint.y = 0;
+                }
+                
+            }
+            else if ([paramStartPosition isEqualToString:@"左下角"]) {
+                if (isLandScape) {//横屏
+                    initStartPoint.x = 0 ;
+                    initStartPoint.y = [self viewWithTag:kTiledPDFViewTag].frame.size.height - kDrawingScrollViewHeightLandscape;
+                }
+                else {//竖屏
+                    initStartPoint.x = 0;
+                    initStartPoint.y = [self viewWithTag:kTiledPDFViewTag].frame.size.height - kDrawingScrollViewHeightPortait;
+                }
+            }
+            else if ([paramStartPosition isEqualToString:@"中间底部"]) {
+                if (isLandScape) {//横屏
+                    initStartPoint.x = ([self viewWithTag:kTiledPDFViewTag].frame.size.width - kDrawingScrollViewWidthLandscape)/2;
+                    initStartPoint.y = [self viewWithTag:kTiledPDFViewTag].frame.size.height - kDrawingScrollViewHeightLandscape;
+                }
+                else {//竖屏
+                    initStartPoint.x = ([self viewWithTag:kTiledPDFViewTag].frame.size.width - kDrawingScrollViewWidthPortait)/2;
+                    initStartPoint.y = [self viewWithTag:kTiledPDFViewTag].frame.size.height - kDrawingScrollViewHeightPortait;
+                }
+            }
+            else if ([paramStartPosition isEqualToString:@"右下角"]) {
+                if (isLandScape) {//横屏
+                    initStartPoint.x = [self viewWithTag:kTiledPDFViewTag].frame.size.width - kDrawingScrollViewWidthLandscape;
+                    initStartPoint.y = [self viewWithTag:kTiledPDFViewTag].frame.size.height - kDrawingScrollViewHeightLandscape;
+                }
+                else {//竖屏
+                    initStartPoint.x = [self viewWithTag:kTiledPDFViewTag].frame.size.width - kDrawingScrollViewWidthPortait;
+                    initStartPoint.y = [self viewWithTag:kTiledPDFViewTag].frame.size.height - kDrawingScrollViewHeightPortait;
+                }
+            }
+            [self setContentOffset:initStartPoint animated:YES];
+        }
+    }
+    else {//转入浏览状态
+        //画板缩小，暂时就不缩小了！
+        //[self setZoomScale:1 animated:YES];
+    }
+}
+-(void)touchBegin
+{
+    [self.scrollViewDelegate drawTouchBegin];
+}
+//接受画板穿过来的从下往上划线的响应，并且传递给Controller
+-(void)touchFromBottomToTop
+{
+    [self.scrollViewDelegate drawTouchFromBottomToTop];
+}
+//接受画板传过来的没有可以取消的笔画的命令，然后传递给Controller
+-(void)noneDrawPath
+{
+    [self.scrollViewDelegate noneDrawPath];
+}
+
+//横竖屏转换的时候触发的事件
+-(void)changeOrientation:(UIInterfaceOrientation)toInterfaceOrientation
+{
+    ///*
+    if (toInterfaceOrientation == UIInterfaceOrientationLandscapeRight || toInterfaceOrientation == UIInterfaceOrientationLandscapeLeft) {  //横屏
+        isLandScape = YES;
+        if ([self viewWithTag:kTiledPDFViewTag].frame.size.width < kDrawingScrollViewWidthLandscape) {
+            
+            float scale = kDrawingScrollViewWidthLandscape/[self viewWithTag:kTiledPDFViewTag].frame.size.width;
+            
+            isAutoScale = YES;
+            [self setZoomScale:scale animated:YES];
+            [self setContentOffset:CGPointMake(0, 0)];
+        }
+        tiledFrameRect = CGRectMake(0, 0, kDrawingScrollViewWidthLandscape, kDrawingScrollViewHeightLandscape);//724=768-44
+        self.frame = CGRectMake(kDrawingScrollViewMargin, kDrawingScrollViewTopMargin, kDrawingScrollViewWidthLandscape, kDrawingScrollViewHeightLandscape);
+        
+    }
+    else {//竖屏
+        isLandScape = NO;
+        tiledFrameRect = CGRectMake(0, 0, kDrawingScrollViewWidthPortait, kDrawingScrollViewHeightPortait);//724=768-44
+        self.frame = CGRectMake(kDrawingScrollViewMargin, kDrawingScrollViewTopMargin, kDrawingScrollViewWidthPortait+80, kDrawingScrollViewHeightPortait);
+    }
+//    self.contentSize = [self viewWithTag:kTiledPDFViewTag].frame.size;
+    self.contentSize = self.frame.size;
+}
+
+-(void)didChangeOrientation:(UIInterfaceOrientation)fromInterfaceOrientation //横竖屏转换完触发
+{
+    PaintingView *drawingView = [paintingPages objectForKey:[NSNumber numberWithInt:currentIdx]];
+    if (drawingView) {
+        drawingView.currentBorderX = isLandScape?(kDrawingScrollViewWidthLandscape/pdfScale + self.contentOffset.x/pdfScale - moveMargin):(kDrawingScrollViewWidthPortait/pdfScale + self.contentOffset.x/pdfScale - moveMargin);
+    }
+}
+
+- (PaintingView *)getDrawingView//获取画板
+{
+    PaintingView *drawingView = nil;
+    if ([paintingPages objectForKey:[NSNumber numberWithInt:currentIdx]]) {
+        drawingView = [paintingPages objectForKey:[NSNumber numberWithInt:currentIdx]];
+    }
+    return drawingView;
+}
+
+- (void)flipBackgroundImageView//上下翻转图片
+{
+    if ([self viewWithTag:kTiledPDFViewTag]) {
+        //图片反过来
+        if ([isFlipPages objectForKey:[NSNumber numberWithInt:currentIdx]]) {//已经有值了，之前翻转过了
+            NSNumber *number = [isFlipPages objectForKey:[NSNumber numberWithInt:currentIdx]];
+            if ([number intValue] == kDrawingScrollViewFlip270) {
+                flipAngle = kDrawingScrollViewFlip0;
+            }
+            else {
+                flipAngle = [number intValue] + 1;
+            }
+            [isFlipPages setObject:[NSNumber numberWithInt:flipAngle] forKey:[NSNumber numberWithInt:currentIdx]];
+        }
+        else {//第一次翻转
+            flipAngle = kDrawingScrollViewFlip90;
+            [isFlipPages setObject:[NSNumber numberWithInt:flipAngle] forKey:[NSNumber numberWithInt:currentIdx]];
+        }
+        if ([self viewWithTag:kTiledPDFViewTag]) {
+            [[self viewWithTag:kTiledPDFViewTag] removeFromSuperview];
+        }
+        [self resetCurrentViewsForAllOrientation:NO];
+        timer=[NSTimer scheduledTimerWithTimeInterval: (NSTimeInterval)0.5 target:self selector: @selector(removeOldTiledPDFView) userInfo:nil repeats:NO];
+    }
+}
+- (void)doInMoveMagin//具体做事情
+{
+    PaintingView *drawingView = [paintingPages objectForKey:[NSNumber numberWithInt:currentIdx]];
+    if (drawingView && drawingView.isMoveMargin) {
+        if (isLandScape) {
+            if ((self.contentOffset.x + moveMargin*pdfScale*2) > [self viewWithTag:kTiledPDFViewTag].frame.size.width - kDrawingScrollViewWidthLandscape) {
+                drawingView.currentBorderX = [self viewWithTag:kTiledPDFViewTag].frame.size.width - moveMargin;
+                [UIView beginAnimations:@"" context:nil];
+                [UIView setAnimationDuration:1.0];
+                [UIView setAnimationCurve:UIViewAnimationCurveEaseInOut];
+                [self setContentOffset:CGPointMake([self viewWithTag:kTiledPDFViewTag].frame.size.width - kDrawingScrollViewWidthLandscape,self.contentOffset.y) animated:NO];
+                [UIView commitAnimations];
+                return;
+            }
+        }
+        else {
+            if ((self.contentOffset.x + moveMargin*pdfScale*2) > [self viewWithTag:kTiledPDFViewTag].frame.size.width - kDrawingScrollViewWidthPortait - 45*2) {
+                drawingView.currentBorderX = [self viewWithTag:kTiledPDFViewTag].frame.size.width - moveMargin;
+                [UIView beginAnimations:@"" context:nil];
+                [UIView setAnimationDuration:1.0];
+                [UIView setAnimationCurve:UIViewAnimationCurveEaseInOut];
+                [self setContentOffset:CGPointMake([self viewWithTag:kTiledPDFViewTag].frame.size.width - kDrawingScrollViewWidthPortait - 45*2,self.contentOffset.y) animated:NO];
+                [UIView commitAnimations];
+                return;
+            }
+        }
+        drawingView.currentBorderX = isLandScape?(kDrawingScrollViewWidthLandscape/pdfScale + self.contentOffset.x/pdfScale + moveMargin*2 - moveMargin):(kDrawingScrollViewWidthPortait/pdfScale + self.contentOffset.x/pdfScale + moveMargin*2 - moveMargin);
+        [UIView beginAnimations:@"" context:nil];
+        [UIView setAnimationDuration:1.0];
+        [UIView setAnimationCurve:UIViewAnimationCurveEaseInOut];
+        [self setContentOffset:CGPointMake(self.contentOffset.x + moveMargin*pdfScale*2, self.contentOffset.y) animated:NO];
+        [UIView commitAnimations];
+    }
+}
+- (void)inMoveMargin//进入移动画板区域
+{
+    timer=[NSTimer scheduledTimerWithTimeInterval: (NSTimeInterval)0.2 target:self selector: @selector(doInMoveMagin) userInfo:nil repeats:NO];
+}
+
+- (void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate//拉动内容变化结束
+{
+    PaintingView *drawingView = [paintingPages objectForKey:[NSNumber numberWithInt:currentIdx]];
+    if (drawingView) {
+        drawingView.currentBorderX = isLandScape?(kDrawingScrollViewWidthLandscape/pdfScale + self.contentOffset.x/pdfScale - moveMargin):(kDrawingScrollViewWidthPortait/pdfScale + self.contentOffset.x/pdfScale - moveMargin);
+    }
+}
+
+@end

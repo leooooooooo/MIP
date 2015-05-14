@@ -1,0 +1,327 @@
+//
+//  NetUniformInterface.m
+//  NetUniformInterface
+//
+//  Created by  on 13-1-8.
+//  Copyright (c) 2013年 __MyCompanyName__. All rights reserved.
+//
+
+#import "NetUniformInterface.h"
+
+#import <objc/runtime.h>
+
+@interface NetUniformInterface () {
+    
+    Class               _originalRecvHeaderTargetClass;
+    Class               _originalFinishedTargetClass;
+}
+
+//TODO: 请求完成后的回调方法
+- (void)requestFinishedCallBack:(id)argument error:(NSError *)error;
+
+@end
+
+@implementation NetUniformInterface
+
+//TODO: 设置参数
+- (void)setArgument:(va_list)args arg:(id)arg{
+    
+    if (_argList) {
+        
+        [_argList release];
+        
+        _argList = nil;
+    }
+    
+    if (arg) {
+        
+        _argList = [[NSMutableArray alloc] initWithObjects:arg, nil];
+        
+        while (YES) {
+            
+            id obj = nil;
+            
+            obj = va_arg(args, id);
+            
+            if (!obj ) {
+                
+                break;
+            }
+            
+            [_argList addObject:obj];
+        }
+    }
+}
+
+//TODO: 初始化参数
+- (id)initWithArguments:(va_list)args arg:(id)arg{
+    
+    self = [self init];
+        
+    [self setArgument:args arg:arg];
+    
+    return self;
+}
+
+//TODO: 初始化参数及入口
+- (id)initWithArguments:(va_list)args arg:(id)arg entrance:(SEL)entrance {
+    
+    self = [self initWithArguments:args arg:arg];
+    
+    _entranceMethod = entrance;
+    
+    return self;
+}
+
+//TODO: 初始化自身的一些必要参数
+- (id)initWithArguments:(va_list)args arg:(id)arg target:(id)target callback:(SEL)callback {
+    
+    self = [self init];
+    
+    [self setRequestFinished:target callBack:callback];
+    
+    [self setArgument:args arg:arg];
+    
+    return self;
+}
+
+- (void)dealloc {
+    
+    [_argList release];
+    
+    _entranceMethod     =   NULL;
+    
+    _finishedMethod     =   NULL;
+    _finishedTarget     =   nil;
+    
+    _recvHeaderMethod   =   NULL;
+    _recvHeaderTarget       =   nil;
+    
+    [super dealloc];
+}
+
+
+
+/*!
+ @function	
+ @abstract      网络共通接口同步调用方法
+ 
+ @param         entrance                入口方法
+ @param         args                    文件类中将调用的方法的参数
+ 
+ @result      
+ */
++ (id)executeSynchronous:(SEL)entrance args:(id)arg, ... {
+    
+    id obj = nil;
+    
+    if (entrance) {
+        
+        va_list args;
+        
+        id target;
+
+        va_start(args, arg);
+        
+        target = [[self alloc] initWithArguments:args arg:arg];
+        
+        va_end(args);
+
+        obj = [target performSelector:entrance];
+        
+        [target release];
+    }
+
+    return obj;
+}
+
+
+
+/*!
+ @function	
+ @abstract      网络共通接口异步调用方法
+ 
+ @param         entrance                入口方法
+ @param         callback                返回方法
+ @param         target                  回调方法所在的目标
+ @param         args                    文件类中将调用的方法的参数
+ 
+ @result      
+ */
++ (void)executeAsynchronous:(SEL)entrance callback:(SEL)callback backTarget:(id)target args:(id)arg,... {
+
+    if (entrance) {
+        
+        va_list args;
+            
+        va_start(args, arg);
+        
+        self = [[self alloc] initWithArguments:args arg:arg target:target callback:callback];//此出分析器会查出泄露,不过在回调时可以正确释放,在动态运行时,不存在泄露
+        
+        va_end(args);
+
+        IMP imp = [self methodForSelector:entrance];
+        (*imp)(self, entrance);
+    }
+}
+
+/*!
+ @function	
+ @abstract      设置异步请求时的入口方法
+ 
+ @param         entrance                入口方法
+ @param         args                    入口方法中将调用的方法的参数
+ 
+ @result        自身实例
+ */
++ (id)setExecuteAsynchronous:(SEL)entrance args:(id)arg,... {
+    
+    if (entrance) {
+        
+        va_list args;
+        va_start(args, arg);
+        
+        self = [[self alloc] initWithArguments:args arg:arg entrance:entrance];//此出分析器会查出泄露,不过在回调时可以正确释放,在动态运行时,不存在泄露
+        
+        va_end(args);
+        
+        return self;
+    }
+    else
+        return nil;
+}
+
+
+
+/*!
+ @function   
+ @abstract      设置异步请求时接收到响应头时的回调方法
+ 
+ @param         target                  回调方法所在的目标
+ @param         callback                回调方法
+ 
+ @result      
+ */
+- (void)setReceiveResponseHeaders:(id)target callback:(SEL)callback {
+    
+    _recvHeaderTarget = target;
+    
+    _originalRecvHeaderTargetClass = object_getClass(_recvHeaderTarget);
+    
+    _recvHeaderMethod = callback;
+}
+
+
+
+/*!
+ @function   
+ @abstract      设置异步请求完成时的回调方法
+ 
+ @param         target                  回调方法所在的目标
+ @param         callback                回调方法
+ 
+ @result      
+ */
+- (void)setRequestFinished:(id)target callBack:(SEL)callback {
+    
+    _finishedTarget = target;
+    
+    _originalFinishedTargetClass = object_getClass(_finishedTarget);
+    
+    _finishedMethod = callback;
+}
+
+
+
+/*!
+ @function   
+ @abstract      入口方法开始执行
+ 
+ @result      
+ */
+- (void)executeAsynchronous {
+    
+    IMP imp = [self methodForSelector:_entranceMethod];
+    (*imp)(self, _entranceMethod);
+}
+
+
+
+/*!
+ @function   
+ @abstract      取消接收到http请求头的回调方法
+ 
+ @result      
+ */
+- (void)cancelReceiveResponseHeadersCallback {
+    
+    _recvHeaderTarget = nil;
+    
+    _recvHeaderMethod = NULL;
+}
+
+
+
+/*!
+ @function   
+ @abstract      取消http请求完成的回调方法
+ 
+ @result      
+ */
+- (void)cancelRequestFinishedCallback {
+    
+    _finishedTarget = nil;
+    
+    _finishedMethod = NULL;
+}
+
+
+
+//TODO: 请求完成后的回调方法
+- (void)requestFinishedCallBack:(id)argument error:(NSError *)error{
+    
+    if (_finishedTarget && _originalFinishedTargetClass == object_getClass(_finishedTarget)) {
+        
+        if ([_finishedTarget respondsToSelector:_finishedMethod]) {
+            
+            void (*imp)(id, SEL, id ,NSError*) = (void(*)(id, SEL, id, NSError*))[_finishedTarget methodForSelector:_finishedMethod];
+            
+            (*imp)(_finishedTarget, _finishedMethod, argument, error);
+
+        }
+        
+    }
+    
+    [self release];//回调完成后,释放
+}
+
+
+
+/**************************** 利用ASIHTTPRequest的函数回调  注:可重载 ****************************/
+#pragma mark-
+#pragma mark ASIHTTPRequestDelegate Methods
+- (void)request:(ASIHTTPRequest *)request didReceiveResponseHeaders:(NSDictionary *)responseHeaders {
+    
+    if (_recvHeaderTarget && _originalRecvHeaderTargetClass == object_getClass(_recvHeaderTarget)) {
+    
+        if ([_recvHeaderTarget respondsToSelector:_recvHeaderMethod]) {
+            
+            void (*imp)(id, SEL, NSDictionary*) = (void(*)(id, SEL, NSDictionary*))[_recvHeaderTarget methodForSelector:_recvHeaderMethod];
+            
+            (*imp)(_recvHeaderTarget, _recvHeaderMethod,responseHeaders);
+
+        }
+    }
+}
+
+- (void)requestFinished:(ASIHTTPRequest *)request {
+    
+    [self requestFinishedCallBack:request.responseData error:nil];
+}
+
+- (void)requestFailed:(ASIHTTPRequest *)request {
+    
+    [self requestFinishedCallBack:nil error:request.error];
+}
+
+@end

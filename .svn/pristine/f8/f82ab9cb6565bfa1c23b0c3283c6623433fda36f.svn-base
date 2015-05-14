@@ -1,0 +1,337 @@
+//
+//  NetDataUniformHandle.m
+//  MOA
+//
+//  Created by  on 13-3-8.
+//  Copyright (c) 2013年 __MyCompanyName__. All rights reserved.
+//
+
+#import "NetDataUniformHandle.h"
+
+#import "ZipArchive.h"
+
+#import "NSData+Encrypt.h"
+
+//static NSString *headerSecurityKey  =   @"HOPERUN.COM";
+
+static NSString *bodySecurityKey    =   @"HOPERUN.COM";
+
+@implementation NetDataUniformHandle
+
+//TODO: 封装请求信息
++ (NSDictionary *)netRequestPostDataPackage:(NSDictionary *)bodyValue moduleIdentify:(NSString *)identify {
+    
+    /*NSMutableDictionary *requestDic = [[NSMutableDictionary alloc] initWithCapacity:2];
+    
+    NSMutableDictionary *headDic = [[NSMutableDictionary alloc] initWithCapacity:12];
+    
+    UserInfoEntity *userInfo = [UserInfoEntity shareUserInfo];
+    
+    if (userInfo.deptIdentifier) {
+        
+        [headDic setObject:userInfo.deptIdentifier forKey:@"namespace"];//标识属于哪个一个委办局的系统，发改委、信息中心、物价局、交通局
+    }
+    else
+        [headDic setObject:@"app" forKey:@"namespace"];//如果没有用户部门标识,则判断为是登陆接收,使用app作为标识
+    
+    [headDic setObject:userInfo.openId forKey:@"userID"];//OPENID，服务端需要提供一个根据userID获取用户实体的所有属性的共通方法
+    
+    [headDic setObject:identify forKey:@"bizType"];//标识业务系统，公文流转、信息超市、日常安排、网络传真等
+    
+    [headDic setObject:@"FA759371F3446466EE78001F646E35B1" forKey:@"appId"];//应用id
+    
+    [headDic setObject:@"" forKey:@"retFlag"];//返回值  注:此处应服务端要求加入空字符,否则服务端无法进行反射
+    
+    NSString *deviceId = [[UIDevice currentDevice] performSelector:@selector(uniqueIdentifier)];
+    
+    //将nsstring转化为nsdata
+    NSData *data = [deviceId dataUsingEncoding:NSASCIIStringEncoding];
+    
+    //使用密码对nsdata进行加密
+    NSData *encryptedData = [data AES256EncryptWithKey:headerSecurityKey];
+    
+    NSString *deviceKey = [encryptedData ConvertToNSString];
+    
+    [headDic setObject:deviceKey forKey:@"deviceKey"];//根据ssh加密将“HOPERUN.COM”加密后的字符串，服务端做设备合法性校验        注:目前根据服务端要求,此deviceKey不再作为body的秘钥,目前body秘钥为@"HOPERUN.COM"
+    
+    NSString *localVersion = [[[NSBundle mainBundle] infoDictionary] objectForKey:(NSString *)kCFBundleVersionKey];
+    [headDic setObject:localVersion forKey:@"version"];//四位版本号 1.2.0.3 。第一、二位提示版本更新（强制）。第3、位提示版本更新（可选），最后一位表示二进制版本未更新，但额外的配置文件发生了变更
+    
+    [headDic setObject:@"IPAD" forKey:@"deviceType"];//设备类型，手机、pad
+    [headDic setObject:[[UIDevice currentDevice] systemName] forKey:@"osType"];//系统类型，android、ios
+    [headDic setObject:[[UIDevice currentDevice] systemVersion] forKey:@"osVersion"];//系统版本，1.5\1.6\5.0\5.1.1
+    [headDic setObject:@"1" forKey:@"isDebug"];//是否需要调试 0为不需要，1为需要。
+    [headDic setObject:@"1" forKey:@"isEncrypt"];//是否需要加密，0为不要，1为需要。
+    
+    [requestDic setObject:headDic forKey:@"header"];
+    
+    [headDic release];
+    
+    NSData *bodyData = [NSJSONSerialization dataWithJSONObject:bodyValue options:NSJSONWritingPrettyPrinted error:NULL];
+    
+    NSData *encryBodyData = [bodyData AES256EncryptWithKey:bodySecurityKey];//将body的数据
+    
+    [requestDic setObject:[encryBodyData ConvertToNSString] forKey:@"body"];
+    
+    NSLog(@"%@",requestDic);
+    
+    return [requestDic autorelease];*/
+    
+    return nil;
+    
+}
+
+//TODO: 从返回报文中提取数据体
++ (NSData *)extractDataBodyFromResponsePackage:(NSData *)responseData {
+    
+    //判断是否获取到返回信息
+    if (responseData && [responseData length]) {
+        
+        NSError *error = nil;
+        
+        NSDictionary *dic = [NSJSONSerialization JSONObjectWithData:responseData options:NSJSONReadingAllowFragments error:&error];
+        
+        NSLog(@"dic  %@",dic);
+        
+        //判断解析数据是否正确
+        if (dic && ![dic isEqual:[NSNull null]] && !error) {
+            
+            NSDictionary *headerDic = [dic objectForKey:@"header"];
+            
+            NSInteger retFlag = [[headerDic objectForKey:@"retFlag"] integerValue];
+            
+            if (!retFlag) {
+                
+                NSString *hexString = [dic objectForKey:@"body"];
+                
+                NSData *bodyData = [hexString hexStringToNSData];
+                
+                NSData *decryptData = [bodyData AES256DecryptWithKey:bodySecurityKey];
+                
+                return decryptData;
+            }
+        }  
+    }
+    
+    return nil;
+}
+
+/*!
+ @function   
+ @abstract   如果响应数据是zip包,其中zip中包含文件及data.json文件及其他文件,返回data.json中body的字符串并将其他文件移动到目标文件夹下 并给其他文件重新随机命名
+ @param      responseData       zip包数据
+ @param      path               文件移动的目标文件夹
+ @param      filePath           新文件名内存地址
+ @result      
+ */
++ (NSData *)extractDataBodyFromResponsePackage:(NSData *)responseData destinationPath:(NSString *)path filePath:(NSString **)filePath {
+    
+    NSString *zipPath = [NSHomeDirectory() stringByAppendingFormat:@"/tmp/elibom.zip"];
+    NSString *zipFolder = [zipPath stringByDeletingPathExtension];
+    
+    [responseData writeToFile:zipPath atomically:YES];//将服务端返回的zip包写成文件
+    
+    ZipArchive *zip = [[ZipArchive alloc] init];
+    
+    if ([zip UnzipOpenFile:zipPath]) {
+        
+        [zip UnzipFileTo:zipFolder overWrite:YES];
+        
+        [zip UnzipCloseFile];
+    }
+    
+    [zip release];
+    
+    NSString *dataJson = [zipFolder stringByAppendingPathComponent:@"data.json"];//拼接data.json文件路径
+    NSData *data = [[[NSData alloc] initWithContentsOfFile:dataJson] autorelease];//获取data.json里面的数据
+    
+    NSFileManager *manager = [NSFileManager defaultManager];
+    
+    [manager removeItemAtPath:dataJson error:NULL];//删除data.json文件
+    
+    NSArray *subDir = [manager subpathsOfDirectoryAtPath:zipFolder error:nil];//取出临时文件夹的所有文件名称
+    
+    if (subDir.count > 0) {//只获取第一个文件
+        
+        NSString *subFileName = [subDir objectAtIndex:0];//非data.json文件名 
+        NSString *extension = [subFileName pathExtension];//非data.json文件的后缀名
+        
+        if (extension && extension.length > 0) {
+            
+            //给里面的非data.json文件重新生成名字
+            CFUUIDRef uuidObject = CFUUIDCreate(kCFAllocatorDefault);
+            CFStringRef uuid = CFUUIDCreateString(kCFAllocatorDefault, uuidObject);
+            CFRelease(uuidObject);
+            
+            if (filePath) {
+                
+                *filePath = [(NSString *)uuid stringByAppendingPathExtension:extension];//生成新文件名
+                
+                [manager moveItemAtPath:[zipFolder stringByAppendingPathComponent:subFileName] toPath:[path stringByAppendingPathComponent:*filePath] error:NULL];
+            }
+            
+            CFRelease(uuid);
+        }  
+    }
+    
+    [manager removeItemAtPath:zipFolder error:NULL];//删除解压的临时文件夹
+    
+    [manager removeItemAtPath:zipPath error:NULL];//删除zip包
+    
+    return [self extractDataBodyFromResponsePackage:data];
+}
+
+
+/*!
+ @function
+ @abstract   如果响应数据是zip包,其中zip中包含文件及data.json文件及其他文件,返回data.json中body的字符串并将其他文件移动到目标文件夹下 并给其他文件重新随机命名   注:zip包中只包含data.json文件及令一文件  responseDatae 的编码格式为UTF-8
+ @param      zipPath            zip包路径
+ @param      path               文件移动的目标文件夹
+ @param      filePath           新文件名内存地址
+ @result
+ */
++ (NSData *)extractDataBodyFromZipPackage:(NSString *)zipPath destinationPath:(NSString *)path filePath:(NSString **)filePath {
+    
+    NSString *zipFolder = [zipPath stringByDeletingPathExtension];
+    
+    ZipArchive *zip = [[ZipArchive alloc] init];
+    
+    if ([zip UnzipOpenFile:zipPath]) {
+        
+        [zip UnzipFileTo:zipFolder overWrite:YES];
+        
+        [zip UnzipCloseFile];
+    }
+    
+    [zip release];
+    
+    NSString *dataJson = [zipFolder stringByAppendingPathComponent:@"data.json"];//拼接data.json文件路径
+    NSData *data = [[[NSData alloc] initWithContentsOfFile:dataJson] autorelease];//获取data.json里面的数据
+    
+    NSFileManager *manager = [NSFileManager defaultManager];
+    
+    [manager removeItemAtPath:dataJson error:NULL];//删除data.json文件
+    
+    NSArray *subDir = [manager subpathsOfDirectoryAtPath:zipFolder error:nil];//取出临时文件夹的所有文件名称
+    
+    if (subDir.count > 0) {//只获取第一个文件
+        
+        NSString *subFileName = [subDir objectAtIndex:0];//非data.json文件名
+        NSString *extension = [subFileName pathExtension];//非data.json文件的后缀名
+        
+        if (extension && extension.length > 0) {
+            
+            //给里面的非data.json文件重新生成名字
+            CFUUIDRef uuidObject = CFUUIDCreate(kCFAllocatorDefault);
+            CFStringRef uuid = CFUUIDCreateString(kCFAllocatorDefault, uuidObject);
+            CFRelease(uuidObject);
+            
+            if (filePath) {
+                
+                *filePath = [(NSString *)uuid stringByAppendingPathExtension:extension];//生成新文件名
+                
+                [manager moveItemAtPath:[zipFolder stringByAppendingPathComponent:subFileName] toPath:[path stringByAppendingPathComponent:*filePath] error:NULL];
+            }
+            
+            CFRelease(uuid);
+        }
+    }
+    
+    [manager removeItemAtPath:zipFolder error:NULL];//删除解压的临时文件夹
+    
+    [manager removeItemAtPath:zipPath error:NULL];//删除zip包
+    
+    return [self extractDataBodyFromResponsePackage:data];
+}
+
+/*
++ (NSData *)postDataWithAttach:(NSString *)sourcePath newFileName:(NSString *)newFileName requestDic:(NSDictionary *)requestDic {
+    
+    NSFileManager *manager = [NSFileManager defaultManager];
+    
+    NSString *tempZip = [[NSHomeDirectory() stringByAppendingPathComponent:@"tmp"] stringByAppendingPathComponent:@"tempZip.zip"];
+    NSString *tempJson = [[NSHomeDirectory() stringByAppendingPathComponent:@"tmp"] stringByAppendingPathComponent:@"data.json"];
+    
+    if ([manager fileExistsAtPath:tempZip]) {
+        
+        [manager removeItemAtPath:tempZip error:NULL];
+    }
+    
+    if ([manager fileExistsAtPath:tempJson]) {
+        
+        [manager removeItemAtPath:tempJson error:NULL];
+    }
+    
+    //将json数据写入文件中
+    NSString *json = [requestDic JSONRepresentation];
+    
+    [json writeToFile:tempJson atomically:YES encoding:NSUTF8StringEncoding error:NULL];
+    
+    ZipArchive *zip = [[ZipArchive alloc] init];
+    [zip CreateZipFile2:tempZip];
+    
+    if (sourcePath) {
+        
+        if (newFileName) {
+            
+            [zip addFileToZip:sourcePath newname:newFileName];
+        }
+        else
+            [zip addFileToZip:sourcePath newname:[sourcePath lastPathComponent]];
+    }
+    
+    [zip addFileToZip:tempJson newname:@"data.json"];
+    
+    [zip CloseZipFile2];
+    
+    [zip release];
+    
+    NSData *requestData = [NSData dataWithContentsOfFile:tempZip];
+    
+    [manager removeItemAtPath:tempZip error:NULL];
+    [manager removeItemAtPath:tempJson error:NULL];
+    
+    return requestData;
+}
+*/
+
+@end
+
+
+
+
+@implementation NSData(ToNSString)
+
+-(NSString *)ConvertToNSString {
+    
+    
+	NSMutableString *strTemp = [NSMutableString stringWithCapacity:[self length]*2];
+    
+	const unsigned char *szBuffer = [self bytes];
+    
+	for (NSInteger i=0; i < [self length]; ++i) {
+        
+		[strTemp appendFormat:@"%02lx",(unsigned long)szBuffer[i]];
+        
+	}
+	return [[strTemp retain] autorelease];
+}
+
+@end
+
+@implementation NSString (NSStringHexToBytes)
+
+-(NSData*) hexStringToNSData {
+    NSMutableData* data = [NSMutableData data];
+    int idx;
+    for (idx = 0; idx+2 <= self.length; idx+=2) {
+        NSRange range = NSMakeRange(idx, 2);
+        NSString* hexStr = [self substringWithRange:range];
+        NSScanner* scanner = [NSScanner scannerWithString:hexStr];
+        uint intValue;
+        [scanner scanHexInt:&intValue];
+        [data appendBytes:&intValue length:1];
+    }
+    return data;
+}
+@end

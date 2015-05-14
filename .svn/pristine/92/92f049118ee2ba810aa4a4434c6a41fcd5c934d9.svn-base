@@ -1,0 +1,48 @@
+//
+//  InsetTextField.m
+//  Contacts
+//
+//  Created by lu_sicong on 2014/03/24.
+//  Copyright (c) 2014年 lu_sicong. All rights reserved.
+//
+
+#import "InsetTextField.h"
+
+@implementation InsetTextField
+
+@synthesize inset, clearButtonInset;
+
+- (id)initWithFrame:(CGRect)frame
+{
+    self = [super initWithFrame:frame];
+    if (self) {
+        self.contentVerticalAlignment = UIControlContentVerticalAlignmentCenter;
+    }
+    return self;
+}
+
+//控制placeHolder的位置
+- (CGRect)textRectForBounds:(CGRect)bounds {
+    return CGRectInset(bounds, inset.x, inset.y);
+}
+
+//控制文本的位置
+- (CGRect)editingRectForBounds:(CGRect)bounds {
+    return CGRectInset(bounds, inset.x, inset.y);
+}
+
+//控制文本的位置
+- (CGRect)clearButtonRectForBounds:(CGRect)bounds {
+    return [super clearButtonRectForBounds:CGRectInset(bounds, clearButtonInset.x, clearButtonInset.y)];
+}
+
+/*
+// Only override drawRect: if you perform custom drawing.
+// An empty implementation adversely affects performance during animation.
+- (void)drawRect:(CGRect)rect
+{
+    // Drawing code
+}
+*/
+
+@end

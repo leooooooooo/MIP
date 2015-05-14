@@ -1,0 +1,262 @@
+//
+//  CustomRefreshTableViewController.m
+//  移动办公0.92
+//
+//  Created by  on 13-3-22.
+//  Copyright (c) 2013年 navy. All rights reserved.
+//
+
+#import "CustomRefreshTableViewController.h"
+
+@interface CustomRefreshTableViewController () {
+    
+    BOOL                        _isAutoFooterLoading;
+    
+    UIView                      *_autoFooterloadingView;
+}
+
+- (void)autoFooterLoading;
+
+@end
+
+@implementation CustomRefreshTableViewController
+
+- (id)initWithStyle:(UITableViewStyle)style
+{
+    self = [super initWithStyle:style];
+    if (self) {
+        // Custom initialization
+        
+        _isAllowAutoFooterLoading = NO;
+        _isAutoFooterLoading = NO;
+    }
+    return self;
+}
+
+- (void)didReceiveMemoryWarning
+{
+    // Releases the view if it doesn't have a superview.
+    [super didReceiveMemoryWarning];
+    
+    // Release any cached data, images, etc that aren't in use.
+}
+
+- (void)dealloc
+{
+    _customRefreshControl.delegate = nil;
+    [_customRefreshControl release];
+    
+    [super dealloc];
+}
+
+#pragma mark - View lifecycle
+
+- (void)viewDidLoad
+{
+    [super viewDidLoad];
+    
+    _customRefreshControl = [[CustomRefreshControl alloc] init];
+    
+    UIView *headerView = [_customRefreshControl createHeaderViewWithFrame:CGRectMake(0.0f, -170.0f, self.tableView.frame.size.width, 170.0f)];
+    
+    _customRefreshControl.delegate = self;
+    [self.tableView addSubview:headerView];
+    
+    [_customRefreshControl refreshHeaderLastUpdatedDate];
+    
+    
+    
+    [self createFooterView];
+    
+    // Uncomment the following line to preserve selection between presentations.
+    // self.clearsSelectionOnViewWillAppear = NO;
+    
+    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
+    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+}
+
+- (void)createFooterView {
+    
+    _autoFooterloadingView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.tableView.frame.size.width, self.tableView.rowHeight)];
+    _autoFooterloadingView.backgroundColor = [UIColor colorWithRed:226.0/255.0 green:231.0/255.0 blue:237.0/255.0 alpha:1.0];
+    
+    UILabel *titleLab = [[UILabel alloc] initWithFrame:CGRectMake(70, 35, 570, 30)];
+    titleLab.backgroundColor = [UIColor clearColor];
+    titleLab.center = _autoFooterloadingView.center;
+    titleLab.textAlignment = UITextAlignmentCenter;
+    titleLab.textColor = [UIColor colorWithRed:87.0/255.0 green:108.0/255.0 blue:137.0/255.0 alpha:1.0];
+    titleLab.font = [UIFont boldSystemFontOfSize:18];
+    titleLab.text = @"加载更多数据...";
+    [_autoFooterloadingView addSubview:titleLab];
+    [titleLab release];
+    
+    UIActivityIndicatorView *activityView = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
+    
+    activityView.frame = CGRectMake(170, 40, 20.0f, 20.0f);
+    
+    [_autoFooterloadingView addSubview:activityView];
+    
+    [activityView startAnimating];
+    
+    [activityView release];
+}
+
+- (void)autoFooterLoading {
+    
+    [self performSelector:@selector(doneLoadingAutoFooterTableViewData) withObject:nil afterDelay:2];
+}
+
+- (void)showAutoLoadingFooterView {
+    
+    self.tableView.tableFooterView = _autoFooterloadingView;
+}
+
+- (void)viewDidUnload
+{
+    [super viewDidUnload];
+    // Release any retained subviews of the main view.
+    // e.g. self.myOutlet = nil;
+}
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+}
+
+- (void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
+}
+
+- (void)viewWillDisappear:(BOOL)animated
+{
+    [super viewWillDisappear:animated];
+}
+
+- (void)viewDidDisappear:(BOOL)animated
+{
+    [super viewDidDisappear:animated];
+}
+
+- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
+{
+    // Return YES for supported orientations
+    return (interfaceOrientation == UIInterfaceOrientationPortrait);
+}
+
+#pragma mark - Table view data source
+
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
+{
+    // Return the number of sections.
+    return 1;
+}
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
+    // Return the number of rows in the section.
+    
+    return 20;
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    static NSString *CellIdentifier = @"Cell";
+    
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    if (cell == nil) {
+        cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier] autorelease];
+    }
+    
+    // Configure the cell...
+    
+    return cell;
+}
+
+
+
+#pragma mark - Table view delegate
+
+- (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath {
+    
+    if (_isAllowAutoFooterLoading) {
+        
+        //判断最后一行是否可以在视图上看见，如果可以在视图上看见,则不再进行数据加载,如果该行未能出现在视图上,则进行数据加载
+        
+        NSIndexPath *lastIndexPath = [[tableView indexPathsForVisibleRows] lastObject];
+        
+        if (lastIndexPath) {
+            
+            NSInteger section = [self.tableView numberOfSections] - 1;
+            NSInteger row = [self.tableView numberOfRowsInSection:section] -1;
+            
+            if (section == indexPath.section && row == indexPath.row) {//判断当前行是否为最后一行
+                
+                CGRect rect = [tableView rectForRowAtIndexPath:indexPath];
+                
+                if (rect.origin.y > self.tableView.frame.size.height && rect.origin.y + rect.size.height == self.tableView.contentSize.height) {
+                    
+                    if (!_isAutoFooterLoading) {
+                        
+                        _isAutoFooterLoading = YES;
+                        [self showAutoLoadingFooterView];
+                        [self autoFooterLoading];
+                    }
+                }
+            }
+        }
+    }
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    // Navigation logic may go here. Create and push another view controller.
+    /*
+     <#DetailViewController#> *detailViewController = [[<#DetailViewController#> alloc] initWithNibName:@"<#Nib name#>" bundle:nil];
+     // ...
+     // Pass the selected object to the new view controller.
+     [self.navigationController pushViewController:detailViewController animated:YES];
+     [detailViewController release];
+     */
+}
+
+#pragma mark -
+#pragma mark ScrollView Move Methods
+//scrollView拖拽开始事件
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView{
+	
+	[_customRefreshControl refreshScrollViewDidScroll:scrollView];
+}
+//scrollView拖拽结束事件
+- (void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate{
+    
+    [_customRefreshControl refreshScrollViewDidEndDragging:scrollView];
+}
+
+//下拉更新结束后，调用，用于scrollView复位
+- (void)doneLoadingHeaderTableViewData{
+	
+	[_customRefreshControl refreshScrollViewDataSourceDidFinishedHeaderLoading:self.tableView];
+}
+
+- (void)refreshTableHeaderDidTriggerRefresh:(CustomRefreshControl*)view {
+    //发送刷新请求
+    //    [self performSelector:@selector(doneLoadingHeaderTableViewData) withObject:nil afterDelay:2];
+}
+
+- (NSDate*)refreshTableHeaderDataSourceLastUpdated:(CustomRefreshControl*)view {
+    
+    return [NSDate date];
+}
+
+
+
+//自动加载完毕后,tableView复位
+- (void)doneLoadingAutoFooterTableViewData {
+    
+    self.tableView.tableFooterView = nil;
+    
+    _isAutoFooterLoading = NO;
+}
+
+@end

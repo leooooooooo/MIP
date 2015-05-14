@@ -1,0 +1,160 @@
+//
+//  FoldawaySectionHeaderView.m
+//  MOA
+//
+//  Created by Sea on 13-5-20.
+//
+//
+
+#import "FoldawaySectionHeaderView.h"
+
+@implementation FoldawaySectionHeaderView
+
+@synthesize sectionHeaderDelegate = _sectionHeaderDelegate;
+
+@synthesize isFolded = _isFolded;
+@synthesize section = _section;
+
+@synthesize titleLabel = _titleLabel;
+
+@synthesize accessoryButton = _accessoryButton;
+@synthesize indicatorView = _indicatorView;
+@synthesize backgroundView = _backgroundView;
+@synthesize selectedBackgroundView = _selectedBackgroundView;
+@synthesize badgeLabel = _badgeLabel;
+
+
+- (void)setIsFolded:(BOOL)nIsFolded {
+    
+    _isFolded = nIsFolded;
+    
+    if (_isFolded) {
+
+        [UIView animateWithDuration:0.15 animations:^{
+            _indicatorView.transform = CGAffineTransformMakeRotation(M_PI/2);
+        }];
+    }
+    else {
+        
+        [UIView animateWithDuration:0.15 animations:^{
+            
+            _indicatorView.transform = CGAffineTransformMakeRotation(0);
+        }];
+    }
+}
+
+- (void)setTitleLabel:(UILabel *)nTitleLabel {
+    
+    if (_titleLabel != nTitleLabel) {
+        
+        [_titleLabel release];
+        _titleLabel = [nTitleLabel retain];
+        
+        [self addSubview:nTitleLabel];
+    }
+}
+
+- (void)setIndicatorView:(UIImageView *)nIndicatorView {
+    
+    if (_indicatorView != nIndicatorView) {
+        
+        [_indicatorView release];
+        _indicatorView = [nIndicatorView retain];
+        
+        [self addSubview:nIndicatorView];
+    }
+}
+
+- (void)setBackgroundView:(UIImageView *)nBackgroundView {
+    
+    if (_backgroundView != nBackgroundView) {
+        
+        [_backgroundView release];
+        _backgroundView = [nBackgroundView retain];
+        
+        [self insertSubview:nBackgroundView atIndex:0];
+    }
+    
+}
+
+- (void)setBadgeLabel:(UILabel *)nBadgeLabel {
+    
+    if (_badgeLabel != nBadgeLabel) {
+        
+        [_badgeLabel release];
+        _badgeLabel = [nBadgeLabel retain];
+        
+        [self addSubview:nBadgeLabel];
+    }
+}
+
+
+- (id)initWithFrame:(CGRect)frame 
+{
+    self = [super initWithFrame:frame];
+    if (self) {
+        // Initialization code
+        
+        UITapGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(sectionHeaderClicked)];
+        
+        [self addGestureRecognizer:tapGesture];
+        
+        [tapGesture release];
+        
+        _isFolded = NO;
+        
+    }
+    return self;
+}
+
+- (id)initWithFrame:(CGRect)frame section:(NSInteger)section {
+    
+    self = [self initWithFrame:frame];
+    
+    _section = section;
+    
+    return self;
+}
+
+- (void)dealloc {
+    
+    self.sectionHeaderDelegate = nil;
+    
+    self.titleLabel         = nil;
+    
+    self.accessoryButton    = nil;
+    self.indicatorView      = nil;
+    self.backgroundView     = nil;
+    self.selectedBackgroundView = nil;
+    self.badgeLabel         = nil;
+    
+    [super dealloc];
+}
+
+
+// Only override drawRect: if you perform custom drawing.
+// An empty implementation adversely affects performance during animation.
+- (void)drawRect:(CGRect)rect
+{
+    // Drawing code
+}
+
+- (void)sectionHeaderClicked {
+    
+    if (_isFolded) {
+        
+        self.isFolded = NO;
+    }
+    else {
+        
+        self.isFolded = YES;
+    }
+    
+    if ([_sectionHeaderDelegate respondsToSelector:@selector(foldawaySectionHeaderViewClicked:section:target:)]) {
+        
+        [_sectionHeaderDelegate foldawaySectionHeaderViewClicked:_isFolded section:_section target:self];
+    }
+}
+
+
+@end

@@ -1,0 +1,24 @@
+//
+//  UIView+Alert.m
+//  Sandglass
+//
+//  Created by wang_hao on 13-12-10.
+//
+//
+
+#import "UIView+Alert.h"
+#import "CustomAlertController.h"
+
+@implementation UIView (Alert)
+
+- (void)addButton:(UIButton *)button{
+    [button addTarget:self action:@selector(buttonClick:) forControlEvents:UIControlEventTouchUpInside];
+    [self addSubview:button];
+}
+
+- (void)buttonClick:(id)sender {
+    
+    [self.alertController hide];
+}
+
+@end

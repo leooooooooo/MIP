@@ -1,0 +1,596 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		48D6D45518ED0A9300F72A62 /* BusinessNetRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 48D6D45418ED0A9300F72A62 /* BusinessNetRequest.m */; };
+		48D6D45818ED507000F72A62 /* BusinessProcessButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 48D6D45718ED507000F72A62 /* BusinessProcessButton.m */; };
+		48D6D45B18ED604000F72A62 /* ShipInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 48D6D45A18ED604000F72A62 /* ShipInfo.m */; };
+		48D921DF18F3DF96009DA72A /* CustomListBox.m in Sources */ = {isa = PBXBuildFile; fileRef = 48D921DE18F3DF96009DA72A /* CustomListBox.m */; };
+		48DF77BA18EC017E0039C498 /* BusinessLevelTwoCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 48DF77B918EC017E0039C498 /* BusinessLevelTwoCell.m */; };
+		48DF77C018EC2E340039C498 /* BusinessType.m in Sources */ = {isa = PBXBuildFile; fileRef = 48DF77BF18EC2E340039C498 /* BusinessType.m */; };
+		48E28EEC193576C500B030F8 /* TimeButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 48E28EEB193576C500B030F8 /* TimeButton.m */; };
+		48E28EEF1935789E00B030F8 /* AlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = 48E28EEE1935789E00B030F8 /* AlertView.m */; };
+		48E28EF219357A1F00B030F8 /* BusinessCheckBox.m in Sources */ = {isa = PBXBuildFile; fileRef = 48E28EF119357A1F00B030F8 /* BusinessCheckBox.m */; };
+		48E28EF71935ABCD00B030F8 /* UnberthingProcessView.m in Sources */ = {isa = PBXBuildFile; fileRef = 48E28EF41935ABCD00B030F8 /* UnberthingProcessView.m */; };
+		48E28EF81935ABCD00B030F8 /* UnberthingProcessViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 48E28EF61935ABCD00B030F8 /* UnberthingProcessViewController.m */; };
+		48E694F518F4DD8300AB4502 /* ShipDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 48E694F418F4DD8300AB4502 /* ShipDetailViewController.m */; };
+		48E694F818F4DDCE00AB4502 /* ShipDetailView.m in Sources */ = {isa = PBXBuildFile; fileRef = 48E694F718F4DDCE00AB4502 /* ShipDetailView.m */; };
+		48E694FE18F51EA500AB4502 /* BerthList.m in Sources */ = {isa = PBXBuildFile; fileRef = 48E694FD18F51EA500AB4502 /* BerthList.m */; };
+		48E6950118F51EA500AB4502 /* BerthPosList.m in Sources */ = {isa = PBXBuildFile; fileRef = 48E6950018F51EA500AB4502 /* BerthPosList.m */; };
+		48F99B2B18EE9DCA00D92DE1 /* BerthingProcessView.m in Sources */ = {isa = PBXBuildFile; fileRef = 48F99B2218EE9DCA00D92DE1 /* BerthingProcessView.m */; };
+		48F99B2C18EE9DCA00D92DE1 /* BerthingProcessViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 48F99B2418EE9DCA00D92DE1 /* BerthingProcessViewController.m */; };
+		48F99B2D18EE9DCA00D92DE1 /* JobProcessView.m in Sources */ = {isa = PBXBuildFile; fileRef = 48F99B2618EE9DCA00D92DE1 /* JobProcessView.m */; };
+		48F99B2E18EE9DCA00D92DE1 /* JobProcessViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 48F99B2818EE9DCA00D92DE1 /* JobProcessViewController.m */; };
+		48F99B2F18EE9DCA00D92DE1 /* ProcessBaseView.m in Sources */ = {isa = PBXBuildFile; fileRef = 48F99B2A18EE9DCA00D92DE1 /* ProcessBaseView.m */; };
+		48F99B3218EEAEFC00D92DE1 /* ProcessBaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 48F99B3118EEAEFC00D92DE1 /* ProcessBaseViewController.m */; };
+		48FAB07418EAAFD300DE539C /* BusinessDataParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 48FAB07318EAAFD300DE539C /* BusinessDataParser.m */; };
+		48FAB07918EABA3F00DE539C /* BusinessLevelOneCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 48FAB07818EABA3F00DE539C /* BusinessLevelOneCell.m */; };
+		C2505A4A192F2B87008CFAB8 /* BusinessDatePickerView.m in Sources */ = {isa = PBXBuildFile; fileRef = C2505A45192F2B87008CFAB8 /* BusinessDatePickerView.m */; };
+		C2505A4B192F2B87008CFAB8 /* OutwardProcessView.m in Sources */ = {isa = PBXBuildFile; fileRef = C2505A47192F2B87008CFAB8 /* OutwardProcessView.m */; };
+		C2505A4C192F2B87008CFAB8 /* OutwardProcessViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C2505A49192F2B87008CFAB8 /* OutwardProcessViewController.m */; };
+		C278E1C1190E3B9600B8068C /* JobCompany.m in Sources */ = {isa = PBXBuildFile; fileRef = C278E1BE190E3B9600B8068C /* JobCompany.m */; };
+		C278E1C2190E3B9600B8068C /* LargeCommission.m in Sources */ = {isa = PBXBuildFile; fileRef = C278E1C0190E3B9600B8068C /* LargeCommission.m */; };
+		C278E1C5190E3BA600B8068C /* PopListTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C278E1C4190E3BA600B8068C /* PopListTableViewController.m */; };
+		D250B4A018D2EE0900DAB0E1 /* BusinessProcessItem.m in Sources */ = {isa = PBXBuildFile; fileRef = D250B49F18D2EE0900DAB0E1 /* BusinessProcessItem.m */; };
+		D250B4A318D2EE0900DAB0E1 /* BusinessProcessCategory.m in Sources */ = {isa = PBXBuildFile; fileRef = D250B4A218D2EE0900DAB0E1 /* BusinessProcessCategory.m */; };
+		D297663D18D02BFD00C79A7E /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D297663C18D02BFD00C79A7E /* Foundation.framework */; };
+		D297667818D0302000C79A7E /* BusinessProcessLevelOneView.m in Sources */ = {isa = PBXBuildFile; fileRef = D297667718D0302000C79A7E /* BusinessProcessLevelOneView.m */; };
+		D297667B18D0304400C79A7E /* BusinessProcessLevelTwoView.m in Sources */ = {isa = PBXBuildFile; fileRef = D297667A18D0304400C79A7E /* BusinessProcessLevelTwoView.m */; };
+		D297667E18D0313900C79A7E /* BusinessProcessLevelOneTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D297667D18D0313900C79A7E /* BusinessProcessLevelOneTableViewController.m */; };
+		D297668118D0314E00C79A7E /* BusinessProcessLevelTwoTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D297668018D0314E00C79A7E /* BusinessProcessLevelTwoTableViewController.m */; };
+		D297668418D0317A00C79A7E /* BusinessProcessLevelOneViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D297668318D0317A00C79A7E /* BusinessProcessLevelOneViewController.m */; };
+		D297668718D0318900C79A7E /* BusinessProcessLevelTwoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D297668618D0318900C79A7E /* BusinessProcessLevelTwoViewController.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		D297663718D02BFD00C79A7E /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "include/$(PRODUCT_NAME)";
+			dstSubfolderSpec = 16;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		48D6D45318ED0A9300F72A62 /* BusinessNetRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BusinessNetRequest.h; sourceTree = "<group>"; };
+		48D6D45418ED0A9300F72A62 /* BusinessNetRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BusinessNetRequest.m; sourceTree = "<group>"; };
+		48D6D45618ED507000F72A62 /* BusinessProcessButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BusinessProcessButton.h; sourceTree = "<group>"; };
+		48D6D45718ED507000F72A62 /* BusinessProcessButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BusinessProcessButton.m; sourceTree = "<group>"; };
+		48D6D45918ED604000F72A62 /* ShipInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShipInfo.h; sourceTree = "<group>"; };
+		48D6D45A18ED604000F72A62 /* ShipInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShipInfo.m; sourceTree = "<group>"; };
+		48D921DD18F3DF95009DA72A /* CustomListBox.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomListBox.h; sourceTree = "<group>"; };
+		48D921DE18F3DF96009DA72A /* CustomListBox.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomListBox.m; sourceTree = "<group>"; };
+		48DF77B818EC017E0039C498 /* BusinessLevelTwoCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BusinessLevelTwoCell.h; sourceTree = "<group>"; };
+		48DF77B918EC017E0039C498 /* BusinessLevelTwoCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BusinessLevelTwoCell.m; sourceTree = "<group>"; };
+		48DF77BE18EC2E340039C498 /* BusinessType.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BusinessType.h; sourceTree = "<group>"; };
+		48DF77BF18EC2E340039C498 /* BusinessType.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BusinessType.m; sourceTree = "<group>"; };
+		48E28EEA193576C500B030F8 /* TimeButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TimeButton.h; sourceTree = "<group>"; };
+		48E28EEB193576C500B030F8 /* TimeButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TimeButton.m; sourceTree = "<group>"; };
+		48E28EED1935789E00B030F8 /* AlertView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AlertView.h; sourceTree = "<group>"; };
+		48E28EEE1935789E00B030F8 /* AlertView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AlertView.m; sourceTree = "<group>"; };
+		48E28EF019357A1F00B030F8 /* BusinessCheckBox.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BusinessCheckBox.h; sourceTree = "<group>"; };
+		48E28EF119357A1F00B030F8 /* BusinessCheckBox.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BusinessCheckBox.m; sourceTree = "<group>"; };
+		48E28EF31935ABCD00B030F8 /* UnberthingProcessView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UnberthingProcessView.h; sourceTree = "<group>"; };
+		48E28EF41935ABCD00B030F8 /* UnberthingProcessView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UnberthingProcessView.m; sourceTree = "<group>"; };
+		48E28EF51935ABCD00B030F8 /* UnberthingProcessViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UnberthingProcessViewController.h; sourceTree = "<group>"; };
+		48E28EF61935ABCD00B030F8 /* UnberthingProcessViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UnberthingProcessViewController.m; sourceTree = "<group>"; };
+		48E694F318F4DD8300AB4502 /* ShipDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShipDetailViewController.h; sourceTree = "<group>"; };
+		48E694F418F4DD8300AB4502 /* ShipDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShipDetailViewController.m; sourceTree = "<group>"; };
+		48E694F618F4DDCE00AB4502 /* ShipDetailView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShipDetailView.h; sourceTree = "<group>"; };
+		48E694F718F4DDCE00AB4502 /* ShipDetailView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShipDetailView.m; sourceTree = "<group>"; };
+		48E694FC18F51EA500AB4502 /* BerthList.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BerthList.h; sourceTree = "<group>"; };
+		48E694FD18F51EA500AB4502 /* BerthList.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BerthList.m; sourceTree = "<group>"; };
+		48E694FF18F51EA500AB4502 /* BerthPosList.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BerthPosList.h; sourceTree = "<group>"; };
+		48E6950018F51EA500AB4502 /* BerthPosList.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BerthPosList.m; sourceTree = "<group>"; };
+		48F99B0F18EE887F00D92DE1 /* BusinessDefine.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BusinessDefine.h; sourceTree = "<group>"; };
+		48F99B2118EE9DCA00D92DE1 /* BerthingProcessView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BerthingProcessView.h; sourceTree = "<group>"; };
+		48F99B2218EE9DCA00D92DE1 /* BerthingProcessView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BerthingProcessView.m; sourceTree = "<group>"; };
+		48F99B2318EE9DCA00D92DE1 /* BerthingProcessViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BerthingProcessViewController.h; sourceTree = "<group>"; };
+		48F99B2418EE9DCA00D92DE1 /* BerthingProcessViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BerthingProcessViewController.m; sourceTree = "<group>"; };
+		48F99B2518EE9DCA00D92DE1 /* JobProcessView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JobProcessView.h; sourceTree = "<group>"; };
+		48F99B2618EE9DCA00D92DE1 /* JobProcessView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JobProcessView.m; sourceTree = "<group>"; };
+		48F99B2718EE9DCA00D92DE1 /* JobProcessViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JobProcessViewController.h; sourceTree = "<group>"; };
+		48F99B2818EE9DCA00D92DE1 /* JobProcessViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JobProcessViewController.m; sourceTree = "<group>"; };
+		48F99B2918EE9DCA00D92DE1 /* ProcessBaseView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProcessBaseView.h; sourceTree = "<group>"; };
+		48F99B2A18EE9DCA00D92DE1 /* ProcessBaseView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProcessBaseView.m; sourceTree = "<group>"; };
+		48F99B3018EEAEFB00D92DE1 /* ProcessBaseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProcessBaseViewController.h; sourceTree = "<group>"; };
+		48F99B3118EEAEFC00D92DE1 /* ProcessBaseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProcessBaseViewController.m; sourceTree = "<group>"; };
+		48FAB07218EAAFD300DE539C /* BusinessDataParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BusinessDataParser.h; sourceTree = "<group>"; };
+		48FAB07318EAAFD300DE539C /* BusinessDataParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BusinessDataParser.m; sourceTree = "<group>"; };
+		48FAB07718EABA3F00DE539C /* BusinessLevelOneCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BusinessLevelOneCell.h; sourceTree = "<group>"; };
+		48FAB07818EABA3F00DE539C /* BusinessLevelOneCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BusinessLevelOneCell.m; sourceTree = "<group>"; };
+		C2505A44192F2B87008CFAB8 /* BusinessDatePickerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BusinessDatePickerView.h; sourceTree = "<group>"; };
+		C2505A45192F2B87008CFAB8 /* BusinessDatePickerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BusinessDatePickerView.m; sourceTree = "<group>"; };
+		C2505A46192F2B87008CFAB8 /* OutwardProcessView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OutwardProcessView.h; sourceTree = "<group>"; };
+		C2505A47192F2B87008CFAB8 /* OutwardProcessView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OutwardProcessView.m; sourceTree = "<group>"; };
+		C2505A48192F2B87008CFAB8 /* OutwardProcessViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OutwardProcessViewController.h; sourceTree = "<group>"; };
+		C2505A49192F2B87008CFAB8 /* OutwardProcessViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OutwardProcessViewController.m; sourceTree = "<group>"; };
+		C278E1BD190E3B9600B8068C /* JobCompany.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JobCompany.h; sourceTree = "<group>"; };
+		C278E1BE190E3B9600B8068C /* JobCompany.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JobCompany.m; sourceTree = "<group>"; };
+		C278E1BF190E3B9600B8068C /* LargeCommission.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LargeCommission.h; sourceTree = "<group>"; };
+		C278E1C0190E3B9600B8068C /* LargeCommission.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LargeCommission.m; sourceTree = "<group>"; };
+		C278E1C3190E3BA600B8068C /* PopListTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PopListTableViewController.h; sourceTree = "<group>"; };
+		C278E1C4190E3BA600B8068C /* PopListTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PopListTableViewController.m; sourceTree = "<group>"; };
+		D250B49E18D2EE0900DAB0E1 /* BusinessProcessItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BusinessProcessItem.h; sourceTree = "<group>"; };
+		D250B49F18D2EE0900DAB0E1 /* BusinessProcessItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BusinessProcessItem.m; sourceTree = "<group>"; };
+		D250B4A118D2EE0900DAB0E1 /* BusinessProcessCategory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BusinessProcessCategory.h; sourceTree = "<group>"; };
+		D250B4A218D2EE0900DAB0E1 /* BusinessProcessCategory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BusinessProcessCategory.m; sourceTree = "<group>"; };
+		D297663918D02BFD00C79A7E /* libBusinessProcess.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libBusinessProcess.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		D297663C18D02BFD00C79A7E /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		D297664018D02BFD00C79A7E /* BusinessProcess-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "BusinessProcess-Prefix.pch"; sourceTree = "<group>"; };
+		D297664D18D02BFD00C79A7E /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = Library/Frameworks/UIKit.framework; sourceTree = DEVELOPER_DIR; };
+		D297667218D02D4100C79A7E /* BusinessProcess.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = BusinessProcess.bundle; sourceTree = "<group>"; };
+		D297667618D0302000C79A7E /* BusinessProcessLevelOneView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BusinessProcessLevelOneView.h; sourceTree = "<group>"; };
+		D297667718D0302000C79A7E /* BusinessProcessLevelOneView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BusinessProcessLevelOneView.m; sourceTree = "<group>"; };
+		D297667918D0304400C79A7E /* BusinessProcessLevelTwoView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BusinessProcessLevelTwoView.h; sourceTree = "<group>"; };
+		D297667A18D0304400C79A7E /* BusinessProcessLevelTwoView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BusinessProcessLevelTwoView.m; sourceTree = "<group>"; };
+		D297667C18D0313900C79A7E /* BusinessProcessLevelOneTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BusinessProcessLevelOneTableViewController.h; sourceTree = "<group>"; };
+		D297667D18D0313900C79A7E /* BusinessProcessLevelOneTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BusinessProcessLevelOneTableViewController.m; sourceTree = "<group>"; };
+		D297667F18D0314E00C79A7E /* BusinessProcessLevelTwoTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BusinessProcessLevelTwoTableViewController.h; sourceTree = "<group>"; };
+		D297668018D0314E00C79A7E /* BusinessProcessLevelTwoTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BusinessProcessLevelTwoTableViewController.m; sourceTree = "<group>"; };
+		D297668218D0317A00C79A7E /* BusinessProcessLevelOneViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BusinessProcessLevelOneViewController.h; sourceTree = "<group>"; };
+		D297668318D0317A00C79A7E /* BusinessProcessLevelOneViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BusinessProcessLevelOneViewController.m; sourceTree = "<group>"; };
+		D297668518D0318900C79A7E /* BusinessProcessLevelTwoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BusinessProcessLevelTwoViewController.h; sourceTree = "<group>"; };
+		D297668618D0318900C79A7E /* BusinessProcessLevelTwoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BusinessProcessLevelTwoViewController.m; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		D297663618D02BFD00C79A7E /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D297663D18D02BFD00C79A7E /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		48F99B2018EE9DCA00D92DE1 /* Process */ = {
+			isa = PBXGroup;
+			children = (
+				48F99B2918EE9DCA00D92DE1 /* ProcessBaseView.h */,
+				48F99B2A18EE9DCA00D92DE1 /* ProcessBaseView.m */,
+				48F99B3018EEAEFB00D92DE1 /* ProcessBaseViewController.h */,
+				48F99B3118EEAEFC00D92DE1 /* ProcessBaseViewController.m */,
+				48F99B2118EE9DCA00D92DE1 /* BerthingProcessView.h */,
+				48F99B2218EE9DCA00D92DE1 /* BerthingProcessView.m */,
+				48F99B2318EE9DCA00D92DE1 /* BerthingProcessViewController.h */,
+				48F99B2418EE9DCA00D92DE1 /* BerthingProcessViewController.m */,
+				48F99B2518EE9DCA00D92DE1 /* JobProcessView.h */,
+				48F99B2618EE9DCA00D92DE1 /* JobProcessView.m */,
+				48F99B2718EE9DCA00D92DE1 /* JobProcessViewController.h */,
+				48F99B2818EE9DCA00D92DE1 /* JobProcessViewController.m */,
+				48E694F618F4DDCE00AB4502 /* ShipDetailView.h */,
+				48E694F718F4DDCE00AB4502 /* ShipDetailView.m */,
+				48E694F318F4DD8300AB4502 /* ShipDetailViewController.h */,
+				48E694F418F4DD8300AB4502 /* ShipDetailViewController.m */,
+				C2505A46192F2B87008CFAB8 /* OutwardProcessView.h */,
+				C2505A47192F2B87008CFAB8 /* OutwardProcessView.m */,
+				C2505A48192F2B87008CFAB8 /* OutwardProcessViewController.h */,
+				C2505A49192F2B87008CFAB8 /* OutwardProcessViewController.m */,
+				48E28EF31935ABCD00B030F8 /* UnberthingProcessView.h */,
+				48E28EF41935ABCD00B030F8 /* UnberthingProcessView.m */,
+				48E28EF51935ABCD00B030F8 /* UnberthingProcessViewController.h */,
+				48E28EF61935ABCD00B030F8 /* UnberthingProcessViewController.m */,
+				C2505A44192F2B87008CFAB8 /* BusinessDatePickerView.h */,
+				C2505A45192F2B87008CFAB8 /* BusinessDatePickerView.m */,
+			);
+			path = Process;
+			sourceTree = "<group>";
+		};
+		48FAB07618EABA1300DE539C /* CustomUI */ = {
+			isa = PBXGroup;
+			children = (
+				48E28EED1935789E00B030F8 /* AlertView.h */,
+				48E28EEE1935789E00B030F8 /* AlertView.m */,
+				48E28EF019357A1F00B030F8 /* BusinessCheckBox.h */,
+				48E28EF119357A1F00B030F8 /* BusinessCheckBox.m */,
+				48FAB07718EABA3F00DE539C /* BusinessLevelOneCell.h */,
+				48FAB07818EABA3F00DE539C /* BusinessLevelOneCell.m */,
+				48DF77B818EC017E0039C498 /* BusinessLevelTwoCell.h */,
+				48DF77B918EC017E0039C498 /* BusinessLevelTwoCell.m */,
+				48D6D45618ED507000F72A62 /* BusinessProcessButton.h */,
+				48D6D45718ED507000F72A62 /* BusinessProcessButton.m */,
+				48D921DD18F3DF95009DA72A /* CustomListBox.h */,
+				48D921DE18F3DF96009DA72A /* CustomListBox.m */,
+				C278E1C3190E3BA600B8068C /* PopListTableViewController.h */,
+				C278E1C4190E3BA600B8068C /* PopListTableViewController.m */,
+				48E28EEA193576C500B030F8 /* TimeButton.h */,
+				48E28EEB193576C500B030F8 /* TimeButton.m */,
+			);
+			path = CustomUI;
+			sourceTree = "<group>";
+		};
+		D297663018D02BFD00C79A7E = {
+			isa = PBXGroup;
+			children = (
+				D297663E18D02BFD00C79A7E /* BusinessProcess */,
+				D297663F18D02BFD00C79A7E /* Supporting Files */,
+				D297663B18D02BFD00C79A7E /* Frameworks */,
+				D297663A18D02BFD00C79A7E /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		D297663A18D02BFD00C79A7E /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				D297663918D02BFD00C79A7E /* libBusinessProcess.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		D297663B18D02BFD00C79A7E /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				D297663C18D02BFD00C79A7E /* Foundation.framework */,
+				D297664D18D02BFD00C79A7E /* UIKit.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		D297663E18D02BFD00C79A7E /* BusinessProcess */ = {
+			isa = PBXGroup;
+			children = (
+				D297666B18D02D4100C79A7E /* BLL */,
+				D297666C18D02D4100C79A7E /* DAL */,
+				D297666D18D02D4100C79A7E /* DataHandle */,
+				D297666E18D02D4100C79A7E /* DataParser */,
+				D297666F18D02D4100C79A7E /* Entity */,
+				D297667018D02D4100C79A7E /* NetRequest */,
+				D297667118D02D4100C79A7E /* Resource */,
+				D297667318D02D4100C79A7E /* UI */,
+			);
+			path = BusinessProcess;
+			sourceTree = "<group>";
+		};
+		D297663F18D02BFD00C79A7E /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				D297664018D02BFD00C79A7E /* BusinessProcess-Prefix.pch */,
+			);
+			name = "Supporting Files";
+			path = BusinessProcess;
+			sourceTree = "<group>";
+		};
+		D297666B18D02D4100C79A7E /* BLL */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = BLL;
+			sourceTree = "<group>";
+		};
+		D297666C18D02D4100C79A7E /* DAL */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = DAL;
+			sourceTree = "<group>";
+		};
+		D297666D18D02D4100C79A7E /* DataHandle */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = DataHandle;
+			sourceTree = "<group>";
+		};
+		D297666E18D02D4100C79A7E /* DataParser */ = {
+			isa = PBXGroup;
+			children = (
+				48FAB07218EAAFD300DE539C /* BusinessDataParser.h */,
+				48FAB07318EAAFD300DE539C /* BusinessDataParser.m */,
+			);
+			path = DataParser;
+			sourceTree = "<group>";
+		};
+		D297666F18D02D4100C79A7E /* Entity */ = {
+			isa = PBXGroup;
+			children = (
+				C278E1BD190E3B9600B8068C /* JobCompany.h */,
+				C278E1BE190E3B9600B8068C /* JobCompany.m */,
+				C278E1BF190E3B9600B8068C /* LargeCommission.h */,
+				C278E1C0190E3B9600B8068C /* LargeCommission.m */,
+				D250B4A118D2EE0900DAB0E1 /* BusinessProcessCategory.h */,
+				D250B4A218D2EE0900DAB0E1 /* BusinessProcessCategory.m */,
+				D250B49E18D2EE0900DAB0E1 /* BusinessProcessItem.h */,
+				D250B49F18D2EE0900DAB0E1 /* BusinessProcessItem.m */,
+				48DF77BE18EC2E340039C498 /* BusinessType.h */,
+				48DF77BF18EC2E340039C498 /* BusinessType.m */,
+				48D6D45918ED604000F72A62 /* ShipInfo.h */,
+				48D6D45A18ED604000F72A62 /* ShipInfo.m */,
+				48E694FF18F51EA500AB4502 /* BerthPosList.h */,
+				48E6950018F51EA500AB4502 /* BerthPosList.m */,
+				48E694FC18F51EA500AB4502 /* BerthList.h */,
+				48E694FD18F51EA500AB4502 /* BerthList.m */,
+			);
+			path = Entity;
+			sourceTree = "<group>";
+		};
+		D297667018D02D4100C79A7E /* NetRequest */ = {
+			isa = PBXGroup;
+			children = (
+				48D6D45318ED0A9300F72A62 /* BusinessNetRequest.h */,
+				48D6D45418ED0A9300F72A62 /* BusinessNetRequest.m */,
+			);
+			path = NetRequest;
+			sourceTree = "<group>";
+		};
+		D297667118D02D4100C79A7E /* Resource */ = {
+			isa = PBXGroup;
+			children = (
+				D297667218D02D4100C79A7E /* BusinessProcess.bundle */,
+			);
+			path = Resource;
+			sourceTree = "<group>";
+		};
+		D297667318D02D4100C79A7E /* UI */ = {
+			isa = PBXGroup;
+			children = (
+				48FAB07618EABA1300DE539C /* CustomUI */,
+				D297667418D02D4100C79A7E /* LevelOne */,
+				D297667518D02D4100C79A7E /* LevelTwo */,
+				48F99B2018EE9DCA00D92DE1 /* Process */,
+			);
+			path = UI;
+			sourceTree = "<group>";
+		};
+		D297667418D02D4100C79A7E /* LevelOne */ = {
+			isa = PBXGroup;
+			children = (
+				D297667618D0302000C79A7E /* BusinessProcessLevelOneView.h */,
+				D297667718D0302000C79A7E /* BusinessProcessLevelOneView.m */,
+				D297667C18D0313900C79A7E /* BusinessProcessLevelOneTableViewController.h */,
+				D297667D18D0313900C79A7E /* BusinessProcessLevelOneTableViewController.m */,
+				D297668218D0317A00C79A7E /* BusinessProcessLevelOneViewController.h */,
+				D297668318D0317A00C79A7E /* BusinessProcessLevelOneViewController.m */,
+			);
+			path = LevelOne;
+			sourceTree = "<group>";
+		};
+		D297667518D02D4100C79A7E /* LevelTwo */ = {
+			isa = PBXGroup;
+			children = (
+				48F99B0F18EE887F00D92DE1 /* BusinessDefine.h */,
+				D297667918D0304400C79A7E /* BusinessProcessLevelTwoView.h */,
+				D297667A18D0304400C79A7E /* BusinessProcessLevelTwoView.m */,
+				D297667F18D0314E00C79A7E /* BusinessProcessLevelTwoTableViewController.h */,
+				D297668018D0314E00C79A7E /* BusinessProcessLevelTwoTableViewController.m */,
+				D297668518D0318900C79A7E /* BusinessProcessLevelTwoViewController.h */,
+				D297668618D0318900C79A7E /* BusinessProcessLevelTwoViewController.m */,
+			);
+			path = LevelTwo;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		D297663818D02BFD00C79A7E /* BusinessProcess */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = D297665C18D02BFD00C79A7E /* Build configuration list for PBXNativeTarget "BusinessProcess" */;
+			buildPhases = (
+				D297663518D02BFD00C79A7E /* Sources */,
+				D297663618D02BFD00C79A7E /* Frameworks */,
+				D297663718D02BFD00C79A7E /* CopyFiles */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = BusinessProcess;
+			productName = BusinessProcess;
+			productReference = D297663918D02BFD00C79A7E /* libBusinessProcess.a */;
+			productType = "com.apple.product-type.library.static";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		D297663118D02BFD00C79A7E /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0500;
+				ORGANIZATIONNAME = wanghao;
+			};
+			buildConfigurationList = D297663418D02BFD00C79A7E /* Build configuration list for PBXProject "BusinessProcess" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = D297663018D02BFD00C79A7E;
+			productRefGroup = D297663A18D02BFD00C79A7E /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				D297663818D02BFD00C79A7E /* BusinessProcess */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXSourcesBuildPhase section */
+		D297663518D02BFD00C79A7E /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				48FAB07918EABA3F00DE539C /* BusinessLevelOneCell.m in Sources */,
+				48E28EF81935ABCD00B030F8 /* UnberthingProcessViewController.m in Sources */,
+				D297667B18D0304400C79A7E /* BusinessProcessLevelTwoView.m in Sources */,
+				D297667818D0302000C79A7E /* BusinessProcessLevelOneView.m in Sources */,
+				48F99B3218EEAEFC00D92DE1 /* ProcessBaseViewController.m in Sources */,
+				48D921DF18F3DF96009DA72A /* CustomListBox.m in Sources */,
+				C278E1C1190E3B9600B8068C /* JobCompany.m in Sources */,
+				48F99B2E18EE9DCA00D92DE1 /* JobProcessViewController.m in Sources */,
+				48E6950118F51EA500AB4502 /* BerthPosList.m in Sources */,
+				D297668718D0318900C79A7E /* BusinessProcessLevelTwoViewController.m in Sources */,
+				48E28EF219357A1F00B030F8 /* BusinessCheckBox.m in Sources */,
+				48E28EEF1935789E00B030F8 /* AlertView.m in Sources */,
+				48D6D45518ED0A9300F72A62 /* BusinessNetRequest.m in Sources */,
+				48D6D45B18ED604000F72A62 /* ShipInfo.m in Sources */,
+				48E694F518F4DD8300AB4502 /* ShipDetailViewController.m in Sources */,
+				C2505A4A192F2B87008CFAB8 /* BusinessDatePickerView.m in Sources */,
+				48DF77C018EC2E340039C498 /* BusinessType.m in Sources */,
+				D297667E18D0313900C79A7E /* BusinessProcessLevelOneTableViewController.m in Sources */,
+				48F99B2D18EE9DCA00D92DE1 /* JobProcessView.m in Sources */,
+				C2505A4B192F2B87008CFAB8 /* OutwardProcessView.m in Sources */,
+				48E694F818F4DDCE00AB4502 /* ShipDetailView.m in Sources */,
+				48F99B2C18EE9DCA00D92DE1 /* BerthingProcessViewController.m in Sources */,
+				D297668418D0317A00C79A7E /* BusinessProcessLevelOneViewController.m in Sources */,
+				48E28EEC193576C500B030F8 /* TimeButton.m in Sources */,
+				48D6D45818ED507000F72A62 /* BusinessProcessButton.m in Sources */,
+				48F99B2F18EE9DCA00D92DE1 /* ProcessBaseView.m in Sources */,
+				C278E1C5190E3BA600B8068C /* PopListTableViewController.m in Sources */,
+				48E28EF71935ABCD00B030F8 /* UnberthingProcessView.m in Sources */,
+				48DF77BA18EC017E0039C498 /* BusinessLevelTwoCell.m in Sources */,
+				D250B4A318D2EE0900DAB0E1 /* BusinessProcessCategory.m in Sources */,
+				48E694FE18F51EA500AB4502 /* BerthList.m in Sources */,
+				D250B4A018D2EE0900DAB0E1 /* BusinessProcessItem.m in Sources */,
+				C278E1C2190E3B9600B8068C /* LargeCommission.m in Sources */,
+				48F99B2B18EE9DCA00D92DE1 /* BerthingProcessView.m in Sources */,
+				C2505A4C192F2B87008CFAB8 /* OutwardProcessViewController.m in Sources */,
+				48FAB07418EAAFD300DE539C /* BusinessDataParser.m in Sources */,
+				D297668118D0314E00C79A7E /* BusinessProcessLevelTwoTableViewController.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		D297665A18D02BFD00C79A7E /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		D297665B18D02BFD00C79A7E /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = YES;
+				ENABLE_NS_ASSERTIONS = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		D297665D18D02BFD00C79A7E /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				CLANG_ENABLE_OBJC_ARC = NO;
+				DSTROOT = /tmp/BusinessProcess.dst;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "BusinessProcess/BusinessProcess-Prefix.pch";
+				HEADER_SEARCH_PATHS = (
+					"../../../Sandglass/**",
+					"../../../Classes/Public/**",
+				);
+				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+			};
+			name = Debug;
+		};
+		D297665E18D02BFD00C79A7E /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				CLANG_ENABLE_OBJC_ARC = NO;
+				DSTROOT = /tmp/BusinessProcess.dst;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "BusinessProcess/BusinessProcess-Prefix.pch";
+				HEADER_SEARCH_PATHS = (
+					"../../../Sandglass/**",
+					"../../../Classes/Public/**",
+				);
+				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		D297663418D02BFD00C79A7E /* Build configuration list for PBXProject "BusinessProcess" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D297665A18D02BFD00C79A7E /* Debug */,
+				D297665B18D02BFD00C79A7E /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		D297665C18D02BFD00C79A7E /* Build configuration list for PBXNativeTarget "BusinessProcess" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D297665D18D02BFD00C79A7E /* Debug */,
+				D297665E18D02BFD00C79A7E /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = D297663118D02BFD00C79A7E /* Project object */;
+}

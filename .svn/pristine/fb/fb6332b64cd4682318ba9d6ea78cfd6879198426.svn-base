@@ -1,0 +1,162 @@
+//
+//  SystemInfo.m
+//  MIP
+//
+//  Created by sea on 13-11-29.
+//  Copyright (c) 2013年 Sea. All rights reserved.
+//
+
+#import "SystemInfo.h"
+
+#import <objc/runtime.h>
+
+static SystemInfo *systemInfo = nil;
+
+NSString *const kSystemNetworkChangedNotification = @"kNetworkReachabilityChangedNotification";
+
+@interface SystemInfo () {
+    
+    Class               _originalClass; //用于检测代理有效性
+}
+
+@end
+
+
+@implementation SystemInfo
+
+@synthesize appId;
+@synthesize appVersion;
+@synthesize deviceId;
+@synthesize deviceType;
+@synthesize OSVersion;
+
+
+- (NSString *)appId {
+    
+    if (!appId) {
+        
+        appId = @"F4655E6CAD51427EE043A8640169427E";//[[[[NSBundle mainBundle] infoDictionary] objectForKey:(NSString *)kCFBundleIdentifierKey] retain];
+    }
+    
+    return appId;
+}
+
+- (NSString *)appVersion {
+    
+    if (!appVersion) {
+        
+        appVersion = [[[[NSBundle mainBundle] infoDictionary] objectForKey:(NSString *)kCFBundleVersionKey] retain];
+    }
+    
+    return appVersion;
+}
+
+
+- (NSString *)deviceId {
+    
+    if (!deviceId) {
+        
+        deviceId = [[[UIDevice currentDevice] performSelector:@selector(uniqueIdentifier)] retain];
+    }
+    
+    return deviceId;
+}
+
+- (NSString *)deviceType {
+    
+    if (!deviceType) {
+        
+        deviceType = [@"iPhone" retain];
+    }
+    
+    return deviceType;
+}
+
+- (NSString *)OSVersion {
+    
+    if (!OSVersion) {
+        
+        OSVersion = [[[UIDevice currentDevice] systemVersion] retain];
+    }
+    
+    return OSVersion;
+}
+
+
++ (SystemInfo *)shareSystemInfo {
+    
+    static dispatch_once_t onceToken;
+    
+    dispatch_once(&onceToken, ^{
+        
+        systemInfo = [SystemInfo new];
+        
+    });
+    
+    return systemInfo;
+}
+
+
+- (id)init {
+    
+    self = [super init];
+    
+    if (self) {
+        
+        [self registerNetWorkMonitor];
+    }
+    
+    return self;
+}
+
+- (void)registerNetWorkMonitor
+{
+//    [[NSNotificationCenter defaultCenter] addObserver: self selector: @selector(reachabilityChanged:) name: kReachabilityChangedNotification object: nil];
+    
+    _internetReach = [[Reachability reachabilityForInternetConnection] retain];
+	[_internetReach startNotifier];
+//	[self updateInterfaceWithReachability: _internetReach];
+}
+
+
+
+/*- (void)updateInterfaceWithReachability: (Reachability*) curReach
+{
+    NetworkStatus netStatus = [curReach currentReachabilityStatus];
+    
+    switch (netStatus)
+    {
+        case NotReachable:
+        {
+            break;
+        }
+            
+        case ReachableViaWWAN:
+        {
+            break;
+        }
+        case ReachableViaWiFi:
+        {
+            break;
+        }
+    }
+}
+
+
+//Called by Reachability whenever status changes.
+- (void)reachabilityChanged: (NSNotification* )note
+{
+	Reachability* curReach = [note object];
+	NSParameterAssert([curReach isKindOfClass: [Reachability class]]);
+	[self updateInterfaceWithReachability: curReach];
+}*/
+
+
+- (NetworkStatus)currentNetworkStatus {
+    
+    NetworkStatus netStatus = [_internetReach currentReachabilityStatus];
+    
+    return netStatus;
+}
+
+@end

@@ -1,0 +1,11 @@
+//
+// Prefix header for all source files of the 'OfficialCheck' target in the 'OfficialCheck' project
+//
+
+#ifdef __OBJC__
+    #import <Foundation/Foundation.h>
+#import "PublicDefine.h"
+
+#define kOfficialCheckModuleIdentifier   @"OfficialCheckModuleIdentifier"
+
+#endif
