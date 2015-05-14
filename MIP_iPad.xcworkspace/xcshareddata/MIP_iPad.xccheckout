@@ -10,15 +10,19 @@
 	<string>MIP_iPad</string>
 	<key>IDESourceControlProjectOriginsDictionary</key>
 	<dict>
+		<key>583999B04B7B4F760B88EB50CEF5E233CC6304FF</key>
+		<string>https://github.com/leooooooooo/MIP_iPhone_LYG-.git</string>
 		<key>d2d7040d-2662-46df-870a-b0fca5361b39++6217</key>
-		<string>http://run-svn/projects/cn/MIPIM/trunk/MIPIM_SRC/MIPIM_LYG/ios/%2525E8%2525BF%25259E%2525E4%2525BA%252591%2525E6%2525B8%2525AF%2525E6%252589%25258B%2525E6%25259C%2525BA%2525E7%252589%252588/MIP_iPhone_LYG%252520</string>
+		<string>http://run-svn/projects/cn/MIPIM/trunk/MIPIM_SRC/MIPIM_LYG/ios/%252525E8%252525BF%2525259E%252525E4%252525BA%25252591%252525E6%252525B8%252525AF%252525E6%25252589%2525258B%252525E6%2525259C%252525BA%252525E7%25252589%25252588/MIP_iPhone_LYG%25252520</string>
 	</dict>
 	<key>IDESourceControlProjectPath</key>
 	<string>MIP_iPad.xcworkspace</string>
 	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
 	<dict>
-		<key>d2d7040d-2662-46df-870a-b0fca5361b39++6217</key>
+		<key>583999B04B7B4F760B88EB50CEF5E233CC6304FF</key>
 		<string>..</string>
+		<key>d2d7040d-2662-46df-870a-b0fca5361b39++6217</key>
+		<string>../../MIP_iPhone_LYG%20</string>
 	</dict>
 	<key>IDESourceControlProjectRepositoryRootDictionary</key>
 	<dict>
@@ -26,13 +30,21 @@
 		<string>http://run-svn/projects/cn/MIPIM</string>
 	</dict>
 	<key>IDESourceControlProjectURL</key>
-	<string>http://run-svn/projects/cn/MIPIM/trunk/MIPIM_SRC/MIPIM_LYG/ios/%2525E8%2525BF%25259E%2525E4%2525BA%252591%2525E6%2525B8%2525AF%2525E6%252589%25258B%2525E6%25259C%2525BA%2525E7%252589%252588/MIP_iPhone_LYG%252520/MIP_iPad.xcworkspace</string>
+	<string>https://github.com/leooooooooo/MIP_iPhone_LYG-.git</string>
 	<key>IDESourceControlProjectVersion</key>
 	<integer>111</integer>
 	<key>IDESourceControlProjectWCCIdentifier</key>
-	<string>d2d7040d-2662-46df-870a-b0fca5361b39++6217</string>
+	<string>583999B04B7B4F760B88EB50CEF5E233CC6304FF</string>
 	<key>IDESourceControlProjectWCConfigurations</key>
 	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>583999B04B7B4F760B88EB50CEF5E233CC6304FF</string>
+			<key>IDESourceControlWCCName</key>
+			<string>MIP_iPhone_LYG</string>
+		</dict>
 		<dict>
 			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
 			<string>public.vcs.subversion</string>
