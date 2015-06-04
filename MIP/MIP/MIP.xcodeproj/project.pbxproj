@@ -906,7 +906,7 @@
 					"\"$(SRCROOT)/MIP/Libs\"/**",
 				);
 				INFOPLIST_FILE = "MIP/MIP-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/MIP/Sandglass",
@@ -935,7 +935,7 @@
 					"\"$(SRCROOT)/MIP/Libs\"/**",
 				);
 				INFOPLIST_FILE = "MIP/MIP-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/MIP/Sandglass",
