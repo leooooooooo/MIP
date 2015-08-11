@@ -67,7 +67,7 @@
     UILabel *titleLab = [[UILabel alloc] initWithFrame:CGRectMake(0, 15, contentView.frame.size.width, 50)];
     titleLab.text = @"附件列表";
     titleLab.font = [UIFont boldSystemFontOfSize:22];
-    titleLab.textAlignment = UITextAlignmentCenter;
+    titleLab.textAlignment = NSTextAlignmentCenter;
     [titleLab setTextColor:[UIColor whiteColor]];
     [titleLab setBackgroundColor:[UIColor clearColor]];
     [contentView addSubview:titleLab];

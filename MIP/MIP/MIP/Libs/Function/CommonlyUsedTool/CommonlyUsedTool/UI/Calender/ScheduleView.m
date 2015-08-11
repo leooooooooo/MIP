@@ -31,7 +31,7 @@
         titleLab.font = [UIFont boldSystemFontOfSize:24];
         titleLab.textColor = [UIColor colorWithRed:119/255.0 green:148/255.0 blue:178/255.0 alpha:1.0];
         titleLab.backgroundColor = [UIColor clearColor];
-        titleLab.textAlignment = UITextAlignmentLeft;
+        titleLab.textAlignment = NSTextAlignmentLeft;
         [self addSubview:titleLab];
         
         UIImageView *itemBackImageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 50, frame.size.width, frame.size.height - 100)];

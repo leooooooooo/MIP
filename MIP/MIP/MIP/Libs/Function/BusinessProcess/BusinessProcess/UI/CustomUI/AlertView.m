@@ -43,7 +43,7 @@
         
         titleLab = [[UILabel alloc] initWithFrame:CGRectMake(0, PopFrameTopShadow, contentView.frame.size.width, 40)];
         titleLab.text = @"提示";
-        titleLab.textAlignment = UITextAlignmentCenter;
+        titleLab.textAlignment = NSTextAlignmentCenter;
         titleLab.textColor = [UIColor whiteColor];
         titleLab.font = [UIFont boldSystemFontOfSize:22];
         titleLab.backgroundColor = [UIColor clearColor];
@@ -57,7 +57,7 @@
         messageLab = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, whiteView.frame.size.width, 140)];
         messageLab.font = [UIFont systemFontOfSize:20];
         messageLab.textColor = [UIColor blackColor];
-        messageLab.textAlignment = UITextAlignmentCenter;
+        messageLab.textAlignment = NSTextAlignmentCenter;
         messageLab.backgroundColor = [UIColor clearColor];
         messageLab.numberOfLines = 0;
         [whiteView addSubview:messageLab];

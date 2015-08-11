@@ -71,8 +71,8 @@
                         businessType.title = funcname;
                     }
                     
-                    businessType.type = [NSNumber numberWithInt: index++];
-                    businessType.hasNew = NO;
+                    businessType.type = [NSNumber numberWithInt: (int)index++];
+                    businessType.hasNew = nil;
                 }
                 
                 [businessType release];
@@ -707,7 +707,7 @@
 + (NSDictionary *) parseShipInfoDetail:(NSData *)data
 {
     if (!data)
-        return NO;
+        return nil;
     
     NSError *error = nil;
     

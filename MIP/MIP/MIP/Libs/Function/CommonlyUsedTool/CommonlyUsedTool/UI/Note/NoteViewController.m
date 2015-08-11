@@ -106,7 +106,7 @@
     UILabel *titleLab = [[UILabel alloc] initWithFrame:CGRectMake(0, 5, bgImageView.frame.size.width, 50)];
     titleLab.text = @"添加分组";
     titleLab.font = [UIFont boldSystemFontOfSize:25];
-    titleLab.textAlignment = UITextAlignmentCenter;
+    titleLab.textAlignment = NSTextAlignmentCenter;
     [titleLab setTextColor:[UIColor whiteColor]];
     [titleLab setBackgroundColor:[UIColor clearColor]];
     [alertView addTheview:titleLab];
@@ -115,7 +115,7 @@
     UILabel *nameLab = [[UILabel alloc] initWithFrame:CGRectMake(10, 80, 100, 50)];
     nameLab.text = @"分组名称";
     nameLab.font = [UIFont boldSystemFontOfSize:20];
-    nameLab.textAlignment = UITextAlignmentCenter;
+    nameLab.textAlignment = NSTextAlignmentCenter;
     [nameLab setTextColor:[UIColor colorWithHex:@"474747"]];
     [nameLab setBackgroundColor:[UIColor clearColor]];
     [alertView addTheview:nameLab];
@@ -187,7 +187,7 @@
         UILabel *titleLab = [[UILabel alloc] initWithFrame:CGRectMake(0, 5, bgImageView.frame.size.width, 50)];
         titleLab.text = @"添加记事";
         titleLab.font = [UIFont boldSystemFontOfSize:25];
-        titleLab.textAlignment = UITextAlignmentCenter;
+        titleLab.textAlignment = NSTextAlignmentCenter;
         [titleLab setTextColor:[UIColor whiteColor]];
         [titleLab setBackgroundColor:[UIColor clearColor]];
         [alertView addTheview:titleLab];
@@ -196,7 +196,7 @@
         UILabel *nameLab = [[UILabel alloc] initWithFrame:CGRectMake(10, 60, 100, 50)];
         nameLab.text = @"名称";
         nameLab.font = [UIFont boldSystemFontOfSize:20];
-        nameLab.textAlignment = UITextAlignmentCenter;
+        nameLab.textAlignment = NSTextAlignmentCenter;
         [nameLab setTextColor:[UIColor colorWithHex:@"474747"]];
         [nameLab setBackgroundColor:[UIColor clearColor]];
         [alertView addTheview:nameLab];

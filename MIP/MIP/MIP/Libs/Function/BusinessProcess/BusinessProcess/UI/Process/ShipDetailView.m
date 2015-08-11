@@ -311,7 +311,7 @@
         
         if (index++ == 0) {
             contentLabel.backgroundColor = CellTitleBgColor;
-            contentLabel.text = [NSString stringWithFormat:@"%d",row];
+            contentLabel.text = [NSString stringWithFormat:@"%d",(int)row];
         }else {
             contentLabel.backgroundColor = CellContentBgColor;
         }

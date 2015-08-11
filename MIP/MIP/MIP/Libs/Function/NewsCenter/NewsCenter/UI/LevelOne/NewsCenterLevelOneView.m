@@ -28,7 +28,7 @@
         
         UILabel *titleLab = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, frame.size.width, 50)];
         titleLab.text = module.name;
-        titleLab.textAlignment = UITextAlignmentCenter;
+        titleLab.textAlignment = NSTextAlignmentCenter;
         titleLab.textColor = [UIColor whiteColor];
         titleLab.font = [UIFont boldSystemFontOfSize:24];
         titleLab.backgroundColor = [UIColor clearColor];

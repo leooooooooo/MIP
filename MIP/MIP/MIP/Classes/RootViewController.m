@@ -87,9 +87,9 @@
         
         NSString *ret = [bodyDictionary objectForKey:@"ret"];
         
-        NSString *retMsg = [bodyDictionary objectForKey:@"retMsg"];
+        //NSString *retMsg = [bodyDictionary objectForKey:@"retMsg"];
         
-        DLog(@"%@",retMsg);
+        //DLog(@"%@",retMsg);
         
         if (7 == [ret intValue])
         {

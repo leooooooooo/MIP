@@ -45,7 +45,7 @@
         UILabel *titleLab = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, frame.size.width, 50)];
         titleLab.text = @"添加事件";
         titleLab.font = [UIFont boldSystemFontOfSize:25];
-        titleLab.textAlignment = UITextAlignmentCenter;
+        titleLab.textAlignment = NSTextAlignmentCenter;
         [titleLab setTextColor:[UIColor whiteColor]];
         [titleLab setBackgroundColor:[UIColor clearColor]];
         [bgScrollView addSubview:titleLab];
@@ -68,7 +68,7 @@
         UILabel *startLab = [[UILabel alloc] initWithFrame:CGRectMake(15, 50, 100, 50)];
         startLab.text = @"开始:";
         startLab.font = [UIFont boldSystemFontOfSize:20];
-        startLab.textAlignment = UITextAlignmentLeft;
+        startLab.textAlignment = NSTextAlignmentCenter;
         [startLab setTextColor:[UIColor colorWithHex:@"474747"]];
         [startLab setBackgroundColor:[UIColor clearColor]];
         [bgScrollView addSubview:startLab];
@@ -82,7 +82,7 @@
         UILabel *endLab = [[UILabel alloc] initWithFrame:CGRectMake(15, 100, 200, 50)];
         endLab.text = @"结束:";
         endLab.font = [UIFont boldSystemFontOfSize:20];
-        endLab.textAlignment = UITextAlignmentLeft;
+        endLab.textAlignment = NSTextAlignmentCenter;
         [endLab setTextColor:[UIColor colorWithHex:@"474747"]];
         [endLab setBackgroundColor:[UIColor clearColor]];
         [bgScrollView addSubview:endLab];
@@ -96,7 +96,7 @@
         startTimeLab = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 200, 50)];
         startTimeLab.text = dateString;
         startTimeLab.font = [UIFont boldSystemFontOfSize:20];
-        startTimeLab.textAlignment = UITextAlignmentCenter;
+        startTimeLab.textAlignment = NSTextAlignmentCenter;
         [startTimeLab setTextColor:[UIColor blackColor]];
         [startTimeLab setBackgroundColor:[UIColor clearColor]];
         [startBtn addSubview:startTimeLab];
@@ -107,7 +107,7 @@
         
         endTimeLab = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 200, 50)];
         endTimeLab.font = [UIFont boldSystemFontOfSize:20];
-        endTimeLab.textAlignment = UITextAlignmentCenter;
+        endTimeLab.textAlignment = NSTextAlignmentCenter;
         endTimeLab.text = @"请点击选择结束时间";
         [endTimeLab setBackgroundColor:[UIColor clearColor]];
         [endBtn addSubview:endTimeLab];

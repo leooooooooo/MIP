@@ -28,7 +28,7 @@
         titleLab.textColor = [UIColor colorWithHex:@"487eb0"];
         titleLab.font = [UIFont boldSystemFontOfSize:24];
         titleLab.backgroundColor = [UIColor clearColor];
-        titleLab.textAlignment = UITextAlignmentCenter;
+        titleLab.textAlignment = NSTextAlignmentCenter;
         [self addSubview:titleLab];
         [titleLab release];
         

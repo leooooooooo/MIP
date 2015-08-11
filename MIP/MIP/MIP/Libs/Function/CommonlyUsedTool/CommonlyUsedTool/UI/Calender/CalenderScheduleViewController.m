@@ -129,7 +129,7 @@
     
     NSDateComponents *components = [calendar components:units fromDate:dayDate];
     
-    NSString *dateString = [NSString stringWithFormat:@"%d-%d-%d",[components year],[components month],[components day]];
+    NSString *dateString = [NSString stringWithFormat:@"%ld-%ld-%ld",(long)[components year],(long)[components month],(long)[components day]];
     
     HistoryDataDAO *dao = [[HistoryDataDAO alloc] init];
     NSMutableArray *historyArray = [dao selectHistoryByTime:dateString];

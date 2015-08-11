@@ -187,7 +187,7 @@
         if (isValid(bodyDictionary))
         {
             NSString *ret = [bodyDictionary objectForKey:@"ret"];
-            NSString *msg=[bodyDictionary objectForKey:@"retMsg"];
+            //NSString *msg=[bodyDictionary objectForKey:@"retMsg"];
             if (0 == [ret intValue])
             {
                 [BusinessDataParser parseLargeCommList:bodyData withShip:withShip];

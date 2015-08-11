@@ -40,7 +40,7 @@
         
         UILabel *titleLab = [[UILabel alloc] initWithFrame:CGRectMake(0, PopFrameTopShadow, contentView.frame.size.width, 40)];
         titleLab.text = @"选择日期";
-        titleLab.textAlignment = UITextAlignmentCenter;
+        titleLab.textAlignment = NSTextAlignmentCenter;
         titleLab.textColor = [UIColor whiteColor];
         titleLab.font = [UIFont boldSystemFontOfSize:22];
         titleLab.backgroundColor = [UIColor clearColor];

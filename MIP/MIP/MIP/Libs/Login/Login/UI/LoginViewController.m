@@ -410,8 +410,8 @@
         
         if (isValid(bodyData))
         {
-            NSDictionary *bodyDictionary = [NSJSONSerialization JSONObjectWithData:bodyData options:NSJSONReadingAllowFragments error:&error];
-            DLog(@"%@",bodyDictionary);
+            //NSDictionary *bodyDictionary = [NSJSONSerialization JSONObjectWithData:bodyData options:NSJSONReadingAllowFragments error:&error];
+            //DLog(@"%@",bodyDictionary);
         }
     }
 }
@@ -425,8 +425,8 @@
         
         if (isValid(bodyData))
         {
-            NSDictionary *bodyDictionary = [NSJSONSerialization JSONObjectWithData:bodyData options:NSJSONReadingAllowFragments error:&error];
-            DLog(@"%@",bodyDictionary);
+            //NSDictionary *bodyDictionary = [NSJSONSerialization JSONObjectWithData:bodyData options:NSJSONReadingAllowFragments error:&error];
+            //DLog(@"%@",bodyDictionary);
         }
     }
 }

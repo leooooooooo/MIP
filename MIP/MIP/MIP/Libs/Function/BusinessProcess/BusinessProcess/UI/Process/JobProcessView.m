@@ -426,7 +426,7 @@
     titleLab.font = DetailCellTextFont;
     titleLab.textColor = TitleTextColor;
     titleLab.text = title;
-    titleLab.textAlignment = UITextAlignmentCenter;
+    titleLab.textAlignment = NSTextAlignmentCenter;
     titleLab.numberOfLines = 0;
 
     [view addSubview:titleLab];

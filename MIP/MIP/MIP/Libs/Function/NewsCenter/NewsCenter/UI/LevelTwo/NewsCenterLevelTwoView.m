@@ -91,7 +91,7 @@
 //        [self addSubview:backSearchBtn];
         
         titleLab = [[UILabel alloc] initWithFrame:CGRectMake(0, 20, frame.size.width, 50)];
-        titleLab.textAlignment = UITextAlignmentCenter;
+        titleLab.textAlignment = NSTextAlignmentCenter;
         titleLab.textColor = [UIColor whiteColor];
         titleLab.font = [UIFont boldSystemFontOfSize:24];
         titleLab.backgroundColor = [UIColor clearColor];
@@ -176,7 +176,7 @@
         [btn setTitle:[filtrateDataArr objectAtIndex:i] forState:UIControlStateNormal];
         [btn setTitleColor:[UIColor colorWithHex:@"3c557f"] forState:UIControlStateNormal];
         btn.titleLabel.numberOfLines = 2;
-        btn.titleLabel.textAlignment = UITextAlignmentCenter;
+        btn.titleLabel.textAlignment = NSTextAlignmentCenter;
         btn.tag = i;
         btn.frame = CGRectMake(0, 38*i, 120, 40);
         [btn addTarget:self action:@selector(chooseTishFilter:) forControlEvents:UIControlEventTouchUpInside];
@@ -306,5 +306,11 @@
     
     [super dealloc];
 }
+
+-(void)showNetTVMoviePlayer
+{}
+
+-(void)hiddenNetTVMoviePlayer
+{}
 
 @end
