@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="3396" systemVersion="13A497d" minimumToolsVersion="Automatic" macOSVersion="Automatic" iOSVersion="Automatic">
+<model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="7701" systemVersion="14E46" minimumToolsVersion="Automatic" macOSVersion="Automatic" iOSVersion="Automatic">
     <entity name="ApplicationInfor" representedClassName="ApplicationInfor" syncable="YES">
         <attribute name="appCode" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="appIcon" optional="YES" attributeType="String" syncable="YES"/>
@@ -141,7 +141,7 @@
         <attribute name="title" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="uid" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="userid" optional="YES" attributeType="String" syncable="YES"/>
-        <relationship name="relationshipToNetworkRecord" optional="YES" toMany="YES" deletionRule="No Action" destinationEntity="NetworkRecord" inverseName="networkChanne" inverseEntity="NetworkRecord" syncable="YES"/>
+        <relationship name="relationshipToNetworkRecord" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="NetworkRecord" inverseName="networkChanne" inverseEntity="NetworkRecord" syncable="YES"/>
     </entity>
     <entity name="NetworkRecord" representedClassName="NetworkRecord" syncable="YES">
         <attribute name="code" optional="YES" attributeType="String" syncable="YES"/>
@@ -152,7 +152,7 @@
         <attribute name="uid" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="url" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="userid" optional="YES" attributeType="String" syncable="YES"/>
-        <relationship name="networkChanne" optional="YES" minCount="1" maxCount="1" deletionRule="No Action" destinationEntity="NetworkChanne" inverseName="relationshipToNetworkRecord" inverseEntity="NetworkChanne" syncable="YES"/>
+        <relationship name="networkChanne" optional="YES" minCount="1" maxCount="1" deletionRule="Cascade" destinationEntity="NetworkChanne" inverseName="relationshipToNetworkRecord" inverseEntity="NetworkChanne" syncable="YES"/>
     </entity>
     <entity name="NewsCenterCategory" representedClassName="NewsCenterCategory" syncable="YES">
         <attribute name="code" optional="YES" attributeType="String" syncable="YES"/>
@@ -333,41 +333,41 @@
         <relationship name="category" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="WebSiteCategory" inverseName="relationshipToCategory" inverseEntity="WebSiteCategory" syncable="YES"/>
     </entity>
     <elements>
-        <element name="ApplicationInfor" positionX="0" positionY="0" width="0" height="0"/>
-        <element name="ApplicationType" positionX="0" positionY="0" width="0" height="0"/>
-        <element name="BerthList" positionX="0" positionY="0" width="0" height="0"/>
-        <element name="BerthPosList" positionX="0" positionY="0" width="0" height="0"/>
-        <element name="BusinessProcessCategory" positionX="0" positionY="0" width="0" height="0"/>
-        <element name="BusinessProcessItem" positionX="0" positionY="0" width="0" height="0"/>
-        <element name="BusinessType" positionX="0" positionY="0" width="0" height="0"/>
-        <element name="CityInformation" positionX="0" positionY="0" width="0" height="0"/>
-        <element name="ComContactsInfo" positionX="0" positionY="0" width="0" height="0"/>
-        <element name="FileInfo" positionX="0" positionY="0" width="0" height="0"/>
-        <element name="FullCompanyInfo" positionX="0" positionY="0" width="0" height="0"/>
-        <element name="JobCompany" positionX="0" positionY="0" width="0" height="0"/>
-        <element name="LargeCommission" positionX="0" positionY="0" width="0" height="0"/>
-        <element name="LowCPortMenuInfo" positionX="0" positionY="0" width="0" height="0"/>
-        <element name="MessageClassInfo" positionX="0" positionY="0" width="0" height="0"/>
-        <element name="Module" positionX="0" positionY="0" width="0" height="0"/>
-        <element name="NetworkChanne" positionX="0" positionY="0" width="0" height="0"/>
-        <element name="NetworkRecord" positionX="0" positionY="0" width="0" height="0"/>
-        <element name="NewsCenterCategory" positionX="0" positionY="0" width="0" height="0"/>
-        <element name="NewsCenterContent" positionX="0" positionY="0" width="0" height="0"/>
-        <element name="NewsCenterDocument" positionX="0" positionY="0" width="0" height="0"/>
-        <element name="NewsCenterNewsType" positionX="0" positionY="0" width="0" height="0"/>
-        <element name="NewsCenterPDF" positionX="0" positionY="0" width="0" height="0"/>
-        <element name="NewsflashEntity" positionX="0" positionY="0" width="0" height="0"/>
-        <element name="NoteCategory" positionX="0" positionY="0" width="0" height="0"/>
-        <element name="NoteEntity" positionX="0" positionY="0" width="0" height="0"/>
-        <element name="OperDeviceMenuInfo" positionX="0" positionY="0" width="0" height="0"/>
-        <element name="PerContactsInfo" positionX="0" positionY="0" width="0" height="0"/>
-        <element name="ScheduleInfo" positionX="0" positionY="0" width="0" height="0"/>
-        <element name="SecurityDailyInfo" positionX="0" positionY="0" width="0" height="0"/>
-        <element name="ShipInfo" positionX="0" positionY="0" width="0" height="0"/>
-        <element name="SignHistoryInfo" positionX="0" positionY="0" width="0" height="0"/>
-        <element name="Userinfo" positionX="0" positionY="0" width="0" height="0"/>
-        <element name="WeatherInformation" positionX="0" positionY="0" width="0" height="0"/>
-        <element name="WebSiteCategory" positionX="0" positionY="0" width="0" height="0"/>
-        <element name="WebSiteEntity" positionX="0" positionY="0" width="0" height="0"/>
+        <element name="ApplicationInfor" positionX="0" positionY="0" width="128" height="225"/>
+        <element name="ApplicationType" positionX="0" positionY="0" width="128" height="105"/>
+        <element name="BerthList" positionX="0" positionY="0" width="128" height="105"/>
+        <element name="BerthPosList" positionX="0" positionY="0" width="128" height="60"/>
+        <element name="BusinessProcessCategory" positionX="0" positionY="0" width="128" height="195"/>
+        <element name="BusinessProcessItem" positionX="0" positionY="0" width="128" height="180"/>
+        <element name="BusinessType" positionX="0" positionY="0" width="128" height="105"/>
+        <element name="CityInformation" positionX="0" positionY="0" width="128" height="120"/>
+        <element name="ComContactsInfo" positionX="0" positionY="0" width="128" height="120"/>
+        <element name="FileInfo" positionX="0" positionY="0" width="128" height="75"/>
+        <element name="FullCompanyInfo" positionX="0" positionY="0" width="128" height="75"/>
+        <element name="JobCompany" positionX="0" positionY="0" width="128" height="75"/>
+        <element name="LargeCommission" positionX="0" positionY="0" width="128" height="330"/>
+        <element name="LowCPortMenuInfo" positionX="0" positionY="0" width="128" height="120"/>
+        <element name="MessageClassInfo" positionX="0" positionY="0" width="128" height="135"/>
+        <element name="Module" positionX="0" positionY="0" width="128" height="195"/>
+        <element name="NetworkChanne" positionX="0" positionY="0" width="128" height="180"/>
+        <element name="NetworkRecord" positionX="0" positionY="0" width="128" height="180"/>
+        <element name="NewsCenterCategory" positionX="0" positionY="0" width="128" height="195"/>
+        <element name="NewsCenterContent" positionX="0" positionY="0" width="128" height="120"/>
+        <element name="NewsCenterDocument" positionX="0" positionY="0" width="128" height="255"/>
+        <element name="NewsCenterNewsType" positionX="0" positionY="0" width="128" height="90"/>
+        <element name="NewsCenterPDF" positionX="0" positionY="0" width="128" height="105"/>
+        <element name="NewsflashEntity" positionX="0" positionY="0" width="128" height="150"/>
+        <element name="NoteCategory" positionX="0" positionY="0" width="128" height="90"/>
+        <element name="NoteEntity" positionX="0" positionY="0" width="128" height="90"/>
+        <element name="OperDeviceMenuInfo" positionX="0" positionY="0" width="128" height="120"/>
+        <element name="PerContactsInfo" positionX="0" positionY="0" width="128" height="285"/>
+        <element name="ScheduleInfo" positionX="0" positionY="0" width="128" height="105"/>
+        <element name="SecurityDailyInfo" positionX="0" positionY="0" width="128" height="135"/>
+        <element name="ShipInfo" positionX="0" positionY="0" width="128" height="420"/>
+        <element name="SignHistoryInfo" positionX="0" positionY="0" width="128" height="105"/>
+        <element name="Userinfo" positionX="0" positionY="0" width="128" height="300"/>
+        <element name="WeatherInformation" positionX="0" positionY="0" width="128" height="195"/>
+        <element name="WebSiteCategory" positionX="0" positionY="0" width="128" height="90"/>
+        <element name="WebSiteEntity" positionX="0" positionY="0" width="128" height="90"/>
     </elements>
 </model>

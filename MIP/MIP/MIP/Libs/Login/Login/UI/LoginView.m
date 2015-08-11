@@ -522,6 +522,7 @@
                 [up loadRequest:request];
                 [self addSubview:up];
                 NSLog(@"开始更新",nil);
+                [up release];
             }
             else
             {

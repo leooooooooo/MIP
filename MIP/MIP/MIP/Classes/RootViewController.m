@@ -126,7 +126,7 @@
     contentLab.text = msg;
     contentLab.font = [UIFont boldSystemFontOfSize:16];
     contentLab.numberOfLines = 2;
-    contentLab.textAlignment = UITextAlignmentCenter;
+    contentLab.textAlignment = NSTextAlignmentCenter;
     [contentLab setTextColor:[UIColor colorWithHex:@"474747"]];
     [contentLab setBackgroundColor:[UIColor whiteColor]];
     [alertView addSubview:contentLab];

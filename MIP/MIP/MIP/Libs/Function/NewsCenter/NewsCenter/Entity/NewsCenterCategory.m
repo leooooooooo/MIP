@@ -9,7 +9,7 @@
 #import "NewsCenterCategory.h"
 #import "NewsCenterDocument.h"
 
-//static NSFetchedResultsController *categoryResultsController = nil;
+static NSFetchedResultsController *categoryResultsController = nil;
 
 @implementation NewsCenterCategory
 
@@ -23,7 +23,6 @@
 @dynamic unreadCount;
 @dynamic userid;
 @dynamic relationshipToNewsCategory;
-
 @synthesize keyword;
 @synthesize typeID;
 @synthesize fetchedResultsController;
@@ -54,10 +53,10 @@
     [sortDescriptors release];
     
     // Create and initialize the fetch results controller.
-    NSFetchedResultsController *categoryResultsController = [[NSFetchedResultsController alloc] initWithFetchRequest:fetchRequest managedObjectContext:[[DataManager shareDataManager] managedObjectContext] sectionNameKeyPath:nil cacheName:nil];
+    categoryResultsController = [[NSFetchedResultsController alloc] initWithFetchRequest:fetchRequest managedObjectContext:[[DataManager shareDataManager] managedObjectContext] sectionNameKeyPath:nil cacheName:nil];
     
     [fetchRequest release];
-    
+
     return categoryResultsController;
 }
 
@@ -67,7 +66,7 @@
         
         NSPredicate *predicate = [NSPredicate predicateWithFormat:@"newsCenterCategory.userid == %@ && newsCenterCategory.uid == %@ && type == %@",[Userinfo shareUserinfo].uid,self.uid,[NSNumber numberWithInt:self.newsType]];
         
-        NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
+        NSFetchRequest *fetchRequest = [[[NSFetchRequest alloc] init]autorelease];
         
         NSEntityDescription *entity = [NSEntityDescription entityForName:NSStringFromClass([NewsCenterDocument class]) inManagedObjectContext:self.managedObjectContext];
         
@@ -77,8 +76,9 @@
         
         [fetchRequest setFetchBatchSize:20];
         
-        NSSortDescriptor *authorDescriptor = [[NSSortDescriptor alloc] initWithKey:@"generateDate" ascending:NO];
-        NSArray *sortDescriptors = [[NSArray alloc] initWithObjects:authorDescriptor, nil];
+        NSSortDescriptor *authorDescriptor = [[[NSSortDescriptor alloc] initWithKey:@"generateDate" ascending:NO]autorelease];
+        NSArray *sortDescriptors = [[[NSArray alloc] initWithObjects:authorDescriptor, nil]autorelease];
+        
         [fetchRequest setSortDescriptors:sortDescriptors];
         
         fetchedResultsController = [[NSFetchedResultsController alloc] initWithFetchRequest:fetchRequest managedObjectContext:self.managedObjectContext sectionNameKeyPath:nil cacheName:nil];
@@ -89,7 +89,7 @@
 
 + (void)releaseNewsCenterCategoryResultsController {
     
-//    [categoryResultsController release];
+    [categoryResultsController release];
 }
 
 

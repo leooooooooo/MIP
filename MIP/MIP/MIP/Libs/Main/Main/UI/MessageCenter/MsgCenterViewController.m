@@ -199,7 +199,7 @@
     [MainDataParser parserNewsCenter:bodyData];
     
     NSFetchedResultsController *tmpFetchCtrl = [NewsCenterCategory newsCenterCategoryResultsController];
-    
+    [NewsCenterCategory releaseNewsCenterCategoryResultsController];
     NSEntityDescription *entityDescription = [NSEntityDescription entityForName:NSStringFromClass([NewsCenterCategory class]) inManagedObjectContext:tmpFetchCtrl.managedObjectContext];
     NSFetchRequest *fetchRequest=[[NSFetchRequest alloc] init];
     [fetchRequest setEntity:entityDescription];

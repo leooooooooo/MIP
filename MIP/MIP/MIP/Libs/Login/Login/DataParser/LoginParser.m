@@ -404,7 +404,7 @@
                                     
                                     if (results.count == 1) {//如果有原来模块权限记录,则直接使用原coreData对象
                                         
-                                        indexModule = [results objectAtIndex:0];
+                                        //indexModule = [results objectAtIndex:0];
                                         
                                     }
                                     else

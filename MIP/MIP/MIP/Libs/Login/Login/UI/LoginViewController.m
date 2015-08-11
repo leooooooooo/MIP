@@ -29,6 +29,7 @@
 
 - (void)viewWillAppear:(BOOL)animated
 {
+    [super viewWillAppear:animated];
     
     _loginView.rememberSwitch.on = NO;
     _loginView.usernameTextField.text = @"";
@@ -132,6 +133,8 @@
 {
 //    [timer invalidate];
 //    timer = nil;
+    [super viewWillDisappear:animated];
+
 }
 
 - (void)reflashRememberAutoButtonState

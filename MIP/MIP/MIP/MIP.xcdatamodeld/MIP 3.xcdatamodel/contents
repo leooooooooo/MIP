@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="5064" systemVersion="13A558" minimumToolsVersion="Automatic" macOSVersion="Automatic" iOSVersion="Automatic">
+<model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="7701" systemVersion="14E46" minimumToolsVersion="Automatic" macOSVersion="Automatic" iOSVersion="Automatic">
     <entity name="ApplicationInfor" representedClassName="ApplicationInfor" syncable="YES">
         <attribute name="appCode" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="appIcon" optional="YES" attributeType="String" syncable="YES"/>
@@ -140,7 +140,7 @@
         <attribute name="title" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="uid" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="userid" optional="YES" attributeType="String" syncable="YES"/>
-        <relationship name="relationshipToNetworkRecord" optional="YES" toMany="YES" deletionRule="No Action" destinationEntity="NetworkRecord" inverseName="networkChanne" inverseEntity="NetworkRecord" syncable="YES"/>
+        <relationship name="relationshipToNetworkRecord" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="NetworkRecord" inverseName="networkChanne" inverseEntity="NetworkRecord" syncable="YES"/>
     </entity>
     <entity name="NetworkRecord" representedClassName="NetworkRecord" syncable="YES">
         <attribute name="code" optional="YES" attributeType="String" syncable="YES"/>
@@ -151,7 +151,7 @@
         <attribute name="uid" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="url" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="userid" optional="YES" attributeType="String" syncable="YES"/>
-        <relationship name="networkChanne" optional="YES" minCount="1" maxCount="1" deletionRule="No Action" destinationEntity="NetworkChanne" inverseName="relationshipToNetworkRecord" inverseEntity="NetworkChanne" syncable="YES"/>
+        <relationship name="networkChanne" optional="YES" minCount="1" maxCount="1" deletionRule="Cascade" destinationEntity="NetworkChanne" inverseName="relationshipToNetworkRecord" inverseEntity="NetworkChanne" syncable="YES"/>
     </entity>
     <entity name="NewsCenterCategory" representedClassName="NewsCenterCategory" syncable="YES">
         <attribute name="code" optional="YES" attributeType="String" syncable="YES"/>
@@ -342,6 +342,7 @@
         <element name="CityInformation" positionX="0" positionY="0" width="128" height="120"/>
         <element name="ComContactsInfo" positionX="0" positionY="0" width="128" height="120"/>
         <element name="FileInfo" positionX="0" positionY="0" width="128" height="75"/>
+        <element name="FullCompanyInfo" positionX="18" positionY="162" width="128" height="73"/>
         <element name="JobCompany" positionX="0" positionY="0" width="128" height="75"/>
         <element name="LargeCommission" positionX="0" positionY="0" width="128" height="330"/>
         <element name="LowCPortMenuInfo" positionX="0" positionY="0" width="128" height="120"/>
@@ -367,6 +368,5 @@
         <element name="WeatherInformation" positionX="0" positionY="0" width="128" height="195"/>
         <element name="WebSiteCategory" positionX="0" positionY="0" width="128" height="90"/>
         <element name="WebSiteEntity" positionX="0" positionY="0" width="128" height="90"/>
-        <element name="FullCompanyInfo" positionX="18" positionY="162" width="128" height="73"/>
     </elements>
 </model>

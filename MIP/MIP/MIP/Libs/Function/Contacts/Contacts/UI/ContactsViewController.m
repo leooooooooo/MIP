@@ -74,6 +74,7 @@
 
 - (void) viewWillAppear:(BOOL)animated
 {
+    [super viewWillAppear:animated];
     m_contactsView.filterBtn.hidden = YES;
 }
 

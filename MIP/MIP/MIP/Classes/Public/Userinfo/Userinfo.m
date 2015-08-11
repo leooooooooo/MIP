@@ -116,7 +116,7 @@ static Userinfo *userinfo = nil;
     NSEntityDescription *entityDescription = [NSEntityDescription entityForName:@"Module" inManagedObjectContext:context];
     
     //先查询用户的模块的历史记录
-    NSFetchRequest *request=[[NSFetchRequest alloc] init];
+    NSFetchRequest *request=[[[NSFetchRequest alloc] init]autorelease];
     
     [request setEntity:entityDescription];
     NSPredicate *predicate = [NSPredicate predicateWithFormat:@"userInfo.uid == %@ && moduleType == %d",self.uid,0];
@@ -140,7 +140,7 @@ static Userinfo *userinfo = nil;
     NSEntityDescription *entityDescription = [NSEntityDescription entityForName:@"Module" inManagedObjectContext:context];
     
     //先查询用户的模块的历史记录
-    NSFetchRequest *request=[[NSFetchRequest alloc] init];
+    NSFetchRequest *request=[[[NSFetchRequest alloc] init]autorelease];
     
     [request setEntity:entityDescription];
     NSPredicate *predicate = [NSPredicate predicateWithFormat:@"userInfo.uid == %@ && moduleType == %d",self.uid,1];

@@ -106,7 +106,7 @@
     _customRefreshControl.headerArrowImage.frame = CGRectMake(50, rect.origin.y, rect.size.width, rect.size.height);
     
     _fetchedResultsController = [NewsCenterCategory newsCenterCategoryResultsController];
-    
+    [NewsCenterCategory releaseNewsCenterCategoryResultsController];
     _fetchedResultsController.delegate = self;
     
     NSError *error = nil;
@@ -326,10 +326,10 @@
         [unreadLable release];
         unreadLable.textColor = [UIColor whiteColor];
         unreadLable.backgroundColor = [UIColor clearColor];
-        unreadLable.textAlignment = UITextAlignmentCenter;
+        unreadLable.textAlignment = NSTextAlignmentCenter;
         unreadLable.font = [UIFont boldSystemFontOfSize:20];
         unreadLable.adjustsFontSizeToFitWidth = YES;
-        unreadLable.minimumFontSize = 10;
+        unreadLable.minimumScaleFactor = 10;
         //end
         
     }

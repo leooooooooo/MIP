@@ -63,7 +63,7 @@ NSString *const kVersionUpdateLog = @"kVersionUpdateLog";
     // Override point for customization after application launch.
     self.window.backgroundColor = [UIColor blackColor];
     
-    LoginViewController *loginViewController = [[LoginViewController alloc] init];
+    LoginViewController *loginViewController = [[[LoginViewController alloc] init]autorelease];
     
     KNavigationController *nav = [[KNavigationController alloc] initWithRootViewController:loginViewController];
     

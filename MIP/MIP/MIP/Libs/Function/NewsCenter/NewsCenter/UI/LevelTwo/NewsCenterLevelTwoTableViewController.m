@@ -425,7 +425,7 @@
     //搜索
     if ((isValid(self.currentCategory.keyword) && ![self.currentCategory.keyword isEqualToString:@""])||(isValid(self.currentCategory.typeID)&&![self.currentCategory.typeID isEqualToString:@""]))
     {
-        [(NewsCenterLevelTwoViewController *)self.parentViewController searchNewsCenterResultCount:[self.currentCategory.fetchedResultsController.fetchedObjects count]];
+        [(NewsCenterLevelTwoViewController *)self.parentViewController searchNewsCenterResultCount:(int)[self.currentCategory.fetchedResultsController.fetchedObjects count]];
     }
     
     //lixiangai
@@ -535,7 +535,7 @@
     //搜索
     if (isValid(self.currentCategory.keyword) && ![self.currentCategory.keyword isEqualToString:@""])
     {
-        [(NewsCenterLevelTwoViewController *)self.parentViewController searchNewsCenterResultCount:[self.currentCategory.fetchedResultsController.fetchedObjects count]];
+        [(NewsCenterLevelTwoViewController *)self.parentViewController searchNewsCenterResultCount:(int)[self.currentCategory.fetchedResultsController.fetchedObjects count]];
     }
     
     //lixiangai
@@ -683,7 +683,7 @@
         
         UIImageView *imageView = (UIImageView *)[cell.contentView viewWithTag:1000];
         
-        if (![entity.newMark boolValue])
+        if (![entity.newsMark boolValue])
         {
 //            imageView.image = [UIImage imageNamed:@"tag_read.png" imageBundle:newsCenterBundle];
             imageView.image = nil;
@@ -816,7 +816,7 @@
     }
 
     
-    document.newMark = [NSNumber numberWithBool:NO];
+    document.newsMark = [NSNumber numberWithBool:NO];
     [document.managedObjectContext save:NULL];
 }
 -(void)test

@@ -336,7 +336,7 @@
                                     
                                     if (isValid(newMark))
                                     {
-                                        document.newMark = [NSNumber numberWithBool:[newMark boolValue]];
+                                        document.newsMark = [NSNumber numberWithBool:[newMark boolValue]];
                                     }
                                     
                                     NSString *msgTypeId = [itemDic objectForKey:@"msgtypeid"];
@@ -382,7 +382,7 @@
     NSError *error = nil;
     
     if (!data)
-        return NO;
+        return nil;
     
     NSDictionary *bodyDictionary = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingAllowFragments error:&error];
     
@@ -394,7 +394,7 @@
             
             if (![ret isEqualToString:@"0"]) {
                 
-                return NO;
+                return nil;
             }
         }
         
@@ -706,7 +706,7 @@
     NSError *error = nil;
     
     if (!data)
-        return NO;
+        return nil;
     
     NSDictionary *bodyDictionary = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingAllowFragments error:&error];
     
@@ -719,7 +719,7 @@
             
             if (![ret isEqualToString:@"0"]) {
                 
-                return NO;
+                return nil;
             }
         }
         

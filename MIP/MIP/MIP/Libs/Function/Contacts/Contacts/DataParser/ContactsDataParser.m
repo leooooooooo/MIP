@@ -216,7 +216,7 @@
             
             NSManagedObjectContext *context = [[DataManager shareDataManager] managedObjectContext];
             NSEntityDescription *entityDescription = [NSEntityDescription entityForName:NSStringFromClass([ComContactsInfo class]) inManagedObjectContext:context];
-            NSFetchRequest *request=[[NSFetchRequest alloc] init];
+            NSFetchRequest *request=[[[NSFetchRequest alloc] init]autorelease];
             [request setEntity:entityDescription];
             
             NSInteger index = 0;
@@ -301,10 +301,12 @@
                     }
                 }
                 
-                [tmpResult addObject:comContactsInfo];
+                if (comContactsInfo) {
+                    [tmpResult addObject:comContactsInfo];
+                }
                 
                 [comContactsInfo release];
-                
+                [comDepart release];
                 [tmpResult release];
             }
             

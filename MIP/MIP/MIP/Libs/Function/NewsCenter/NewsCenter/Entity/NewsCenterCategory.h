@@ -30,7 +30,6 @@ typedef enum{
 @property (nonatomic, retain) NSString              *keyword;//关键字;当前栏目搜索的关键字
 @property (nonatomic, retain) NSString              *typeID;//关键字;当前栏目搜索的关键字
 @property (nonatomic, retain) NSFetchedResultsController *fetchedResultsController;
-
 @property (nonatomic, assign) NewsType  newsType;
 
 @property (nonatomic, retain) NSString              *funcdes;//功能描述信息

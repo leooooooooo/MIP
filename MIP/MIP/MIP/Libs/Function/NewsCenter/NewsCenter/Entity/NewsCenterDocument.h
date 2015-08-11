@@ -25,7 +25,7 @@
 @property (nonatomic, retain) NSString * typeName;
 @property (nonatomic, retain) NewsCenterCategory *newsCenterCategory;
 @property (nonatomic, retain) NSString * url;
-@property (nonatomic, retain) NSNumber * newMark;
+@property (nonatomic, retain) NSNumber * newsMark;
 @property (nonatomic, retain) NSString * msgTypeID;
 
 @end
