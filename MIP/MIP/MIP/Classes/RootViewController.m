@@ -116,7 +116,7 @@
     UILabel *titleLab = [[UILabel alloc] initWithFrame:CGRectMake(0, 5, bgImageView.frame.size.width, 50)];
     titleLab.text = @"提示";
     titleLab.font = [UIFont boldSystemFontOfSize:22];
-    titleLab.textAlignment = UITextAlignmentCenter;
+    titleLab.textAlignment = NSTextAlignmentCenter;
     [titleLab setTextColor:[UIColor whiteColor]];
     [titleLab setBackgroundColor:[UIColor clearColor]];
     [alertView addSubview:titleLab];
