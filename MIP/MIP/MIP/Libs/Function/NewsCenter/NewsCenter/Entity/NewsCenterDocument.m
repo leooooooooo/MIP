@@ -24,7 +24,7 @@
 @dynamic typeName;
 @dynamic newsCenterCategory;
 @dynamic url;
-@dynamic newsMark;
+@dynamic newMark;
 @dynamic msgTypeID;
 
 @end

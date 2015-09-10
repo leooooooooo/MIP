@@ -683,7 +683,7 @@
         
         UIImageView *imageView = (UIImageView *)[cell.contentView viewWithTag:1000];
         
-        if (![entity.newsMark boolValue])
+        if (![entity.newMark boolValue])
         {
 //            imageView.image = [UIImage imageNamed:@"tag_read.png" imageBundle:newsCenterBundle];
             imageView.image = nil;
@@ -816,7 +816,7 @@
     }
 
     
-    document.newsMark = [NSNumber numberWithBool:NO];
+    document.newMark = [NSNumber numberWithBool:NO];
     [document.managedObjectContext save:NULL];
 }
 -(void)test

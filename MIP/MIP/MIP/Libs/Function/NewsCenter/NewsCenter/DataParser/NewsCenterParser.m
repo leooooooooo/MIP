@@ -336,7 +336,7 @@
                                     
                                     if (isValid(newMark))
                                     {
-                                        document.newsMark = [NSNumber numberWithBool:[newMark boolValue]];
+                                        document.newMark = [NSNumber numberWithBool:[newMark boolValue]];
                                     }
                                     
                                     NSString *msgTypeId = [itemDic objectForKey:@"msgtypeid"];

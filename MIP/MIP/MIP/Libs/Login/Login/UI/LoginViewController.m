@@ -314,11 +314,12 @@
 //    }
     
     //将设备token上传服务器
+    /*
     if (isValid(devToken))
     {
         [LoginNetRequest executeAsynchronous:@selector(postDevToken) callback:@selector(callBackPostDevToken:error:) backTarget:self args:devToken,nil];
     }
-
+     */
     //获取模块未读数
 //    [LoginNetRequest executeAsynchronous:@selector(getModuleBadge) callback:@selector(callBackGetModuleBadge:error:) backTarget:self args:@"",nil];
     

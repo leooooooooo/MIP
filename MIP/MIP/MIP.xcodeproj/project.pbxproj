@@ -897,8 +897,8 @@
 		923D77E017D5733D00C75390 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				CODE_SIGN_IDENTITY = "iPhone Distribution: Lianyungang Port Group Communications and Information Engineering Company";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Lianyungang Port Group Communications and Information Engineering Company";
+				CODE_SIGN_IDENTITY = "iPhone Developer: chao zhang (QRCCUSMX3M)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: chao zhang (QRCCUSMX3M)";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "MIP/MIP-Prefix.pch";
 				HEADER_SEARCH_PATHS = (
@@ -914,8 +914,8 @@
 				ONLY_ACTIVE_ARCH = NO;
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = MyLygport;
-				PROVISIONING_PROFILE = "786b16c0-434e-4312-8151-0ff2ecec9ee0";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "786b16c0-434e-4312-8151-0ff2ecec9ee0";
+				PROVISIONING_PROFILE = "3e3437d0-ec90-4c74-ab3e-2bbb8491cc56";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "3e3437d0-ec90-4c74-ab3e-2bbb8491cc56";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = 1;
 				VALID_ARCHS = armv7;

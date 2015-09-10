@@ -106,7 +106,7 @@
     _customRefreshControl.headerArrowImage.frame = CGRectMake(50, rect.origin.y, rect.size.width, rect.size.height);
     
     _fetchedResultsController = [NewsCenterCategory newsCenterCategoryResultsController];
-    [NewsCenterCategory releaseNewsCenterCategoryResultsController];
+    
     _fetchedResultsController.delegate = self;
     
     NSError *error = nil;
