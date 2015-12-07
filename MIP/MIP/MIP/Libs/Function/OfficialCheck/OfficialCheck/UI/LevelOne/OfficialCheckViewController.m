@@ -47,8 +47,8 @@
 {
     [officialCheckView addWebView];
     
-    NSString *urlString = [NSString stringWithFormat:@"http://218.92.115.51/portal/m/index_sso.jsp?userId=%@",[Userinfo shareUserinfo].uid];
-    
+//    NSString *urlString = [NSString stringWithFormat:@"http://218.92.115.51/portal/m/index_sso.jsp?userId=%@",[Userinfo shareUserinfo].uid];
+    NSString *urlString = [NSString stringWithFormat:@"http://218.92.115.51/portal/m_index_sso.jsp?userid=%@&pwd=%@",[Userinfo shareUserinfo].uid,[Userinfo shareUserinfo].password];
     [officialCheckView.contentWebView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:urlString]]];
 }
 

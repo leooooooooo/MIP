@@ -591,7 +591,7 @@
 		923D77B517D5733D00C75390 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0630;
+				LastUpgradeCheck = 0700;
 				ORGANIZATIONNAME = Sea;
 				TargetAttributes = {
 					923D77BC17D5733D00C75390 = {
@@ -840,6 +840,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Distribution: Lianyungang Port Group Communications and Information Engineering Company";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Lianyungang Port Group Communications and Information Engineering Company";
 				COPY_PHASE_STRIP = NO;
+				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_OPTIMIZATION_LEVEL = 0;
@@ -897,8 +898,9 @@
 		923D77E017D5733D00C75390 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				CODE_SIGN_IDENTITY = "iPhone Developer: chao zhang (QRCCUSMX3M)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: chao zhang (QRCCUSMX3M)";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Lianyungang Port Group Communications and Information Engineering Company";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Lianyungang Port Group Communications and Information Engineering Company";
+				ENABLE_BITCODE = NO;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "MIP/MIP-Prefix.pch";
 				HEADER_SEARCH_PATHS = (
@@ -913,9 +915,10 @@
 				);
 				ONLY_ACTIVE_ARCH = NO;
 				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_BUNDLE_IDENTIFIER = gov.lyg.mip;
 				PRODUCT_NAME = MyLygport;
-				PROVISIONING_PROFILE = "3e3437d0-ec90-4c74-ab3e-2bbb8491cc56";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "3e3437d0-ec90-4c74-ab3e-2bbb8491cc56";
+				PROVISIONING_PROFILE = "786b16c0-434e-4312-8151-0ff2ecec9ee0";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "786b16c0-434e-4312-8151-0ff2ecec9ee0";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = 1;
 				VALID_ARCHS = armv7;
@@ -928,6 +931,7 @@
 			buildSettings = {
 				CODE_SIGN_IDENTITY = "iPhone Distribution: Lianyungang Port Group Communications and Information Engineering Company";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Lianyungang Port Group Communications and Information Engineering Company";
+				ENABLE_BITCODE = NO;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "MIP/MIP-Prefix.pch";
 				HEADER_SEARCH_PATHS = (
@@ -942,6 +946,7 @@
 				);
 				ONLY_ACTIVE_ARCH = NO;
 				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_BUNDLE_IDENTIFIER = gov.lyg.mip;
 				PRODUCT_NAME = MyLygport;
 				PROVISIONING_PROFILE = "786b16c0-434e-4312-8151-0ff2ecec9ee0";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "786b16c0-434e-4312-8151-0ff2ecec9ee0";
